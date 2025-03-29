@@ -24,21 +24,30 @@ Mantis MCP Server 是一個基於 Model Context Protocol (MCP) 的服務，用�
 ## 安裝
 
 ```bash
-npm install
+npm install mantis-mcp-server
 ```
 
 ## 配置
 
-1. 複製 `.env.example` 文件並重命名為 `.env`：
-   ```bash
-   cp .env.example .env
-   ```
+1. 在專案根目錄建立 `.env` 文件：
 
-2. 在 `.env` 文件中設置您的 Mantis API 配置：
-   ```
-   MANTIS_API_URL=https://your-mantis-instance.com/api/rest
-   MANTIS_API_KEY=your_api_key_here
-   ```
+```bash
+# Mantis API 配置
+MANTIS_API_URL=https://your-mantis-instance.com/api/rest
+MANTIS_API_KEY=your_api_key_here
+
+# 應用配置
+NODE_ENV=development  # development, production, test
+LOG_LEVEL=info       # error, warn, info, debug
+
+# 快取配置
+CACHE_ENABLED=true
+CACHE_TTL_SECONDS=300  # 5分鐘
+
+# 日誌配置
+LOG_DIR=logs
+ENABLE_FILE_LOGGING=false
+```
 
 ### MantisBT API Key 獲取方式
 
@@ -49,17 +58,128 @@ npm install
 5. 輸入令牌名稱（例如：MCP Server）
 6. 複製生成的 API 令牌，並將其貼入 `.env` 文件的 `MANTIS_API_KEY` 設置中
 
-## 構建與運行
+## MCP 配置
+
+### 全域安裝
+
+首先，需要全域安裝 mantis-mcp-server：
 
 ```bash
-# 構建
-npm run build
+npm install -g mantis-mcp-server
+```
 
-# 運行
-npm start
+### Windows 配置
 
-# 開發模式（監視變更）
-npm run watch
+在 Windows 系統中，編輯 `%USERPROFILE%\.cursor\mcp.json`（通常在 `C:\Users\你的用戶名\.cursor\mcp.json`），添加以下配置：
+
+```json
+{
+  "mcpServers": {
+    "mantis-mcp-server": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "node",
+        "%APPDATA%\\npm\\node_modules\\mantis-mcp-server\\dist\\index.js"
+      ],
+      "env": {
+        "MANTIS_API_URL": "YOUR_MANTIS_API_URL",
+        "MANTIS_API_KEY": "YOUR_MANTIS_API_KEY",
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}
+```
+
+### macOS/Linux 配置
+
+在 macOS 或 Linux 系統中，編輯 `~/.cursor/mcp.json`，添加以下配置：
+
+```json
+{
+  "mcpServers": {
+    "mantis-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mantis-mcp-server@latest",
+      ],
+      "env": {
+        "MANTIS_API_URL": "YOUR_MANTIS_API_URL",
+        "MANTIS_API_KEY": "YOUR_MANTIS_API_KEY",
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}
+```
+
+> 注意：在 macOS/Linux 中，我們使用 npx 來運行最新版本的 mantis-mcp-server，這樣可以確保始終使用最新版本，不需要全域安裝。
+
+### 環境變數說明
+
+- `MANTIS_API_URL`: 您的 Mantis API URL
+- `MANTIS_API_KEY`: 您的 Mantis API 金鑰
+- `NODE_ENV`: 執行環境，建議設置為 "production"
+- `LOG_LEVEL`: 日誌級別，可選值：error、warn、info、debug
+
+### 驗證配置
+
+配置完成後，您可以：
+
+1. 重新載入 Cursor MCP
+2. 開啟命令面板（Windows: Ctrl+Shift+P, Mac: Cmd+Shift+P）
+
+## 在 Cursor 中設定
+
+1. 在 `.vscode/mcp.json` 中添加以下配置：
+
+```json
+{
+  "servers": {
+    "mantis-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/dist/index.js"]
+    }
+  }
+}
+```
+
+2. 在 `.vscode/launch.json` 中添加以下配置用於除錯：
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug MCP Server",
+      "skipFiles": ["<node_internals>/**"],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "@modelcontextprotocol/inspector",
+        "node",
+        "dist/index.js"
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "npm: watch",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "running at (https?://\\S+)",
+        "uriFormat": "%s?timeout=60000"
+      },
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
 ```
 
 ## API 工具說明
@@ -138,43 +258,30 @@ npm run watch
 - 結構化的錯誤響應
 - 詳細的錯誤日誌
 
-錯誤響應格式：
-```json
-{
-  "error": "錯誤描述",
-  "message": "詳細錯誤信息",
-  "isError": true
-}
+## 開發
+
+```bash
+# 安裝依賴
+npm install
+
+# 構建
+npm run build
+
+# 開發模式（監視變更）
+npm run watch
+
+# 運行
+npm start
 ```
 
-## 效能優化
+## 日誌
 
-### 1. 欄位選擇
-使用 `select` 參數指定需要的欄位，減少不必要的資料傳輸：
-```typescript
-{
-  "select": ["id", "summary", "description"]
-}
-```
+如果啟用了檔案日誌（`ENABLE_FILE_LOGGING=true`），日誌文件將保存在：
 
-### 2. 分頁處理
-使用 `pageSize` 和 `page` 參數控制每次返回的數據量：
-```typescript
-{
-  "pageSize": 10,
-  "page": 1
-}
-```
+- `logs/mantis-mcp-server-combined.log`: 所有級別的日誌
+- `logs/mantis-mcp-server-error.log`: 僅錯誤級別的日誌
 
-### 3. 自動資料壓縮
-當回傳資料超過 100KB 時，系統會自動進行 GZIP 壓縮並使用 Base64 編碼。壓縮後的回應會包含以下 metadata：
-```json
-{
-  "compressed": true,
-  "originalSize": 150000,
-  "compressedSize": 45000
-}
-```
+日誌文件大小上限為 5MB，最多保留 5 個歷史文件。
 
 ## 許可證
 

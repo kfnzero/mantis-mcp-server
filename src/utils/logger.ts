@@ -1,78 +1,59 @@
 import winston from 'winston';
 import path from 'path';
-import fs from 'fs';
+import { config } from '../config/index.js';
 
 // 定義日誌格式
 const logFormat = winston.format.combine(
-  winston.format.timestamp({
-    format: 'YYYY-MM-DD HH:mm:ss'
-  }),
-  winston.format.errors({ stack: true }),
-  winston.format.splat(),
+  winston.format.timestamp(),
   winston.format.json()
 );
+const logLevel = process.env.LOG_LEVEL || 'info';
+const enableFileLogging = process.env.ENABLE_FILE_LOGGING === 'true';
+const logDir = process.env.LOG_DIR || path.join(process.cwd(), 'logs');
+/**
+ * 如果環境參數的ENABLE_FILE_LOGGING是false，則不會寫入日誌到檔案
+ * 如果有指定LOG_DIR，則會寫入日誌到指定的目錄
+ * 如果沒有指定LOG_DIR，則會寫入日誌到logs目錄
+ * 如果沒有指定LOG_LEVEL，則會使用info等級
+ * 如果沒有指定NODE_ENV，則會使用development等級
+ */
 
 // 創建 logger 實例
 export const log = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
+  level: logLevel || 'info',
   format: logFormat,
   transports: [
-    // 寫入所有日誌到 logs/combined.log
+    // 控制台輸出只處理非錯誤日誌
+    // 永遠不輸出到Console
+    // new winston.transports.Console({
+    //   format: winston.format.combine(
+    //     winston.format.colorize(),
+    //     winston.format.simple()
+    //   ),
+    //   level: 'info'  // 只處理 info 及以下級別
+    // })
+  ]
+});
+
+// 如果啟用檔案日誌，添加檔案 transports
+if (enableFileLogging) {
+  
+  // 添加綜合日誌檔案
+  log.add(
     new winston.transports.File({
-      filename: path.join(process.cwd(), 'logs', 'mantis-mcp-server-combined.log'),
+      filename: path.join(logDir, 'mantis-mcp-server-combined.log'),
       maxsize: 5242880, // 5MB
       maxFiles: 5,
-    }),
-    // 寫入所有錯誤到 logs/error.log
+    })
+  );
+
+  // 添加錯誤日誌檔案 - 只處理錯誤級別的日誌
+  log.add(
     new winston.transports.File({
-      filename: path.join(process.cwd(), 'logs', 'mantis-mcp-server-error.log'),
+      filename: path.join(logDir, 'mantis-mcp-server-error.log'),
       level: 'error',
       maxsize: 5242880, // 5MB
       maxFiles: 5,
-    }),
-  ],
-});
-
-// 永遠不輸出到Console
-// // 如果不是生產環境，也將日誌輸出到控制台
-// if (process.env.NODE_ENV !== 'production') {
-//   log.add(new winston.transports.Console({
-//     format: winston.format.combine(
-//       winston.format.colorize(),
-//       winston.format.simple()
-//     ),
-//   }));
-// }
-
-// 確保日誌目錄存在
-const logDir = path.join(process.cwd(), 'logs');
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir);
+    })
+  );
 }
-
-// 預設配置
-const defaultConfig = {
-  LOG_LEVEL: 'info',
-  NODE_ENV: 'development'
-};
-
-// 更新日誌配置的函數
-export const updateLoggerConfig = (config: { LOG_LEVEL: string; NODE_ENV: string }) => {
-  log.level = config.LOG_LEVEL;
-  
-  // 根據環境重新配置控制台輸出
-  const hasConsoleTransport = log.transports.some(t => t instanceof winston.transports.Console);
-  
-  // if (config.NODE_ENV !== 'production' && !hasConsoleTransport) {
-  //   log.add(new winston.transports.Console({
-  //     format: winston.format.combine(
-  //       winston.format.colorize(),
-  //       winston.format.simple()
-  //     )
-  //   }));
-  // } else if (config.NODE_ENV === 'production' && hasConsoleTransport) {
-  //   log.transports = log.transports.filter(t => !(t instanceof winston.transports.Console));
-  // }
-};
-
-export default log; 

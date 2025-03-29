@@ -11,5 +11,5 @@
 - 如果被要求發布時，
 - 1. 先更新package.json中的版本號，並在發布日誌中記錄，
 - 2. 先執行 npm run build，
-- 3. 再執行 git commit 將所有變更檔案上傳
+- 3. 再執行 git commit 將所有變更檔案上傳，如果沒有commit成功，不得發布
 - 4. 再執行 npm publish --access public

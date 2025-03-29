@@ -3,7 +3,7 @@ import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { log, updateLoggerConfig } from '../utils/logger.js';
+import { log } from '../utils/logger.js';
 
 // 取得當前文件的目錄路徑
 const __filename = fileURLToPath(import.meta.url);
@@ -49,12 +49,6 @@ const parseConfig = () => {
       CACHE_TTL_SECONDS: process.env.CACHE_TTL_SECONDS,
       LOG_DIR: process.env.LOG_DIR,
       ENABLE_FILE_LOGGING: process.env.ENABLE_FILE_LOGGING,
-    });
-
-    // 更新日誌配置
-    updateLoggerConfig({
-      LOG_LEVEL: parsedConfig.LOG_LEVEL,
-      NODE_ENV: parsedConfig.NODE_ENV
     });
 
     // 如果啟用檔案日誌,確保日誌目錄存在
