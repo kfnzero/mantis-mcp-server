@@ -228,7 +228,7 @@ export class MantisApi {
     const cacheKey = `issues-${filter}-${page}-${pageSize}`;
     
     const response = await this.cachedRequest<{issues: Issue[]}>(cacheKey, () => {
-      return this.api.get(`/issues?page=${page}&pageSize=${pageSize}${filter}`);
+      return this.api.get(`/issues?page=${page}&page_size=${pageSize}${filter}`);
     });
 
     return response.issues;
