@@ -22,17 +22,7 @@ const logDir = process.env.LOG_DIR || path.join(process.cwd(), 'logs');
 export const log = winston.createLogger({
   level: logLevel || 'info',
   format: logFormat,
-  transports: [
-    // 控制台輸出只處理非錯誤日誌
-    // 永遠不輸出到Console
-    // new winston.transports.Console({
-    //   format: winston.format.combine(
-    //     winston.format.colorize(),
-    //     winston.format.simple()
-    //   ),
-    //   level: 'info'  // 只處理 info 及以下級別
-    // })
-  ]
+  transports: []  // 不添加任何控制台輸出
 });
 
 // 如果啟用檔案日誌，添加檔案 transports
