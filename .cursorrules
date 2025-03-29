@@ -6,3 +6,6 @@
 - memory-bank/: 記憶體儲存目錄
 - docs/archive/: 任務歸檔目錄
 - tasks.md: 任務追蹤的單一真實來源 
+
+## 發布注意事項
+- 如果被要求發布時，先更新package.json中的版本號，並在發布日誌中記錄，先執行 npm run build，再執行 npm publish --access public
