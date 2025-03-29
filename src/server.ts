@@ -27,8 +27,8 @@ export function createServer(): McpServer {
       handlerId: z.number().optional().describe("處理人 ID"),
       reporterId: z.number().optional().describe("報告者 ID"),
       search: z.string().optional().describe("搜尋關鍵字"),
-      limit: z.number().optional().default(20).describe("回傳數量限制"),
-      offset: z.number().optional().default(0).describe("分頁起始位置"),
+      pageSize: z.number().optional().default(20).describe("頁數大小"),
+      page: z.number().optional().default(0).describe("分頁起始位置，從1開始"),
     },
     async (params) => {
       try {
@@ -358,7 +358,7 @@ export function createServer(): McpServer {
         // 從 Mantis API 獲取問題並處理統計
         const issues = await mantisApi.getIssues({
           projectId: params.projectId,
-          limit: 1000 // 獲取大量數據用於統計
+          pageSize: 1000 // 獲取大量數據用於統計
         });
 
         // 建立統計結果
@@ -524,7 +524,7 @@ export function createServer(): McpServer {
         // 獲取問題
         const issues = await mantisApi.getIssues({
           projectId: params.projectId,
-          limit: 1000 // 獲取大量數據用於統計
+          pageSize: 1000 // 獲取大量數據用於統計
         })
 
         // 過濾問題

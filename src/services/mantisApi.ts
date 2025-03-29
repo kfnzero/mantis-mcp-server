@@ -47,8 +47,8 @@ export interface IssueSearchParams {
   reporterId?: number;
   priority?: number;
   severity?: number;
-  limit?: number;
-  offset?: number;
+  pageSize?: number;
+  page?: number;
   search?: string;
 }
 
@@ -222,13 +222,13 @@ export class MantisApi {
     if (params.severity) filter += `&severity=${params.severity}`;
     if (params.search) filter += `&search=${encodeURIComponent(params.search)}`;
     
-    const limit = params.limit || 50;
-    const offset = params.offset || 0;
+    const pageSize = params.pageSize || 50;
+    const page = params.page ||1;
     
-    const cacheKey = `issues-${filter}-${limit}-${offset}`;
+    const cacheKey = `issues-${filter}-${page}-${pageSize}`;
     
     const response = await this.cachedRequest<{issues: Issue[]}>(cacheKey, () => {
-      return this.api.get(`/issues?limit=${limit}&offset=${offset}${filter}`);
+      return this.api.get(`/issues?page=${page}&pageSize=${pageSize}${filter}`);
     });
 
     return response.issues;
