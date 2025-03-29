@@ -3,12 +3,30 @@ import { z } from "zod";
 import { isMantisConfigured } from "./config/index.js";
 import mantisApi, { MantisApiError, User } from "./services/mantisApi.js";
 import { log } from "./utils/logger.js";
+import { gzip } from 'zlib';
+import { promisify } from 'util';
+
+const gzipAsync = promisify(gzip);
+
+// 定義壓縮閾值（單位：字節）
+const COMPRESSION_THRESHOLD = 1024 * 100; // 100KB
 
 // 定義日誌數據類型
 interface LogData {
   tool: string;
   [key: string]: any;
   error?: any;
+}
+
+// 壓縮 JSON 數據
+async function compressJsonData(data: any): Promise<string> {
+  const jsonString = JSON.stringify(data);
+  if (jsonString.length < COMPRESSION_THRESHOLD) {
+    return jsonString;
+  }
+
+  const compressed = await gzipAsync(Buffer.from(jsonString));
+  return compressed.toString('base64');
 }
 
 export function createServer(): McpServer {
@@ -20,7 +38,7 @@ export function createServer(): McpServer {
   // 獲取問題列表
   server.tool(
     "get_issues",
-    "獲取 Mantis 問題列表，可根據多個條件進行過濾",
+    "獲取 Mantis 問題列表，可根據多個條件進行過濾，建議查詢時select選擇id,summary,description就好，資訊過多可能導致程式異常",
     {
       projectId: z.number().optional().describe("專案 ID"),
       statusId: z.number().optional().describe("狀態 ID"),
@@ -29,6 +47,7 @@ export function createServer(): McpServer {
       search: z.string().optional().describe("搜尋關鍵字"),
       pageSize: z.number().optional().default(20).describe("頁數大小"),
       page: z.number().optional().default(0).describe("分頁起始位置，從1開始"),
+      select: z.array(z.string()).optional().describe("選擇要返回的欄位，例如：['id', 'summary', 'description']"),
     },
     async (params) => {
       try {
@@ -53,12 +72,21 @@ export function createServer(): McpServer {
 
         // 從 Mantis API 獲取問題
         const issues = await mantisApi.getIssues(params);
+        
+        // 壓縮數據
+        const responseText = await compressJsonData(issues);
+        const isCompressed = responseText.length > COMPRESSION_THRESHOLD;
 
         return {
           content: [
             {
               type: "text",
-              text: JSON.stringify(issues, null, 2),
+              text: responseText,
+              metadata: {
+                compressed: isCompressed,
+                originalSize: JSON.stringify(issues).length,
+                compressedSize: responseText.length
+              }
             },
           ],
         };

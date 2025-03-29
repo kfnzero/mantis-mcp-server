@@ -15,6 +15,10 @@ Mantis MCP Server 是一個基於 Model Context Protocol (MCP) 的服務，用�
 - 統計分析
   - 問題統計（支持多維度分析）
   - 分派統計（分析問題分派情況）
+- 效能優化
+  - 欄位選擇（減少回傳資料量）
+  - 分頁處理（控制每次返回數量）
+  - 自動資料壓縮（大量資料時自動壓縮）
 - 完整的錯誤處理和日誌記錄
 
 ## 安裝
@@ -70,8 +74,9 @@ npm run watch
 - `handlerId` (可選): 處理人 ID
 - `reporterId` (可選): 報告者 ID
 - `search` (可選): 搜尋關鍵字
-- `limit` (可選, 默認 20): 回傳數量限制
-- `offset` (可選, 默認 0): 分頁起始位置
+- `pageSize` (可選, 默認 20): 頁數大小
+- `page` (可選, 默認 0): 分頁起始位置，從1開始
+- `select` (可選): 選擇要返回的欄位，例如：['id', 'summary', 'description']。可用於減少回傳資料量
 
 ### 2. 獲取問題詳情 (get_issue_by_id)
 
@@ -116,6 +121,35 @@ npm run watch
 用暴力法獲取所有用戶列表。
 
 **參數：** 無
+
+## 效能優化
+
+### 1. 欄位選擇
+使用 `select` 參數指定需要的欄位，減少不必要的資料傳輸：
+```typescript
+{
+  "select": ["id", "summary", "description"]
+}
+```
+
+### 2. 分頁處理
+使用 `pageSize` 和 `page` 參數控制每次返回的數據量：
+```typescript
+{
+  "pageSize": 10,
+  "page": 1
+}
+```
+
+### 3. 自動資料壓縮
+當回傳資料超過 100KB 時，系統會自動進行 GZIP 壓縮並使用 Base64 編碼。壓縮後的回應會包含以下 metadata：
+```json
+{
+  "compressed": true,
+  "originalSize": 150000,
+  "compressedSize": 45000
+}
+```
 
 ## 錯誤處理
 

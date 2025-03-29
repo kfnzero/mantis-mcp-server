@@ -50,6 +50,7 @@ export interface IssueSearchParams {
   pageSize?: number;
   page?: number;
   search?: string;
+  select?: string[];
 }
 
 export interface User {
@@ -221,6 +222,7 @@ export class MantisApi {
     if (params.priority) filter += `&priority=${params.priority}`;
     if (params.severity) filter += `&severity=${params.severity}`;
     if (params.search) filter += `&search=${encodeURIComponent(params.search)}`;
+    if (params.select?.length) filter += `&select=${params.select.join(',')}`;
     
     const pageSize = params.pageSize || 50;
     const page = params.page ||1;
