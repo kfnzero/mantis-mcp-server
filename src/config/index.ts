@@ -2,21 +2,12 @@ import dotenv from 'dotenv';
 import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { log, updateLoggerConfig } from '../utils/logger.js';
 
-// 確保日誌目錄存在
-const LOG_DIR = 'logs';
-if (!fs.existsSync(LOG_DIR)) {
-  fs.mkdirSync(LOG_DIR);
-}
-
-// 加載.env文件
-const result = dotenv.config();
-if (result.error) {
-  const errorMessage = `無法載入 .env 檔案: ${result.error.message}`;
-  fs.appendFileSync(path.join(LOG_DIR, 'error.log'), `${new Date().toISOString()} - ${errorMessage}\n`);
-  throw new Error(errorMessage);
-}
+// 取得當前文件的目錄路徑
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // 定義配置模式
 const ConfigSchema = z.object({
@@ -31,7 +22,20 @@ const ConfigSchema = z.object({
   // 快取配置
   CACHE_ENABLED: z.coerce.boolean().default(true),
   CACHE_TTL_SECONDS: z.coerce.number().default(300), // 5分鐘
+  
+  // 日誌配置
+  LOG_DIR: z.string().default(path.join(__dirname, '../../logs')),
+  ENABLE_FILE_LOGGING: z.coerce.boolean().default(false),
 });
+
+// 嘗試載入.env文件,但不強制要求
+try {
+  dotenv.config();
+} catch (error: unknown) {
+  log.warn('無法載入 .env 檔案,將使用預設配置', { 
+    error: error instanceof Error ? error.message : String(error) 
+  });
+}
 
 // 解析環境變數
 const parseConfig = () => {
@@ -43,6 +47,8 @@ const parseConfig = () => {
       LOG_LEVEL: process.env.LOG_LEVEL,
       CACHE_ENABLED: process.env.CACHE_ENABLED,
       CACHE_TTL_SECONDS: process.env.CACHE_TTL_SECONDS,
+      LOG_DIR: process.env.LOG_DIR,
+      ENABLE_FILE_LOGGING: process.env.ENABLE_FILE_LOGGING,
     });
 
     // 更新日誌配置
@@ -51,9 +57,25 @@ const parseConfig = () => {
       NODE_ENV: parsedConfig.NODE_ENV
     });
 
-    // 檢查必要的配置
+    // 如果啟用檔案日誌,確保日誌目錄存在
+    if (parsedConfig.ENABLE_FILE_LOGGING) {
+      try {
+        const logDir = path.resolve(parsedConfig.LOG_DIR);
+        if (!fs.existsSync(logDir)) {
+          fs.mkdirSync(logDir, { recursive: true });
+        }
+      } catch (error: unknown) {
+        log.warn('無法建立日誌目錄,檔案日誌功能將被停用', { 
+          dir: parsedConfig.LOG_DIR,
+          error: error instanceof Error ? error.message : String(error)
+        });
+        parsedConfig.ENABLE_FILE_LOGGING = false;
+      }
+    }
+
+    // 輸出警告但不阻止程式運行
     if (!parsedConfig.MANTIS_API_KEY) {
-      log.warn('未設定 MANTIS_API_KEY，API 呼叫可能會失敗');
+      log.warn('未設定 MANTIS_API_KEY，部分 API 功能可能無法使用');
     }
 
     if (parsedConfig.MANTIS_API_URL === 'https://mantisbt.org/bugs/api/rest') {
@@ -61,22 +83,20 @@ const parseConfig = () => {
     }
 
     return parsedConfig;
-  } catch (error: any) {
-    const errorMessages = [];
-    
+  } catch (error: unknown) {
+    // 配置驗證失敗時使用預設值
     if (error instanceof z.ZodError) {
-      errorMessages.push('配置驗證失敗:');
-      error.errors.forEach((err) => {
-        errorMessages.push(`- ${err.path.join('.')}: ${err.message}`);
+      log.warn('配置驗證失敗,將使用預設值:', {
+        errors: error.errors.map(err => `${err.path.join('.')}: ${err.message}`)
       });
-    } else {
-      errorMessages.push(`配置解析失敗: ${error.message || '未知錯誤'}`);
+      return ConfigSchema.parse({}); // 使用所有預設值
     }
-
-    // 寫入錯誤日誌
-    const errorLog = errorMessages.join('\n');
-    fs.appendFileSync(path.join(LOG_DIR, 'error.log'), `${new Date().toISOString()} - ${errorLog}\n`);
-    throw error;
+    
+    // 其他錯誤也使用預設值
+    log.error('配置解析失敗,將使用預設值', { 
+      error: error instanceof Error ? error.message : String(error)
+    });
+    return ConfigSchema.parse({});
   }
 };
 
