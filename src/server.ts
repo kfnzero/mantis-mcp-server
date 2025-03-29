@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { isMantisConfigured } from "./config/index.js";
-import mantisApi, { MantisApiError } from "./services/mantisApi.js";
+import mantisApi, { MantisApiError, User } from "./services/mantisApi.js";
 import { log } from "./utils/logger.js";
 
 // 定義日誌數據類型
@@ -66,7 +66,7 @@ export function createServer(): McpServer {
         // 處理錯誤情況
         let errorMessage = "獲取問題時發生錯誤";
         let logData: LogData = { tool: "get_issues", params };
-        
+
         if (error instanceof MantisApiError) {
           errorMessage = `Mantis API 錯誤: ${error.message}`;
           if (error.statusCode) {
@@ -80,7 +80,7 @@ export function createServer(): McpServer {
         } else {
           log.error(errorMessage, { ...logData, error });
         }
-        
+
         return {
           content: [
             {
@@ -142,7 +142,7 @@ export function createServer(): McpServer {
         // 處理錯誤情況
         let errorMessage = "獲取問題詳情時發生錯誤";
         let logData: LogData = { tool: "get_issue_by_id", issueId };
-        
+
         if (error instanceof MantisApiError) {
           errorMessage = `Mantis API 錯誤: ${error.message}`;
           if (error.statusCode) {
@@ -156,7 +156,7 @@ export function createServer(): McpServer {
         } else {
           log.error(errorMessage, { ...logData, error });
         }
-        
+
         return {
           content: [
             {
@@ -209,7 +209,7 @@ export function createServer(): McpServer {
         return {
           content: [
             {
-              type: "text", 
+              type: "text",
               text: JSON.stringify(user, null, 2),
             },
           ],
@@ -218,7 +218,7 @@ export function createServer(): McpServer {
         // 處理錯誤情況
         let errorMessage = "查詢用戶時發生錯誤";
         let logData: LogData = { tool: "get_user", username: params.username };
-        
+
         if (error instanceof MantisApiError) {
           errorMessage = `Mantis API 錯誤: ${error.message}`;
           if (error.statusCode) {
@@ -232,7 +232,7 @@ export function createServer(): McpServer {
         } else {
           log.error(errorMessage, { ...logData, error });
         }
-        
+
         return {
           content: [
             {
@@ -292,7 +292,7 @@ export function createServer(): McpServer {
         // 處理錯誤情況
         let errorMessage = "獲取專案列表時發生錯誤";
         let logData: LogData = { tool: "get_projects" };
-        
+
         if (error instanceof MantisApiError) {
           errorMessage = `Mantis API 錯誤: ${error.message}`;
           if (error.statusCode) {
@@ -306,7 +306,7 @@ export function createServer(): McpServer {
         } else {
           log.error(errorMessage, { ...logData, error });
         }
-        
+
         return {
           content: [
             {
@@ -381,7 +381,7 @@ export function createServer(): McpServer {
         const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
         const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
-        switch(params.period) {
+        switch (params.period) {
           case 'today':
             filteredIssues = issues.filter(issue => {
               const createdAt = new Date(issue.created_at);
@@ -405,7 +405,7 @@ export function createServer(): McpServer {
             // 保持原有的issues不變
             break;
         }
-        if(!filteredIssues || filteredIssues.length === 0){
+        if (!filteredIssues || filteredIssues.length === 0) {
           return {
             content: [
               {
@@ -419,7 +419,7 @@ export function createServer(): McpServer {
         // 根據分組依據進行統計
         filteredIssues.forEach(issue => {
           let key = '';
-          
+
           switch (params.groupBy) {
             case 'status':
               key = issue.status?.name || 'unknown';
@@ -437,7 +437,7 @@ export function createServer(): McpServer {
               key = issue.reporter?.name || 'unknown';
               break;
           }
-          
+
           statistics.data[key] = (statistics.data[key] || 0) + 1;
         });
 
@@ -452,13 +452,13 @@ export function createServer(): McpServer {
       } catch (error) {
         // 處理錯誤情況
         let errorMessage = "獲取問題統計時發生錯誤";
-        let logData: LogData = { 
-          tool: "get_issue_statistics", 
+        let logData: LogData = {
+          tool: "get_issue_statistics",
           params,
           groupBy: params.groupBy,
           period: params.period
         };
-        
+
         if (error instanceof MantisApiError) {
           errorMessage = `Mantis API 錯誤: ${error.message}`;
           if (error.statusCode) {
@@ -472,7 +472,7 @@ export function createServer(): McpServer {
         } else {
           log.error(errorMessage, { ...logData, error });
         }
-        
+
         return {
           content: [
             {
@@ -522,15 +522,15 @@ export function createServer(): McpServer {
         }
 
         // 獲取問題
-        const issues = await  mantisApi.getIssues({
+        const issues = await mantisApi.getIssues({
           projectId: params.projectId,
           limit: 1000 // 獲取大量數據用於統計
         })
-        
+
         // 過濾問題
         let filteredIssues = issues;
         if (params.statusFilter?.length) {
-          filteredIssues = issues.filter(issue => 
+          filteredIssues = issues.filter(issue =>
             params.statusFilter?.includes(issue.status.id)
           );
         }
@@ -579,10 +579,10 @@ export function createServer(): McpServer {
             if (userStat) {
               userStat.issueCount++;
               userStat.issues.push(issue.id);
-              
+
               // 根據狀態判斷是否為關閉狀態
-              if (issue.status.name.toLowerCase().includes('closed') || 
-                  issue.status.name.toLowerCase().includes('resolved')) {
+              if (issue.status.name.toLowerCase().includes('closed') ||
+                issue.status.name.toLowerCase().includes('resolved')) {
                 userStat.closedIssues++;
               } else {
                 userStat.openIssues++;
@@ -627,13 +627,13 @@ export function createServer(): McpServer {
       } catch (error) {
         // 處理錯誤情況
         let errorMessage = "獲取分派統計時發生錯誤";
-        let logData: LogData = { 
-          tool: "get_assignment_statistics", 
+        let logData: LogData = {
+          tool: "get_assignment_statistics",
           params,
           includeUnassigned: params.includeUnassigned,
           hasStatusFilter: !!params.statusFilter
         };
-        
+
         if (error instanceof MantisApiError) {
           errorMessage = `Mantis API 錯誤: ${error.message}`;
           if (error.statusCode) {
@@ -647,7 +647,7 @@ export function createServer(): McpServer {
         } else {
           log.error(errorMessage, { ...logData, error });
         }
-        
+
         return {
           content: [
             {
@@ -665,6 +665,94 @@ export function createServer(): McpServer {
       }
     }
   );
+  server.tool(
+    "get_users",
+    "用暴力法應是取得所有用戶",
+    {
 
+    },
+    async (params) => {
+      try {
+        // 檢查是否已配置 Mantis API
+        if (!isMantisConfigured()) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: JSON.stringify(
+                  {
+                    error: "Mantis API 尚未配置",
+                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
+                  },
+                  null,
+                  2
+                ),
+              },
+            ],
+          };
+        }
+        let notFoundCount = 0;
+        let id = 1;
+        let users: User[] = [];
+        do {
+          try {
+            const user = await mantisApi.getUser(id);
+            users.push(user);
+            id++;
+            notFoundCount = 0; // 重置計數器
+          } catch (error) {
+            if (error instanceof MantisApiError && error.statusCode === 404) {
+              notFoundCount++;
+              id++;
+            }
+          }
+        } while (notFoundCount < 10)
+        // 從 Mantis API 根據用戶名稱查詢用戶
+
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(users, null, 2),
+            },
+          ],
+        };
+      } catch (error) {
+        // 處理錯誤情況
+        let errorMessage = "查詢用戶時發生錯誤";
+        let logData: LogData = { tool: "get_users" };
+
+        if (error instanceof MantisApiError) {
+          errorMessage = `Mantis API 錯誤: ${error.message}`;
+          if (error.statusCode) {
+            errorMessage += ` (HTTP ${error.statusCode})`;
+            logData = { ...logData, statusCode: error.statusCode };
+          }
+          log.error(errorMessage, { ...logData, error: error.message });
+        } else if (error instanceof Error) {
+          errorMessage = error.message;
+          log.error(errorMessage, { ...logData, error: error.stack });
+        } else {
+          log.error(errorMessage, { ...logData, error });
+        }
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(
+                {
+                  error: errorMessage,
+                },
+                null,
+                2
+              ),
+            },
+          ],
+        };
+      }
+    }
+  );
   return server;
 }
