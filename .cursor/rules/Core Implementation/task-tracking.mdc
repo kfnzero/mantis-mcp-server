@@ -1,0 +1,393 @@
+---
+description: Adaptive task status tracking protocol (Single Source of Truth)
+globs: "**/memory-bank/tasks.md", "**/memory-bank/activeContext.md", "**/memory-bank/progress.md"
+alwaysApply: false
+---
+# ADAPTIVE TASK TRACKING PROTOCOL
+
+> **TL;DR:** Use tasks.md as the SINGLE SOURCE OF TRUTH for all task tracking. The task tracking process scales based on task complexity from Level 1 (quick bug fixes) to Level 4 (complex systems).
+
+## 🚨 SINGLE SOURCE OF TRUTH RULE
+
+Tasks.md is the ONLY file that should contain task status tracking:
+- Use [ ] for pending tasks
+- Use [X] for completed tasks
+
+## 📝 TASKS.MD STRUCTURE
+
+```markdown
+# Project Tasks
+
+## Current Tasks
+- [ ] Task 1: Description and details
+  - [ ] Subtask 1.1
+  - [ ] Subtask 1.2
+- [ ] Task 2: Description and details
+
+## Completed Tasks
+- [X] Task 3: Completed on YYYY-MM-DD
+- [X] Task 4: Completed on YYYY-MM-DD
+```
+
+## 🔄 ADAPTIVE TASK TRACKING BY LEVEL
+
+### Level 1: Quick Bug Fix
+**Update Frequency:** 2-3 updates total
+- Initial bug documentation
+- Fix implementation
+- Verification of fix
+
+**Tracking Detail:**
+- Single task with 1-3 checkboxes
+- Focus on problem statement and solution
+- Minimal but sufficient documentation
+
+**Example Task Entry:**
+```markdown
+## Current Tasks
+- [ ] Fix login button not working
+  - [ ] Identify root cause
+  - [ ] Implement fix
+  - [ ] Verify solution
+```
+
+**Example Update Format:**
+```
+🔄 TASK UPDATE: Fix login button - [X] Complete
+- Updated in tasks.md ✓
+- Root cause identified: CSS z-index conflict
+- Solution implemented and verified
+```
+
+### Level 2: Simple Enhancement
+**Update Frequency:** 4-6 updates total
+- Initial task creation
+- Plan finalization
+- Implementation milestones (1-2)
+- Testing completion
+- Final verification
+
+**Tracking Detail:**
+- Main task with 3-5 subtasks
+- Implementation approach documented
+- Basic testing steps included
+
+**Example Task Entry:**
+```markdown
+## Current Tasks
+- [ ] Add logout button to navbar
+  - [ ] Create button component
+  - [ ] Add logout functionality
+  - [ ] Style button to match design
+  - [ ] Add tooltip/confirmation
+  - [ ] Test functionality
+```
+
+**Example Update Format:**
+```
+🔄 TASK UPDATE: Add logout button - In Progress
+- Updated in tasks.md ✓
+- [X] Create button component
+- [X] Add logout functionality
+- [ ] Style button to match design
+- [ ] Add tooltip/confirmation
+- [ ] Test functionality
+- Implementation details added to activeContext.md ✓
+```
+
+### Level 3: Intermediate Feature
+**Update Frequency:** 8-12 updates total
+- After each workflow section
+- Major implementation milestones
+- Key decision points
+- Testing phases
+- Final review and completion
+
+**Tracking Detail:**
+- Comprehensive task breakdown (5-10+ items)
+- Hierarchical subtask organization
+- Detailed implementation steps
+- Cross-references to documentation
+- **Creative phases marked for all complex design elements**
+
+**Example Task Entry:**
+```markdown
+## Current Tasks
+- [ ] Implement user profile management
+  - [ ] Data model and schema
+    - [ ] 🎨 CREATIVE PHASE: Design user profile data model
+    - [ ] Define user profile fields
+    - [ ] Create database schema
+    - [ ] Set up validation rules
+  - [ ] Backend implementation
+    - [ ] Create API endpoints
+    - [ ] Implement security controls
+    - [ ] Add error handling
+  - [ ] Frontend implementation
+    - [ ] 🎨 CREATIVE PHASE: Design profile component architecture
+    - [ ] Create profile form components
+    - [ ] Implement image upload
+    - [ ] Add validation
+  - [ ] Testing and deployment
+    - [ ] Unit testing
+    - [ ] Integration testing
+    - [ ] Browser compatibility
+```
+
+**Example Update Format:**
+```
+🔄 TASK UPDATE: User profile management - In Progress
+- Updated in tasks.md ✓
+- Section Progress: IMPLEMENTATION phase
+- Completed:
+  - [X] Data model and schema
+  - [X] Backend API endpoints
+- In Progress:
+  - [ ] Frontend implementation
+- Implementation details added to activeContext.md ✓
+- Design decisions documented in systemPatterns.md ✓
+```
+
+### Level 4: Complex System
+**Update Frequency:** 15+ updates total
+- After each workflow section
+- Formal checkpoints within sections
+- Major architectural decisions
+- Integration points
+- Testing phases
+- Security and performance reviews
+- Final system verification
+
+**Tracking Detail:**
+- Comprehensive hierarchical task structure (10+ items)
+- Dependencies and relationships documented
+- Architectural considerations for each component
+- Multiple testing stages
+- Performance and security considerations
+- **Creative phases required for all major architectural elements**
+
+**Example Task Entry:**
+```markdown
+## Current Tasks
+- [ ] Implement OAuth2 authentication system
+  - [ ] Architecture and design
+    - [ ] 🎨 CREATIVE PHASE: Authentication system architecture
+    - [ ] Auth flow design
+    - [ ] Provider integration plan
+    - [ ] Security review
+  - [ ] Core infrastructure
+    - [ ] 🎨 CREATIVE PHASE: Token management strategy
+    - [ ] Token management
+    - [ ] Session handling
+    - [ ] Encryption setup
+  - [ ] Provider integration
+    - [ ] Google OAuth
+    - [ ] Facebook OAuth
+    - [ ] Twitter OAuth
+  - [ ] Frontend integration
+    - [ ] 🎨 CREATIVE PHASE: Auth component architecture
+    - [ ] Auth components
+    - [ ] Protected routes
+    - [ ] User experience flow
+  - [ ] Testing and security
+    - [ ] Unit tests
+    - [ ] Integration tests
+    - [ ] Penetration testing
+    - [ ] Security review
+```
+
+**Example Update Format:**
+```
+🔄 TASK UPDATE: OAuth2 authentication system - In Progress
+- Updated in tasks.md ✓
+- Section Progress: IMPLEMENTATION phase (65% complete)
+- Checkpoint: Provider Integration
+- Completed:
+  - [X] Architecture and design
+  - [X] Core infrastructure
+  - [X] Google OAuth provider
+- In Progress:
+  - [ ] Facebook OAuth provider
+- Blockers: Waiting for Facebook App approval
+- Dependencies: User model update completed
+- Implementation details added to activeContext.md ✓
+- Architecture documented in systemPatterns.md ✓
+- Security considerations added to techContext.md ✓
+```
+
+## 🎨 CREATIVE PHASE HANDLING
+
+For tasks requiring extended creative work:
+
+1. **Mark Creative Phase Start with Problem Breakdown:**
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: [DESIGN/ALGORITHM/ARCHITECTURE] 🎨🎨🎨
+Focus: [Specific focus area]
+Objective: [What you aim to accomplish]
+Constraints: [Any constraints to consider]
+
+Breaking down the problem:
+- [Component 1]
+- [Component 2]
+- [Component 3]
+```
+
+2. **Use Creative Checkpoints with Verification:**
+```
+🎨 CREATIVE CHECKPOINT: [Milestone reached]
+- Progress: [Brief progress description]
+- Decisions made:
+  - [Decision 1]
+  - [Decision 2]
+- Verification:
+  - [Verify solution addresses requirements]
+  - [Verify compliance with constraints]
+  - [Verify consistency with existing system]
+- Open questions:
+  - [Question 1]
+  - [Question 2]
+- Next creative milestone: [Description]
+```
+
+3. **Mark Creative Phase End with Verification Summary:**
+```
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of creative work]
+- Key decisions: [Important decisions made]
+- Next steps: [Follow-up implementation tasks]
+- Documentation: [Where decisions were documented]
+- Verification: [Confirmation that solution meets requirements and constraints]
+```
+
+4. **Update Task Status After Creative Phase:**
+```
+🔄 TASK UPDATE: [Task name] - [Status]
+- Updated in tasks.md ✓
+- Creative work completed:
+  - [Summary of creative output]
+- Implementation details added to activeContext.md ✓
+```
+
+### Level-Specific Creative Phase Documentation
+
+#### Level 1 (Quick Bug Fix)
+Quick bug fixes rarely require creative phases. If needed, use simplified markers:
+```
+// Simple creative exploration
+[Brief creative exploration for bug solution]
+// End creative exploration
+```
+
+#### Level 2 (Simple Enhancement)
+For simple enhancements, use basic creative phase notation:
+```
+🎨 ENTERING CREATIVE PHASE: [BRIEF DESCRIPTION]
+[Creative work happens here]
+🎨 EXITING CREATIVE PHASE
+```
+
+#### Level 3-4 (Intermediate/Complex)
+For more complex tasks, use the full creative phase structure with checkpoints and summaries.
+
+### Creative Documentation by Type
+
+Based on creative phase type, document specific aspects:
+
+#### Algorithm Design
+- Complexity requirements
+- Edge cases
+- Performance considerations
+- Alternative approaches evaluated
+
+#### UI/UX Design
+- User requirements
+- Accessibility concerns
+- Layout options
+- Component structure
+- State management strategy
+
+#### Architecture Planning
+- System boundaries
+- Component interactions
+- Data flow
+- Security considerations
+- Scalability approach
+
+### Creative Phase Verification Checklist
+
+Before exiting a creative phase, perform systematic verification:
+```
+✓ CREATIVE PHASE VERIFICATION:
+- Phase type clearly specified? [YES/NO]
+- Problem broken down into components? [YES/NO]
+- Options explored with pros/cons? [YES/NO]
+- Each option verified against requirements? [YES/NO]
+- Decisions made with justification? [YES/NO]
+- Edge cases and risks identified? [YES/NO]
+- Verification steps performed? [YES/NO]
+- Checkpoints used for extended work? [YES/NO]
+- Summary provided with verification? [YES/NO]
+- Next steps defined with clear implementation path? [YES/NO]
+- Documentation location specified? [YES/NO]
+- Ready to return to task tracking? [YES/NO]
+```
+
+## 🔄 REAL-TIME UPDATES
+
+During implementation, add updates to activeContext.md:
+
+```
+🔄 UPDATE: [Component] - [Status]
+Added to activeContext.md:
+- [Brief details of implementation]
+```
+
+### Level-Specific Update Frequency:
+
+| Level | Description | Update Frequency | Detail Level |
+|-------|-------------|------------------|-------------|
+| 1     | Bug Fix     | Major milestones only | Basic |
+| 2     | Simple Enhancement | Key steps | Standard |
+| 3     | Intermediate Feature | Regular defined points | Detailed |
+| 4     | Complex System | Comprehensive at formal checkpoints | Extensive |
+
+## ✓ TASK VERIFICATION CHECKPOINT
+
+Before completing any task, regardless of level:
+```
+✓ TASK VERIFICATION:
+- Task status updated in tasks.md? [YES/NO]
+- Implementation details added to activeContext.md? [YES/NO]
+- Progress reflected in progress.md? [YES/NO]
+```
+
+## 🔄 TASK ESCALATION PROTOCOL
+
+If a task proves more complex than initially categorized:
+
+1. Document the escalation need:
+```
+⚠️ TASK ESCALATION NEEDED
+Current Level: [Level X]
+Recommended Level: [Level Y]
+Reason: [Brief explanation]
+```
+
+2. If escalation is approved:
+```
+🔄 TASK ESCALATION: [Task name]
+- Updated task complexity to Level [Y] ✓
+- Expanded task breakdown in tasks.md ✓
+- Adjusted documentation requirements ✓
+```
+
+3. If escalation is not approved:
+```
+⚠️ CONTINUING AT CURRENT LEVEL
+Note: Task complexity exceeds current level.
+Limitations: [Document what may be compromised]
+```
+
+This adaptive approach eliminates redundancy while maintaining comprehensive task tracking through a single source of truth that adapts to the complexity of the task.

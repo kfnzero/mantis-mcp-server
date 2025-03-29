@@ -1,0 +1,151 @@
+---
+description: Enhanced reference trigger system
+globs: **/src/**", "**/.cursorrules", "**/memory-bank/**
+alwaysApply: true
+---
+# ENHANCED REFERENCE TRIGGERS
+
+> **TL;DR:** Use the standardized 📚 REFERENCE CHECK template when consulting example files. Document key insights extracted from reference files. Mandatory reference points are at the start of each major workflow section.
+
+## 📚 STANDARDIZED REFERENCE CHECK FORMAT
+
+Each time you need to consult a reference file, use this standardized format:
+
+```
+📚 REFERENCE CHECK:
+- CONSULTING: [file name]
+- PURPOSE: [specific reason for consulting]
+- CRITICAL ELEMENTS: [key items to look for]
+
+Key insights:
+- [Key insight 1]
+- [Key insight 2]
+- [Key insight 3]
+
+✓ Reference consultation complete
+```
+
+## 📚 KEY EXAMPLE FILES 
+
+### 1. workflow-examples.mdc
+Contains essential examples for workflow implementation:
+- Initialization format
+- Documentation setup
+- Task planning structure
+- Section transitions
+
+### 2. command-examples.mdc
+Contains examples for proper command execution:
+- Single command format
+- Command documentation
+- Result reporting
+- Platform-specific adaptations
+
+### 3. reflection-examples.mdc
+Contains examples for structured reflection:
+- "What Went Well" format
+- "Challenges" format
+- "Lessons Learned" format
+- "Improvements for Next Time" format
+
+### 4. archive-examples.mdc
+Contains examples for proper archiving:
+- Archive entry format
+- Cross-linking format
+- Archive cleanup
+
+### 5. creative-phase-examples.mdc
+Contains examples for structured creative phases:
+- Algorithm design creative phases
+- UI design creative phases
+- Architecture planning creative phases
+- Level-specific examples
+- Systematic verification approach
+
+## 📚 MANDATORY REFERENCE POINTS
+
+At these points in the workflow, you MUST consult the specified reference files:
+
+1. **Start of INITIALIZATION**: 
+   - workflow-examples.mdc
+
+2. **Start of TASK PLANNING**:
+   - workflow-examples.mdc
+
+3. **Before FIRST COMMAND in IMPLEMENTATION**:
+   - command-examples.mdc
+
+4. **Start of REFLECTION**:
+   - reflection-examples.mdc
+
+5. **Start of ARCHIVING**:
+   - archive-examples.mdc
+
+6. **When encountering PLATFORM-SPECIFIC ISSUES**:
+   - platform-awareness.mdc
+
+## 📚 REFERENCE CHECK EXAMPLES
+
+### Initialization Reference Check:
+
+```
+📚 REFERENCE CHECK:
+- CONSULTING: workflow-examples.mdc
+- PURPOSE: Ensuring proper initialization format
+- CRITICAL ELEMENTS: Task objective, Status tracking, Verification commitment
+
+Key insights:
+- Must include task name and specific objective
+- Must create section tracking list with 6 sections
+- Must make verification commitment
+- Must review all Memory Bank files
+- Must identify platform and document requirements
+
+✓ Reference consultation complete
+```
+
+### Command Execution Reference Check:
+
+```
+📚 REFERENCE CHECK:
+- CONSULTING: command-examples.mdc
+- PURPOSE: Ensuring proper command documentation
+- CRITICAL ELEMENTS: Command format, platform awareness, error handling
+
+Key insights:
+- Must document platform considerations before execution
+- Must execute commands one at a time
+- Must document success OR failure after execution
+- Must provide alternative approaches for failed commands
+- Must add real-time updates after significant commands
+
+✓ Reference consultation complete
+```
+
+### Platform-Specific Reference Check:
+
+```
+📚 REFERENCE CHECK:
+- CONSULTING: platform-awareness.mdc
+- PURPOSE: Adapting commands for current platform
+- CRITICAL ELEMENTS: OS-specific syntax, path differences, command alternatives
+
+Key insights:
+- Windows uses backslashes, Unix uses forward slashes
+- Windows doesn't support mkdir -p for nested directories
+- Windows uses echo.> instead of touch for file creation
+- Command quoting may differ between platforms
+- Document all platform-specific adaptations in techContext.md
+
+✓ Reference consultation complete
+```
+
+## REFERENCE VERIFICATION
+
+At the end of each section, verify:
+- [ ] Required reference files were consulted using standard format
+- [ ] Key insights were documented
+- [ ] Section implementation incorporates reference insights
+- [ ] Reference consultation marked as complete
+
+Explicitly document the reference check process to prevent skipping this critical step. The standardized format ensures thorough consultation of example files and reduces the risk of implementation errors.

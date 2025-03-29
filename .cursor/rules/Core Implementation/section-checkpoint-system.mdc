@@ -1,0 +1,218 @@
+---
+description: Enhanced section checkpoint verification system
+globs: **/src/**", "**/.cursorrules", "**/memory-bank/**
+alwaysApply: true
+---
+# ENHANCED SECTION CHECKPOINT SYSTEM
+
+> **TL;DR:** This system adds clear, prominent checkpoint markers at the end of each workflow section with YES/NO questions to verify completion before moving on. The system uses tasks.md as the single source of truth for task status tracking.
+
+## 🚨 SECTION TRANSITION MARKERS
+
+Use these visual markers to clearly indicate section transitions:
+
+```
+======== INITIALIZATION COMPLETE ⟹ STARTING DOCUMENTATION SETUP ========
+
+======== DOCUMENTATION SETUP COMPLETE ⟹ STARTING TASK PLANNING ========
+
+======== TASK PLANNING COMPLETE ⟹ STARTING IMPLEMENTATION ========
+
+======== IMPLEMENTATION COMPLETE ⟹ STARTING REFLECTION ========
+
+======== REFLECTION COMPLETE ⟹ STARTING ARCHIVING ========
+
+======== ARCHIVING COMPLETE ⟹ TASK FINISHED ========
+```
+
+## ✓ ENHANCED CHECKPOINT TEMPLATE
+
+```
+✓ SECTION CHECKPOINT: [SECTION NAME]
+- Requirement 1? [YES/NO]
+- Requirement 2? [YES/NO]
+- Requirement 3? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: Ready for next section
+→ If any NO: Fix missing items before proceeding
+```
+
+## ✓ INITIALIZATION CHECKPOINT
+
+```
+✓ SECTION CHECKPOINT: INITIALIZATION
+- ALL Memory Bank files reviewed? [YES/NO]
+- Task objective clearly stated? [YES/NO]
+- Platform identified and documented? [YES/NO]
+- .cursorrules file (not directory) created/updated? [YES/NO]
+- tasks.md verified to exist? [YES/NO]
+- Reference check completed? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: Ready for DOCUMENTATION SETUP
+→ If any NO: Fix missing items before proceeding
+```
+
+## ✓ DOCUMENTATION SETUP CHECKPOINT
+
+```
+✓ SECTION CHECKPOINT: DOCUMENTATION SETUP
+- systemPatterns.md updated? [YES/NO]
+- techContext.md updated with platform information? [YES/NO]
+- activeContext.md updated? [YES/NO]
+- progress.md updated? [YES/NO]
+- tasks.md created/updated with initial task? [YES/NO]
+- .cursorrules updated with project patterns? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: Ready for TASK PLANNING
+→ If any NO: Fix missing items before proceeding
+```
+
+## ✓ TASK PLANNING CHECKPOINT
+
+```
+✓ SECTION CHECKPOINT: TASK PLANNING
+- Goals and success criteria documented? [YES/NO]
+- Resources/tools identified? [YES/NO]
+- Step-by-step plan created with [ ] markers in tasks.md? [YES/NO]
+- Platform-specific considerations documented? [YES/NO]
+- Testing/validation approach defined? [YES/NO]
+- Creative phases identified for complex components (Level 3-4)? [YES/NO/NA]
+- Reference check completed? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: Ready for IMPLEMENTATION
+→ If any NO: Fix missing items before proceeding
+```
+
+## ✓ PRE-IMPLEMENTATION CREATIVE PHASE CHECKPOINT
+
+```
+✓ CREATIVE PHASE CHECKPOINT: REQUIRED BEFORE IMPLEMENTATION
+For Level 3-4 tasks, all creative phases MUST be completed before implementation:
+
+- Level 3-4 task confirmed? [YES/NO]
+- Architecture/design decisions identified? [YES/NO]
+- Creative phases completed for ALL identified components? [YES/NO]
+- Each creative phase contains problem breakdown? [YES/NO]
+- Each creative phase includes options with pros/cons? [YES/NO]
+- Each creative phase includes verification against requirements? [YES/NO]
+- Each creative phase has proper entry/exit markers? [YES/NO]
+- Creative phases documented in tasks.md? [YES/NO]
+
+→ If any [NO]: IMPLEMENTATION BLOCKED - Complete creative phases first
+→ If all [YES]: Ready for IMPLEMENTATION
+```
+
+## ✓ IMPLEMENTATION CHECKPOINT
+
+```
+✓ SECTION CHECKPOINT: IMPLEMENTATION
+- All planned steps completed? [YES/NO]
+- Command results documented (success or failure)? [YES/NO]
+- Alternative approaches documented where needed? [YES/NO]
+- Task statuses updated in tasks.md? [YES/NO]
+- Implementation details added to activeContext.md? [YES/NO]
+- Creative phases used for complex components (Level 3-4)? [YES/NO/NA]
+- Reference check completed? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: Ready for REFLECTION
+→ If any NO: Fix missing items before proceeding
+```
+
+## ✓ REFLECTION CHECKPOINT
+
+```
+✓ SECTION CHECKPOINT: REFLECTION
+- "What Went Well" section with ≥3 items? [YES/NO]
+- "Challenges" section with ≥2 items? [YES/NO]
+- "Lessons Learned" section with ≥3 items? [YES/NO]
+- "Improvements for Next Time" section with ≥3 items? [YES/NO]
+- Platform-specific insights included? [YES/NO]
+- Memory Bank files updated with learnings? [YES/NO]
+- Reference check completed? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: Ready for ARCHIVING
+→ If any NO: Fix missing items before proceeding
+```
+
+## ✓ ARCHIVING CHECKPOINT
+
+```
+✓ SECTION CHECKPOINT: ARCHIVING
+- Archive entry created with all 4 sections? [YES/NO]
+- Platform-specific insights included? [YES/NO]
+- progress.md updated with reference to completed task? [YES/NO]
+- activeContext.md updated with next focus? [YES/NO]
+- tasks.md updated to mark task as completed? [YES/NO]
+- All template/placeholder text removed? [YES/NO]
+- Reference check completed? [YES/NO]
+- Section tracking updated to [X]? [YES/NO]
+
+→ If all YES: TASK COMPLETE
+→ If any NO: Fix missing items before finishing
+```
+
+## ⚠️ IMPLEMENTATION REMINDERS
+
+Add these reminders at specific points during implementation:
+
+### At the beginning of IMPLEMENTATION section:
+```
+⚠️ IMPLEMENTATION REMINDERS:
+- Execute ONE command at a time
+- Update task status in tasks.md
+- Add implementation details to activeContext.md
+- Enter creative phases for ANY new design decisions encountered
+```
+
+### After every 3 implementation steps:
+```
+⏱️ TASK STATUS CHECKPOINT: 
+- Is task status updated in tasks.md? [YES/NO]
+- Are implementation details added to activeContext.md? [YES/NO]
+```
+
+## ✓ IMPLEMENTATION STEP CHECKPOINT
+
+For each implementation step, use this mini-checkpoint:
+
+```
+✓ STEP CHECKPOINT: [STEP NAME]
+- Step documented? [YES/NO]
+- Command executed ONE at a time? [YES/NO]
+- Result documented? [YES/NO]
+- Task status updated in tasks.md? [YES/NO]
+- Implementation details added to activeContext.md? [YES/NO]
+- Creative phase used if design decision needed? [YES/NO/NA]
+- Ready for next step? [YES/NO]
+```
+
+## 🔄 SECTION COMPLETION TEMPLATE
+
+When completing a section, use both the checkpoint and transition marker:
+
+```
+✓ SECTION CHECKPOINT: [SECTION NAME]
+[Fill in YES/NO for each item]
+
+🔄 SECTION: [SECTION NAME] COMPLETE
+[X] Updated section tracking
+
+======== [SECTION NAME] COMPLETE ⟹ STARTING [NEXT SECTION] ========
+```
+
+## HOW TO USE ENHANCED CHECKPOINTS
+
+1. Place the relevant checkpoint template at the end of each section
+2. Answer each question with [YES] or [NO]
+3. If any [NO], fix those items before proceeding
+4. Update the section tracking only after all checkpoint items are [YES]
+5. Add the section transition marker
+6. Begin the next section
+
+This enhanced checkpoint system ensures no critical steps are missed during workflow execution, with more prominent visual indicators and clearer verification steps.

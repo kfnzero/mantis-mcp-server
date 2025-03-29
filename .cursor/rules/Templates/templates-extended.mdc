@@ -1,0 +1,310 @@
+---
+description: Additional specialized templates for specific contexts
+globs: "**/memory-bank/**", "**/.cursorrules", "**/docs/archive/**
+alwaysApply: false
+---
+# Extended Templates
+
+This document contains additional specialized templates for specific contexts beyond the core Memory Bank files.
+
+## API Documentation Template
+```markdown
+# API Documentation: [API Name]
+
+## Overview
+[Brief description of the API's purpose and scope]
+
+## Base URL
+```
+[Base URL for the API]
+```
+
+## Authentication
+[Authentication methods and requirements]
+
+## Common Parameters
+- `[parameter1]`: [Description] - [Required/Optional]
+- `[parameter2]`: [Description] - [Required/Optional]
+
+## Response Format
+```json
+{
+  "success": true,
+  "data": {},
+  "error": null
+}
+```
+
+## Error Handling
+[Description of error response format and common error codes]
+
+## Rate Limiting
+[Description of rate limiting policies]
+
+## Endpoints
+
+### [Endpoint 1]
+- **URL**: `[endpoint path]`
+- **Method**: `[HTTP Method]`
+- **Description**: [Endpoint description]
+
+#### Request Parameters
+- `[parameter1]`: [Description] - [Required/Optional]
+- `[parameter2]`: [Description] - [Required/Optional]
+
+#### Request Example
+```http
+[HTTP request example]
+```
+
+#### Response Example
+```json
+[JSON response example]
+```
+
+#### Error Responses
+- **Status Code**: [Error code]
+  - **Condition**: [When this error occurs]
+  - **Response Body**: [Error response example]
+```
+
+## Component Documentation Template
+```markdown
+# Component: [Component Name]
+
+## Purpose
+[Description of what the component does and why it exists]
+
+## Props/Parameters
+- `[prop1]`: [Type] - [Description] - [Required/Optional]
+- `[prop2]`: [Type] - [Description] - [Required/Optional]
+
+## Behavior
+[Description of component behavior, including states and interactions]
+
+## Usage Examples
+```[language]
+[Usage example code]
+```
+
+## Internal Structure
+[Description of internal component organization]
+
+## Dependencies
+- [Dependency 1]: [Purpose]
+- [Dependency 2]: [Purpose]
+
+## Styling
+[Description of styling approach and customization options]
+
+## Accessibility Considerations
+[Description of accessibility features and considerations]
+
+## Testing
+[Description of testing approach for this component]
+```
+
+## Database Schema Template
+```markdown
+# Database Schema: [Entity/Table Name]
+
+## Purpose
+[Description of what this entity represents in the system]
+
+## Fields
+- `[field1]`: [Type] - [Description] - [Constraints]
+- `[field2]`: [Type] - [Description] - [Constraints]
+
+## Relationships
+- [Relationship 1]: [Description of relationship to other entities]
+- [Relationship 2]: [Description of relationship to other entities]
+
+## Indexes
+- [Index 1]: [Fields] - [Purpose]
+- [Index 2]: [Fields] - [Purpose]
+
+## Constraints
+- [Constraint 1]: [Description]
+- [Constraint 2]: [Description]
+
+## Sample Query Patterns
+```sql
+[Example query]
+```
+
+## Migration Considerations
+[Notes about migrations or schema evolution]
+```
+
+## Test Strategy Template
+```markdown
+# Test Strategy: [Feature/Component]
+
+## Test Scope
+[Description of what is being tested]
+
+## Test Types
+- **Unit Tests**: [Description of unit test approach]
+- **Integration Tests**: [Description of integration test approach]
+- **End-to-End Tests**: [Description of E2E test approach]
+
+## Test Environment
+[Description of test environment setup]
+
+## Test Data
+[Description of test data strategy]
+
+## Test Cases
+
+### [Test Case 1]
+- **Description**: [What this test verifies]
+- **Preconditions**: [Required state before test]
+- **Steps**: [Test execution steps]
+- **Expected Result**: [What should happen]
+- **Actual Result**: [What actually happened]
+- **Status**: [Pass/Fail/Pending]
+
+## Mocking Strategy
+[Description of mocking approach for external dependencies]
+
+## Coverage Goals
+[Description of coverage targets and measurement approach]
+```
+
+## Deployment Guide Template
+```markdown
+# Deployment Guide: [Environment]
+
+## Environment Overview
+[Description of the deployment environment]
+
+## Prerequisites
+- [Prerequisite 1]
+- [Prerequisite 2]
+
+## Configuration
+[Description of environment-specific configuration]
+
+## Deployment Steps
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+## Verification
+[Steps to verify successful deployment]
+
+## Rollback Procedure
+[Steps to roll back in case of deployment issues]
+
+## Monitoring
+[Description of monitoring approach]
+
+## Maintenance
+[Ongoing maintenance procedures]
+```
+
+## Feature Specification Template
+```markdown
+# Feature Specification: [Feature Name]
+
+## Overview
+[Brief description of the feature]
+
+## User Stories
+- As a [user type], I want [goal] so that [benefit].
+- As a [user type], I want [goal] so that [benefit].
+
+## Acceptance Criteria
+- [Criterion 1]
+- [Criterion 2]
+- [Criterion 3]
+
+## UI/UX Design
+[Description of user interface and experience design]
+
+## Technical Implementation
+[Description of how the feature will be implemented]
+
+## Dependencies
+- [Dependency 1]
+- [Dependency 2]
+
+## Testing Approach
+[Description of how the feature will be tested]
+
+## Metrics
+[Description of how the feature's success will be measured]
+
+## Timeline
+- **Research & Design**: [Duration]
+- **Implementation**: [Duration]
+- **Testing**: [Duration]
+- **Deployment**: [Date]
+```
+
+## Performance Optimization Template
+```markdown
+# Performance Optimization: [Area]
+
+## Current Performance
+[Description of current performance metrics]
+
+## Performance Goals
+[Description of target performance metrics]
+
+## Identified Bottlenecks
+- [Bottleneck 1]: [Description and impact]
+- [Bottleneck 2]: [Description and impact]
+
+## Optimization Strategies
+- [Strategy 1]: [Description and expected impact]
+- [Strategy 2]: [Description and expected impact]
+
+## Implementation Plan
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+## Measurement Methodology
+[Description of how improvements will be measured]
+
+## Results
+[Actual performance improvements observed]
+
+## Further Optimizations
+[Potential future optimizations]
+```
+
+## Security Assessment Template
+```markdown
+# Security Assessment: [Feature/Component]
+
+## Overview
+[Brief description of the security assessment scope]
+
+## Threat Model
+[Description of potential threats and attack vectors]
+
+## Vulnerabilities
+- [Vulnerability 1]: [Description, severity, and impact]
+- [Vulnerability 2]: [Description, severity, and impact]
+
+## Security Controls
+- [Control 1]: [Description and implementation]
+- [Control 2]: [Description and implementation]
+
+## Testing Methodology
+[Description of security testing approach]
+
+## Findings
+[Summary of security assessment findings]
+
+## Recommendations
+- [Recommendation 1]
+- [Recommendation 2]
+
+## Action Plan
+1. [Action 1]
+2. [Action 2]
+3. [Action 3]
+```

@@ -1,0 +1,223 @@
+---
+description: CRITICAL: Contains mandatory examples for correct command documentation. DO NOT document commands without consulting this file first.
+globs: 
+alwaysApply: false
+---
+# Command Documentation Examples
+
+## ⚠️ CORRECT COMMAND DOCUMENTATION EXAMPLES ⚠️
+
+### Example 1: Basic Command Documentation
+
+```
+### Command: Create Component Directory
+Purpose: Creating a directory for React components
+
+```bash
+mkdir src/components
+```
+
+Result: Successfully created components directory
+Next step: Create individual component files
+
+🔄 TASK UPDATE: Create component directory structure - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: Component directory structure created following React best practices
+```
+
+### Example 2: Failed Command With Alternative
+
+```
+### Command: Install React Router Package
+Purpose: Adding routing capability to the React application
+
+```bash
+npm install react-router
+```
+
+Result: FAILED
+Error message: npm ERR! 404 Not Found - GET https://registry.npmjs.org/react-router - Not found
+
+### Alternative Approach
+```bash
+npm install react-router-dom
+```
+
+Resolution: Successfully installed react-router-dom v6.8.1
+Next step: Set up router configuration
+
+🔄 TASK UPDATE: Install routing package - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: Installed react-router-dom as the routing solution
+```
+
+### Example 3: Platform-Specific Command
+
+```
+### Command: Create Empty Configuration File
+Purpose: Creating a configuration file for the application
+
+Platform considerations:
+- Windows: Using echo.> command
+- Mac/Linux: Using touch command
+- Current platform: Windows
+
+```bash
+echo.> config.json
+```
+
+Result: Successfully created empty config.json file
+Next step: Add default configuration settings
+
+🔄 TASK UPDATE: Create configuration file - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: Empty configuration file created, will be populated with environment-specific settings
+```
+
+### Example 4: Multiple Step Command Sequence
+
+```
+### Command: Create Project Directory
+Purpose: Creating the main project directory
+
+```bash
+mkdir todo-app
+```
+
+Result: Successfully created todo-app directory
+Next step: Navigate to project directory
+
+### Command: Navigate to Project Directory
+Purpose: Moving into the project directory to initialize the application
+
+```bash
+cd todo-app
+```
+
+Result: Successfully navigated to todo-app directory
+Next step: Initialize npm project
+
+### Command: Initialize NPM Project
+Purpose: Setting up package.json for the project
+
+```bash
+npm init -y
+```
+
+Result: Successfully created package.json with default values
+Next step: Install core dependencies
+
+🔄 TASK UPDATE: Set up project structure - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: Project initialized with directory structure and package.json
+```
+
+## ⚠️ TASK UPDATE EXAMPLES ⚠️
+
+### Example 1: Single Task Update
+
+```
+🔄 TASK UPDATE: Create user registration form - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: User registration form created with email, password, and confirmation fields
+```
+
+### Example 2: Subtask Update
+
+```
+🔄 TASK UPDATE: Implement form validation - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: Form validation implemented with client-side validation for email format and password strength
+```
+
+### Example 3: Multiple Task Update
+
+```
+🔄 TASK UPDATE: 
+- Create models - [X] Complete
+- Set up database connection - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: Database models created for User and Profile, with MongoDB connection configured
+```
+
+## ⚠️ INCORRECT COMMAND DOCUMENTATION EXAMPLES ❌
+
+### ❌ INCORRECT: Command Chaining
+
+```
+### Command: Set Up Project Structure
+Purpose: Creating project structure and initializing npm
+
+```bash
+mkdir todo-app && cd todo-app && npm init -y
+```
+```
+
+This is INCORRECT because it chains multiple commands. Each command must be executed and documented separately.
+
+### ❌ INCORRECT: Missing Purpose or Result
+
+```
+### Command: Install Express
+
+```bash
+npm install express
+```
+```
+
+This is INCORRECT because it's missing the purpose and result sections. Every command must include purpose, the command itself, and the result.
+
+### ❌ INCORRECT: Updating Tasks in Multiple Files
+
+```
+🔄 TASK UPDATE: Create API endpoints - [X] Complete
+- Updated in tasks.md ✓
+- Updated in .cursorrules ✓
+```
+
+This is INCORRECT because task status should only be updated in tasks.md, not in multiple files.
+
+### ❌ INCORRECT: Missing Implementation Update
+
+```
+### Command: Set Up Authentication Middleware
+Purpose: Adding JWT authentication to Express routes
+
+```bash
+touch middleware/auth.js
+```
+
+Result: Created authentication middleware file
+Next step: Implement token verification
+
+🔄 TASK UPDATE: Create auth middleware - [X] Complete
+- Updated in tasks.md ✓
+```
+
+This is INCORRECT because it's missing the IMPLEMENTATION UPDATE section to document changes in activeContext.md.
+
+## ⚠️ COMMAND COMPLETION VERIFICATION CHECKLIST ⚠️
+
+After every command, verify:
+
+- [ ] Command has a clear purpose statement
+- [ ] Command is executed ONE AT A TIME (no chaining)
+- [ ] Result is documented (success or failure)
+- [ ] If failed, alternative approach is provided
+- [ ] Task status is updated ONLY in tasks.md
+- [ ] Implementation details are added to activeContext.md
+- [ ] Next step is clearly identified

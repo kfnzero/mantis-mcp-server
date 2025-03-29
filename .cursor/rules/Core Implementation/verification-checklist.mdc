@@ -1,0 +1,158 @@
+---
+description: Simplified task verification process with single source of truth
+globs: 
+alwaysApply: true
+---
+# VERIFICATION CHECKLIST (SIMPLIFIED)
+
+> **TL;DR:** Before completing any task, run through this verification checklist. A task is only complete when all checks pass. This version uses tasks.md as the single source of truth for task status.
+
+## ⚠️ VERIFICATION COMMITMENT
+
+Add this at the start of every task:
+```
+## Verification Commitment
+I WILL run the full verification checklist before completing this task.
+I will maintain tasks.md as the single source of truth for task status.
+```
+
+## 📋 QUICK VERIFICATION STEPS
+
+Before finishing any task, verify these essentials:
+
+1. **File Types:** Critical files have correct type (file vs. directory)
+2. **Platform:** Commands adapted for current operating system
+3. **Workflow:** All 6 sections completed in correct order
+4. **Tasks:** All task statuses updated in tasks.md
+5. **Commands:** All commands executed one at a time
+6. **Documentation:** Implementation details added to activeContext.md
+7. **Archive:** Task properly archived with all sections
+8. **Links:** Cross-references properly set up
+
+## 🚨 TOP 5 MOST COMMON FAILURES
+
+1. **.cursorrules as directory:** Created .cursorrules as a directory instead of a file
+2. **Incorrect task tracking:** Updated task status in multiple files or wrong file
+3. **Command chaining:** Used && or similar to chain commands
+4. **Insufficient implementation details:** Failed to add details to activeContext.md
+5. **Missing creative phases:** Failed to use creative phases for major architectural/design decisions
+
+## 1️⃣ FILE TYPE VERIFICATION
+
+```
+✓ FILE TYPE VERIFICATION
+- .cursorrules is a FILE (not directory)? [YES/NO]
+- memory-bank is a DIRECTORY? [YES/NO]
+- docs/archive is a DIRECTORY? [YES/NO]
+```
+
+## 2️⃣ PLATFORM VERIFICATION
+
+```
+✓ PLATFORM VERIFICATION
+- Operating system correctly identified? [YES/NO]
+- Commands adapted for platform? [YES/NO]
+- Platform information documented in techContext.md? [YES/NO]
+```
+
+## 3️⃣ WORKFLOW VERIFICATION
+
+```
+✓ WORKFLOW VERIFICATION
+- All 6 section headers used in correct order? [YES/NO]
+- Each section was completed before moving to next? [YES/NO]
+- Section tracking list updated after each section? [YES/NO]
+- Section transition markers used? [YES/NO]
+- Creative phases used for all major design decisions (Level 3-4)? [YES/NO/NA]
+- Creative phase verification completed for each phase? [YES/NO/NA]
+```
+
+## 4️⃣ TASK TRACKING VERIFICATION
+
+```
+✓ TASK TRACKING VERIFICATION
+- All tasks created in tasks.md? [YES/NO]
+- All tasks have clear [ ] or [X] status? [YES/NO]
+- Completed tasks marked as [X] in tasks.md? [YES/NO]
+- Implementation details added to activeContext.md? [YES/NO]
+```
+
+## 5️⃣ COMMAND VERIFICATION
+
+```
+✓ COMMAND VERIFICATION
+- All commands executed ONE AT A TIME? [YES/NO]
+- No command chaining with && or similar? [YES/NO]
+- Each command includes purpose and result? [YES/NO]
+- Failed commands documented with alternatives? [YES/NO]
+```
+
+## 6️⃣ DOCUMENTATION VERIFICATION
+
+```
+✓ DOCUMENTATION VERIFICATION
+- systemPatterns.md updated appropriately? [YES/NO]
+- techContext.md updated with platform info? [YES/NO]
+- activeContext.md updated with implementation details? [YES/NO]
+- progress.md updated with implementation status? [YES/NO]
+- tasks.md updated with current task status? [YES/NO]
+- Creative phases used for complex design decisions? [YES/NO/NA]
+- Creative phase outputs documented in systemPatterns.md? [YES/NO/NA]
+```
+
+## 7️⃣ ARCHIVE VERIFICATION
+
+```
+✓ ARCHIVE VERIFICATION
+- Archive entry with proper (v1.0) versioning? [YES/NO]
+- All four required sections included? [YES/NO]
+- Last Updated date in YYYY-MM-DD format? [YES/NO]
+- No template/placeholder text remains? [YES/NO]
+```
+
+## 8️⃣ CROSS-LINKING VERIFICATION
+
+```
+✓ CROSS-LINKING VERIFICATION
+- progress.md references the completed task? [YES/NO]
+- activeContext.md updated with next focus? [YES/NO]
+- tasks.md marked task as completed? [YES/NO]
+- Links between files are valid? [YES/NO]
+```
+
+## 📱 QUICK FIX REFERENCE
+
+If any verification check fails, use these quick fixes:
+
+### ✓ Fix: .cursorrules as directory
+```bash
+# Remove directory and create file
+```
+
+### ✓ Fix: Missing task status in tasks.md
+```
+# Update tasks.md with proper status
+```
+
+### ✓ Fix: Missing implementation details
+```
+# Add relevant details to activeContext.md
+```
+
+### ✓ Fix: Missing section checkpoints
+```
+✓ SECTION CHECKPOINT: [SECTION NAME]
+[Answer all verification questions]
+```
+
+## ✅ VERIFICATION SUCCESS
+
+When all checks pass, state:
+```
+All verification checks PASSED. Task is complete and properly documented.
+```
+
+If any check fails:
+1. Mark it as failed
+2. Fix it immediately using the quick fix reference
+3. Re-verify

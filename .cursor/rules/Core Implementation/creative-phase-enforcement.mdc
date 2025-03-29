@@ -1,0 +1,122 @@
+---
+description: Enhanced enforcement mechanisms for creative phases
+globs: "**/src/**", "**/.cursorrules", "**/memory-bank/**"
+alwaysApply: true
+---
+# CREATIVE PHASE ENFORCEMENT
+
+> **TL;DR:** This file establishes hard enforcement mechanisms to ensure creative phases are properly implemented for all Level 3-4 tasks and complex design decisions. It creates strict gateways that prevent implementation without documented creative phase completion.
+
+## 🚨 CREATIVE PHASE GATEWAY SYSTEM
+
+The Creative Phase Gateway prevents transition to implementation without proper creative phase documentation:
+
+```
+⛔ CREATIVE PHASE GATEWAY CHECK
+- Level 3-4 task identified? [YES/NO]
+- Complex architecture/design decisions required? [YES/NO]
+- Creative phases required: [YES/NO]
+
+→ If [YES] to any: CREATIVE PHASES REQUIRED BEFORE IMPLEMENTATION
+→ NO IMPLEMENTATION PERMITTED until all required creative phases are completed
+```
+
+## 🚨 MANDATORY CREATIVE PHASE TRIGGERS
+
+These specific scenarios REQUIRE documented creative phases before ANY implementation:
+
+1. **Component Architecture Decisions**
+   - Component boundaries and responsibilities
+   - Component hierarchy and relationships
+   - Rendering strategies
+   - Composition patterns
+
+2. **State Management Approaches**
+   - State structure design
+   - State update patterns
+   - State distribution approaches
+   - State persistence strategies
+
+3. **Data Modeling Decisions**
+   - Data structure design
+   - Relationship modeling
+   - Validation approaches
+   - Transformation patterns
+
+4. **UI/UX Design Approaches**
+   - Layout strategies
+   - Interaction patterns
+   - Responsive design approaches
+   - Accessibility implementations
+
+5. **Algorithm/Logic Design**
+   - Business logic implementation
+   - Computation approaches
+   - Optimization strategies
+   - Edge case handling
+
+## 🚫 IMPLEMENTATION BLOCKING
+
+If a decision triggers ANY of the above categories:
+
+```
+⛔ IMPLEMENTATION BLOCKED
+Creative phases MUST be completed and documented before ANY implementation code can be written.
+- Decisions requiring creative phases: [List specific decisions]
+- Documentation format: Full structured creative phase with markers
+- Location: Document in the implementation plan before code
+
+This is a HARD BLOCK - implementation CANNOT proceed until creative phases are properly documented.
+```
+
+## ✅ CREATIVE PHASE VERIFICATION CHECKLIST
+
+Before exiting a creative phase, all items must be verified:
+
+```
+✅ CREATIVE PHASE VERIFICATION
+- Clear problem statement? [YES/NO]
+- Multiple options considered (min 2)? [YES/NO]
+- Pros/cons documented for each option? [YES/NO]
+- Systematic verification against requirements? [YES/NO]
+- Decision rationale clearly stated? [YES/NO]
+- Implementation guidance provided? [YES/NO]
+- Full creative phase markers used? [YES/NO]
+
+→ If ANY [NO]: Creative phase is INCOMPLETE and must be finished before proceeding
+```
+
+## 🎨 PHASE COMPLETION CONFIRMATION
+
+After completing each creative phase, confirm completion:
+
+```
+🎨 CREATIVE PHASE COMPLETION CONFIRMATION
+I confirm that I have:
+1. Fully explored the problem space
+2. Considered multiple options with pros/cons
+3. Systematically verified options against requirements
+4. Provided clear decision rationale
+5. Documented implementation guidance
+
+The creative phase is now complete and implementation for this component may proceed.
+```
+
+## 🚨 IMPLEMENTATION SECTION ENTRY REQUIREMENT
+
+Before entering the IMPLEMENTATION section:
+
+```
+⚠️ IMPLEMENTATION ENTRY REQUIREMENT
+Before I can begin implementation, I MUST verify:
+- [ ] All required creative phases are completed
+- [ ] Each creative phase has proper entry/exit markers
+- [ ] Each creative phase includes options analysis
+- [ ] Each creative phase includes verification
+- [ ] Each creative phase includes a completion confirmation
+
+→ If ANY unchecked: I CANNOT proceed to implementation
+→ If ALL checked: I may proceed to implementation
+```
+
+This hard gateway approach ensures that creative phases cannot be skipped or minimized for complex decisions, maintaining architectural integrity throughout the development process.

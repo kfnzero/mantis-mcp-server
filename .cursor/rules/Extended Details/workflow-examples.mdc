@@ -1,0 +1,334 @@
+---
+description: CRITICAL: Contains mandatory examples for correct workflow implementation. DO NOT assume workflow patterns without consulting this documentation first.
+globs: **/src/**", "**/.cursorrules", "**/memory-bank/**
+alwaysApply: false
+---
+# Workflow Implementation Examples
+
+## INITIALIZATION Examples
+
+**Example (MUST FOLLOW THIS FORMAT):**
+```
+## INITIALIZATION
+Task: Implement User Authentication System
+Objective: Create secure login functionality with JWT token support
+
+[X] Review all Memory Bank files complete
+[X] .cursorrules file created/reviewed
+[X] tasks.md file verified/created
+[ ] Documentation setup pending
+[ ] Task planning pending
+[ ] Implementation pending
+[ ] Reflection pending
+[ ] Archiving pending
+
+## Section Header Tracking
+[ ] INITIALIZATION
+[ ] DOCUMENTATION SETUP 
+[ ] TASK PLANNING
+[ ] IMPLEMENTATION
+[ ] REFLECTION
+[ ] ARCHIVING
+
+## Verification Commitment
+I WILL run the full verification checklist before completing this task.
+I will maintain tasks.md as the single source of truth for task status.
+```
+
+## DOCUMENTATION SETUP Examples
+
+**Example (MUST FOLLOW THIS FORMAT):**
+```
+## DOCUMENTATION SETUP
+
+After reviewing the Memory Bank files, I've updated the following:
+
+[X] Updated systemPatterns.md with authentication flow design:
+   - Added JWT authentication sequence diagram
+   - Documented token refresh mechanism
+   - Added security considerations for authentication
+
+[X] Updated techContext.md with JWT library requirements:
+   - Added jsonwebtoken dependency
+   - Added bcrypt for password hashing
+   - Added dotenv for environment variable management
+
+[X] Updated activeContext.md with implementation plan:
+   - Added current focus on authentication system
+   - Documented key decisions on token expiration
+   - Added next steps after authentication is complete
+
+[X] Updated progress.md with authentication milestones:
+   - Added authentication system as in-progress feature
+   - Documented dependencies on database setup
+   - Added success criteria for authentication feature
+
+[X] Updated tasks.md with authentication tasks:
+   - Added main authentication task with [ ] marker
+   - Added subtasks for registration, login, and middleware
+   - Set initial task priority and deadlines
+
+[X] Updated .cursorrules with project-specific patterns:
+   - Added authentication naming conventions
+   - Documented password validation requirements
+   - Added security validation patterns
+
+## Section Header Tracking
+[X] INITIALIZATION
+[X] DOCUMENTATION SETUP 
+[ ] TASK PLANNING
+[ ] IMPLEMENTATION
+[ ] REFLECTION
+[ ] ARCHIVING
+```
+
+## TASK PLANNING Examples
+
+**Example (MUST FOLLOW THIS FORMAT):**
+```
+## TASK PLANNING
+
+### Goals and Success Criteria
+- Create secure JWT-based authentication system
+- Support user registration, login, and logout
+- Implement token refresh mechanism
+- Secure protected routes with authentication middleware
+
+### Required Resources/Tools
+- Node.js and Express.js for server
+- MongoDB for user database
+- jsonwebtoken library for JWT handling
+- bcrypt for password hashing
+- dotenv for environment variables
+
+### Implementation Plan
+Adding to tasks.md:
+
+```markdown
+## Current Tasks
+- [ ] Set up MongoDB connection
+- [ ] Create User model with proper validation
+- [ ] Implement registration endpoint with password hashing
+- [ ] Create login endpoint with token generation
+- [ ] Set up middleware for protected routes
+- [ ] Implement token refresh mechanism
+- [ ] Add logout functionality
+- [ ] Write tests for authentication flow
+```
+
+### Milestones and Checkpoints
+1. Database and User model complete
+2. Registration and login endpoints working
+3. Protected routes functioning with middleware
+4. Token refresh and logout implemented
+5. All tests passing
+
+### Potential Challenges
+- Securely handling JWT secret keys
+- Proper error handling for auth failures
+- Token expiration and refresh logic
+- Cross-origin request handling for authentication
+
+### Testing/Validation Approach
+- Unit tests for each authentication function
+- Integration tests for endpoint behavior
+- Manual testing of auth flow with Postman
+- Security review of implementation
+
+## Section Header Tracking
+[X] INITIALIZATION
+[X] DOCUMENTATION SETUP 
+[X] TASK PLANNING
+[ ] IMPLEMENTATION
+[ ] REFLECTION
+[ ] ARCHIVING
+```
+
+## IMPLEMENTATION Examples
+
+**Example (MUST FOLLOW THIS FORMAT):**
+```
+## IMPLEMENTATION
+
+### Step 1: Setting up MongoDB Connection
+
+First, I'll establish the database connection for our user authentication system.
+
+### Command: Install Mongoose
+Purpose: Adding Mongoose as a dependency for MongoDB connection and schema management.
+
+```bash
+npm install mongoose
+```
+
+Result: Successfully installed mongoose v6.9.2 as a dependency.
+
+### Command: Create Database Connection File
+Purpose: Creating a file to manage MongoDB connection.
+
+```bash
+mkdir src/config
+touch src/config/db.js
+```
+
+Result: Created config directory and db.js file for database configuration.
+
+[Implementation code and details...]
+
+Step complete. Verified MongoDB connection is working.
+
+🔄 TASK UPDATE: Set up MongoDB connection - [X] Complete
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: MongoDB connection configured with connection pooling and error handling
+
+### Step 2: Creating User Model
+
+Now I'll implement the User model with validation and password hashing.
+
+[Step details...]
+
+🔄 TASK UPDATE: Create User model with proper validation - [X] Complete
+- Updated in tasks.md ✓
+
+## Section Header Tracking
+[X] INITIALIZATION
+[X] DOCUMENTATION SETUP 
+[X] TASK PLANNING
+[X] IMPLEMENTATION
+[ ] REFLECTION
+[ ] ARCHIVING
+```
+
+## REFLECTION Examples
+
+**Example (MUST FOLLOW THIS FORMAT):**
+```
+## REFLECTION
+
+### What Went Well
+- Successfully implemented JWT token authentication with secure practices
+- Password hashing with bcrypt provides excellent security with optimal performance
+- Clean separation of auth middleware made protected routes easy to implement
+- Environment variable setup properly secures sensitive credentials
+- Test coverage is comprehensive for all authentication flows
+
+### Challenges
+- Had to resolve token expiration edge cases that weren't initially anticipated
+- MongoDB connection pooling needed optimization for production environment
+- CORS configuration for authentication requests required additional testing
+- Error handling for invalid credentials needed standardization
+
+### Lessons Learned
+- Using async/await with middleware requires special error handling patterns
+- JWT secret should be rotated periodically for enhanced security
+- Password reset flows need separate token management from authentication tokens
+- Separating auth logic from route handlers improves code maintainability
+- Environment-specific configuration is critical for auth systems
+
+### Improvements for Next Time
+- Implement rate limiting from the start to prevent brute force attacks
+- Create reusable error handling middleware specifically for auth failures
+- Consider using Redis for token blacklisting in larger applications
+- Add more detailed logging for authentication events
+- Create standardized response formats for auth endpoints earlier in development
+
+# Updates to Memory Bank
+- Updated progress.md with completed authentication implementation
+- Updated activeContext.md to focus on the next feature (user profiles)
+- Added auth patterns to systemPatterns.md for future reference
+- Updated techContext.md with final authentication dependencies
+- Updated tasks.md with completed authentication tasks
+
+## Section Header Tracking
+[X] INITIALIZATION
+[X] DOCUMENTATION SETUP 
+[X] TASK PLANNING
+[X] IMPLEMENTATION
+[X] REFLECTION
+[ ] ARCHIVING
+```
+
+## ARCHIVING Examples
+
+**Example (MUST FOLLOW THIS FORMAT):**
+```
+## ARCHIVING
+
+Creating required directories and files:
+- docs/archive directory exists
+- completed_tasks.md exists
+
+Removing any template/placeholder text from completed_tasks.md.
+
+Adding archive entry for the completed task:
+
+```markdown
+## Task: User Authentication Implementation (v1.0)
+Last Updated: 2023-04-15
+
+### Implementation Results
+- Created a secure JWT-based authentication system with the following features:
+  - User registration with email validation
+  - Secure login with JWT token generation
+  - Protected route middleware
+  - Token refresh mechanism
+  - Logout functionality with token invalidation
+  - MongoDB integration for user storage
+  - Bcrypt password hashing
+
+### Completed Testing
+- Unit tests for all authentication functions
+- Integration tests for API endpoints
+- Security testing for token validation
+- Performance testing for concurrent authentication requests
+- Edge case testing for token expiration and refresh
+
+### Lessons Learned
+- JWT implementation requires careful consideration of token lifetime
+- Password hashing parameters need to be tuned for security vs. performance
+- User model validation is critical for security
+- Error handling standardization improves client experience
+- Environment variables management is essential for secrets
+
+### Documentation Updates
+- Updated projectbrief.md with completed authentication requirements
+- Updated progress.md with authentication completion status
+- Updated activeContext.md to focus on user profile feature
+- Updated systemPatterns.md with authentication flow patterns
+- Updated techContext.md with finalized dependencies
+- Updated tasks.md with completed authentication task
+```
+
+Updated progress.md with link to archive:
+```markdown
+## Completed Tasks
+- User Authentication Implementation - Completed on 2023-04-15, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-user-authentication-implementation-v10)
+```
+
+Updated activeContext.md:
+```markdown
+## Recent Completions
+- User Authentication Implementation has been completed and archived. Next focus is on User Profile Management.
+```
+
+Updated tasks.md:
+```markdown
+## Completed Tasks
+- [X] User Authentication Implementation - Completed on 2023-04-15
+```
+
+Archive cleanup confirmed:
+- Removed all template/placeholder text
+- Verified proper formatting
+- Confirmed only actual completed tasks remain
+
+## Section Header Tracking
+[X] INITIALIZATION
+[X] DOCUMENTATION SETUP 
+[X] TASK PLANNING
+[X] IMPLEMENTATION
+[X] REFLECTION
+[X] ARCHIVING
+```

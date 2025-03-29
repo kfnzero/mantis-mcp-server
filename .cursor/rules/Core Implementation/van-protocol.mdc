@@ -1,0 +1,306 @@
+---
+description: Adaptive VAN protocol implementation
+globs: 
+alwaysApply: true
+---
+# ADAPTIVE VAN PROTOCOL
+
+> **TL;DR:** When user types "VAN", respond with "OK VAN", determine task complexity level, and adapt the workflow process accordingly. The system scales from quick bug fixes to complex system implementations.
+
+## 🚀 QUICK START RESPONSE
+
+When the user types ONLY "VAN", immediately respond:
+
+```
+OK VAN
+
+I'll determine the appropriate process level based on the task complexity:
+
+## COMPLEXITY ANALYSIS
+[ ] Analyzing task type and complexity...
+[ ] Determining appropriate process level...
+
+## FILE VERIFICATION
+[ ] .cursorrules
+[ ] memory-bank directory
+[ ] docs/archive directory
+[ ] tasks.md
+
+Checking these now...
+```
+
+## 📋 TASK COMPLEXITY DETERMINATION
+
+Analyze the task to determine the appropriate complexity level:
+
+### Level 1: Quick Bug Fix
+- **Keywords**: "fix", "broken", "not working", "issue", "bug", "error"
+- **Scope**: Single component or simple UI element
+- **Purpose**: Restore existing functionality
+- **Examples**: "Fix login button", "Fix styling issue", "Fix validation error"
+
+### Level 2: Simple Enhancement
+- **Keywords**: "add", "improve", "update", "change", "enhance"
+- **Scope**: Single component or subsystem
+- **Purpose**: Small feature addition or enhancement
+- **Examples**: "Add logout button", "Improve form validation", "Update header style"
+
+### Level 3: Intermediate Feature
+- **Keywords**: "implement", "create", "develop", "build"
+- **Scope**: Complete feature requiring multiple components
+- **Purpose**: Significant new functionality
+- **Examples**: "Implement user profiles", "Create dashboard", "Develop search functionality"
+
+### Level 4: Complex System
+- **Keywords**: "system", "architecture", "redesign", "integration", "framework"
+- **Scope**: Multiple subsystems or entire application
+- **Purpose**: Major architectural changes
+- **Examples**: "Implement authentication system", "Build payment processing", "Create microservice architecture"
+
+## 📋 FILE VERIFICATION PROCESS
+
+Check for critical files and create them if missing:
+
+1. Ensure `.cursorrules` exists (as a file, not directory)
+2. Ensure `memory-bank` directory exists
+3. Ensure `docs/archive` directory exists
+4. Ensure all core Memory Bank files exist, including tasks.md
+
+## 🔄 LEVEL-SPECIFIC RESPONSE FORMATS
+
+After complexity determination and file verification, provide the appropriate level-specific response:
+
+### Level 1: Quick Bug Fix
+```
+OK VAN [Level 1: Bug Fix]
+
+## INITIALIZATION (Streamlined)
+Task: [Bug description]
+Objective: Fix the issue and restore functionality
+
+## FILE VERIFICATION
+[X] Critical files checked/created
+
+## PLATFORM DETECTION
+Current environment: [Windows/Mac/Linux]
+
+## SIMPLIFIED TRACKING
+[ ] Review relevant documentation
+[ ] Identify and fix the issue
+[ ] Verify the fix works
+[ ] Update documentation
+
+Checking the relevant Memory Bank files for context...
+```
+
+### Level 2: Simple Enhancement
+```
+OK VAN [Level 2: Simple Enhancement]
+
+## INITIALIZATION
+Task: [Enhancement description]
+Objective: [Specific objective]
+
+## FILE VERIFICATION
+[X] Critical files checked/created
+
+## PLATFORM DETECTION
+Current environment: [Windows/Mac/Linux]
+
+## BASIC TRACKING
+[ ] Review relevant Memory Bank files
+[ ] Update documentation with plan
+[ ] Implement the enhancement
+[ ] Test functionality
+[ ] Document changes
+
+I'll begin by reviewing the relevant Memory Bank files...
+```
+
+### Level 3: Intermediate Feature
+```
+OK VAN [Level 3: Intermediate Feature]
+
+## INITIALIZATION
+Task: [Feature description]
+Objective: [Specific objective]
+
+## FILE VERIFICATION
+[X] Critical files checked/created
+
+## PLATFORM DETECTION
+Current environment: [Windows/Mac/Linux]
+
+## STANDARD SECTION TRACKING
+[ ] 1. INITIALIZATION
+[ ] 2. DOCUMENTATION SETUP 
+[ ] 3. TASK PLANNING
+[ ] 4. IMPLEMENTATION
+[ ] 5. REFLECTION
+[ ] 6. ARCHIVING
+
+## Verification Commitment
+I WILL run the verification checklist before completing this task.
+I will maintain tasks.md as the single source of truth for task status.
+
+I'll begin by reviewing all Memory Bank files...
+```
+
+### Level 4: Complex System
+```
+OK VAN [Level 4: Complex System]
+
+## INITIALIZATION
+Task: [System description]
+Objective: [Specific objective]
+
+## FILE VERIFICATION
+[X] Critical files checked/created
+
+## PLATFORM DETECTION
+Current environment: [Windows/Mac/Linux]
+
+## COMPREHENSIVE SECTION TRACKING
+[ ] 1. INITIALIZATION
+[ ] 2. DOCUMENTATION SETUP 
+[ ] 3. TASK PLANNING
+[ ] 4. IMPLEMENTATION
+[ ] 5. REFLECTION
+[ ] 6. ARCHIVING
+
+## Verification Commitment
+I WILL run the full verification checklist before completing this task.
+I will maintain tasks.md as the single source of truth for task status.
+I will document architectural decisions in systemPatterns.md.
+
+I'll begin with a comprehensive review of all Memory Bank files...
+```
+
+## 🔄 WITH TASK INCLUDED
+
+When user includes a task with VAN:
+```
+VAN
+I need to implement a login system
+```
+
+1. Analyze the task description
+2. Determine the appropriate complexity level
+3. Respond with the appropriate level-specific format
+4. Include the task description and objective
+5. Proceed with the appropriate level of process
+
+## 📝 MEMORY BANK FILES
+
+The core Memory Bank files (ALL REQUIRED):
+- projectbrief.md
+- productContext.md
+- systemPatterns.md
+- techContext.md
+- activeContext.md
+- progress.md
+- tasks.md - SINGLE SOURCE OF TRUTH for all task tracking
+
+## ✓ VAN CHECKPOINT
+
+Before proceeding after VAN:
+- Have I verified all critical files exist?
+- Have I determined the appropriate complexity level?
+- Have I created tasks.md if it doesn't exist?
+- Have I identified the operating system?
+- Have I set up the appropriate level of tracking?
+- Have I made the verification commitment (for Levels 3-4)?
+- Am I ready to start the workflow?
+
+## 🎨 CREATIVE PHASE HANDLING
+
+For tasks requiring extended creative work:
+
+1. Mark the beginning of a creative phase with prominent visual markers and problem breakdown:
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: [DESIGN/ALGORITHM/ARCHITECTURE] 🎨🎨🎨
+Focus: [Specific focus area]
+Objective: [What you aim to accomplish]
+Constraints: [Any constraints to consider]
+
+Breaking down the problem:
+- [Component 1]
+- [Component 2]
+- [Component 3]
+```
+
+2. For extended creative work, use periodic checkpoints with verification:
+```
+🎨 CREATIVE CHECKPOINT: [Milestone reached]
+- Progress: [Brief progress description]
+- Decisions made:
+  - [Decision 1]
+  - [Decision 2]
+- Verification:
+  - [Verify solution addresses requirements]
+  - [Verify compliance with constraints]
+  - [Verify consistency with existing system]
+- Open questions:
+  - [Question 1]
+  - [Question 2]
+- Next creative milestone: [Description]
+```
+
+3. After completing the creative phase, use prominent exit markers and verification summary:
+```
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of creative work]
+- Key decisions: [Important decisions made]
+- Next steps: [Follow-up implementation tasks]
+- Documentation: [Where decisions were documented]
+- Verification: [Confirmation that solution meets requirements and constraints]
+```
+
+4. Always update tasks.md after exiting a creative phase:
+```
+🔄 TASK UPDATE: [Task name] - [Status]
+- Updated in tasks.md ✓
+- Creative work completed:
+  - [Summary of creative output]
+- Implementation details added to activeContext.md ✓
+```
+
+### Level-Specific Creative Phase Handling
+
+The complexity of creative phase documentation should match the task complexity level:
+
+- **Level 1 (Bug Fix)**: Simple creative exploration markers if needed
+- **Level 2 (Enhancement)**: Basic creative phase markers with summary
+- **Level 3-4 (Feature/System)**: Full creative phase structure with checkpoints
+
+See [creative-phase-examples.mdc](mdc:.cursor/rules/Extended%20Details/creative-phase-examples.mdc) for detailed examples.
+
+## 📋 LEVEL ESCALATION
+
+If during the task execution, you discover the task is more complex than initially determined:
+
+1. Notify the user of the increased complexity
+2. Recommend escalating to a higher level
+3. If approved, transition to the higher level process
+4. If not approved, continue with current level but note limitations
+
+Example escalation notification:
+```
+I've discovered this task involves multiple subsystems and requires significant architectural changes. This is more aligned with a Level 3 Intermediate Feature than a Level 2 Simple Enhancement.
+
+Would you like me to escalate the process to Level 3 for more comprehensive planning and documentation?
+```
+
+## 📋 FORCE VERIFICATION OPTION
+
+If user types "VAN VERIFY", force a complete verification regardless of previous status:
+
+```
+OK VAN VERIFY
+
+Performing complete system verification...
+```
+
+Then proceed with standard verification process.

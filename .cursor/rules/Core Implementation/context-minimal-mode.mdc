@@ -1,0 +1,161 @@
+---
+description: Context window optimization for minimal mode operation
+globs: **/src/**", "**/.cursorrules", "**/memory-bank/**
+alwaysApply: false
+---
+# MINIMAL MODE: CONTEXT OPTIMIZATION
+
+> **TL;DR:** Use this minimal mode reference when context window space is limited. It contains only essential instructions for each workflow phase.
+
+## 🚨 CORE WORKFLOW - ONE-LINE ESSENTIALS
+
+1. **INIT**: Check Memory Bank files → State task objective → Create section tracking list
+2. **DOCS**: Update Memory Bank files → Include platform-specific information
+3. **PLAN**: Create steps with [ ] markers in tasks.md → Include specific deliverables
+4. **IMPL**: Use tools when possible → Execute ONE command at a time → Update task status in tasks.md
+5. **REFLECT**: Document 4 required sections → Include specific items
+6. **ARCHIVE**: Archive with required format → Create cross-links
+
+## 📋 TEMPLATE: SECTION TRACKING
+
+```
+## Section Progress
+[ ] 1. INITIALIZATION
+[ ] 2. DOCUMENTATION SETUP 
+[ ] 3. TASK PLANNING
+[ ] 4. IMPLEMENTATION
+[ ] 5. REFLECTION
+[ ] 6. ARCHIVING
+```
+
+## 🔄 TEMPLATE: SECTION UPDATE
+
+```
+🔄 SECTION UPDATE:
+- COMPLETED: [Section]
+- UPDATING TRACKING: ✓
+```
+
+## 🔄 TEMPLATE: TASK STATUS UPDATE
+
+```
+🔄 TASK UPDATE:
+- TASK: [Task]
+- STATUS: [X]/[ ]
+- UPDATED IN: tasks.md ✓
+```
+
+## 📝 TOOL USAGE PRIORITIES
+
+Use these preferred tools when available:
+- `list_dir` - For listing directory contents (not dir/ls)
+- `edit_file` - For creating/editing files (not echo/touch)
+- `read_file` - For examining file contents
+- Use relative paths directly with tools (no cd needed)
+- `run_terminal_cmd` - For terminal commands (ONE AT A TIME)
+
+## 📝 TEMPLATE: COMMAND EXECUTION
+
+```
+### Command: [Brief Description]
+Purpose: [Explanation]
+
+```bash
+[command]
+```
+
+Result: [Outcome]
+```
+
+## ⚠️ COMMAND SAFETY (PREVENT CRASHES)
+
+- NEVER chain commands with && or similar
+- NEVER use mkdir -p for nested directories
+- NPM commands CAN include multiple packages: `npm install react react-dom`
+- But NEVER chain npm commands: `cd dir && npm install` WILL CRASH
+
+## 📝 TEMPLATE: REFLECTION FORMAT
+
+```
+## REFLECTION
+
+### What Went Well
+- [Item 1]
+- [Item 2]
+- [Item 3]
+
+### Challenges
+- [Item 1]
+- [Item 2]
+
+### Lessons Learned
+- [Item 1]
+- [Item 2]
+- [Item 3]
+
+### Improvements for Next Time
+- [Item 1]
+- [Item 2]
+- [Item 3]
+```
+
+## 📝 TEMPLATE: ARCHIVE FORMAT
+
+```
+## Task: [Task Name] (v1.0)
+Last Updated: YYYY-MM-DD
+
+### Implementation Results
+[Details]
+
+### Completed Testing
+[Details]
+
+### Lessons Learned
+[Details]
+
+### Documentation Updates
+[Details]
+```
+
+## 🔗 TEMPLATE: CROSS-LINKING
+
+In tasks.md:
+```
+## Completed Tasks
+- [X] [Task Name] - Completed on YYYY-MM-DD
+```
+
+In progress.md:
+```
+- [Task] - Completed on YYYY-MM-DD, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-task-name-v10)
+```
+
+In activeContext.md:
+```
+- [Task] has been completed and archived. Next focus is on [Next].
+```
+
+## 📚 MINIMAL REFERENCE TRIGGERS
+
+```
+📚 CONSULTING: [file] for [purpose]
+```
+
+## ✅ MINIMAL VERIFICATION STEPS
+
+1. Files: .cursorrules, memory-bank/*, docs/archive/*
+2. Platform: Identified correctly (Windows/Mac/Linux)
+3. Tools: Used list_dir, edit_file when possible
+4. Commands: Executed ONE at a time
+5. Tasks: Status updated in tasks.md
+6. Archive: All 4 sections included
+7. Cross-links: Created in all required files
+8. Reflection: All 4 sections included
+
+## HOW TO USE THIS DOCUMENT
+
+1. Start with full documentation to ensure complete understanding
+2. Switch to this minimal mode when context window space is limited
+3. Return to full documentation when starting new sections
+4. Use templates to ensure consistent formatting

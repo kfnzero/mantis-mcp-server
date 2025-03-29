@@ -1,0 +1,174 @@
+---
+description: Platform-specific command adaptations
+globs: **/src/**", "**/.cursorrules", "**/memory-bank/**
+alwaysApply: false
+---
+# PLATFORM AWARENESS
+
+> **TL;DR:** Always identify the operating system at the beginning of a task. Prefer built-in tools over platform-specific commands when available. When terminal commands are necessary, adapt them according to the platform.
+
+## 🔧 TOOLS-FIRST APPROACH
+
+Use these built-in tools as your first choice:
+- `list_dir` - For listing directory contents (instead of dir/ls)
+- `edit_file` - For creating/editing files (instead of echo/touch)
+- `read_file` - For examining file contents
+- Use relative paths directly with tools (no cd needed)
+- `run_terminal_cmd` - For terminal commands (ONE AT A TIME)
+
+## 🖥️ PLATFORM IDENTIFICATION
+
+At the INITIALIZATION phase of every task, identify the platform:
+
+```
+### Platform Detection
+Current environment: [Windows/Mac/Linux]
+Path separator: [\ or /]
+```
+
+## 🚨 KEY PLATFORM DIFFERENCES
+
+| Operation | Windows | Mac/Linux |
+|-----------|---------|-----------|
+| Path separator | \ (backslash) | / (forward slash) |
+| Create empty file | echo.> filename.txt | touch filename.txt |
+| Create nested dirs | Create one by one | mkdir -p path/to/dir |
+| List directory | dir | ls |
+| Check if dir exists | if exist dir\NUL | if [ -d dir ] |
+| Check if file exists | if exist file.txt | if [ -f file.txt ] |
+| Delete file | del file.txt | rm file.txt |
+| Delete directory | rmdir /s /q dir | rm -rf dir |
+
+## 📦 WEB DEVELOPMENT WORKFLOW
+
+For modern web development environments like Vite/React:
+
+### NPM Commands (Safe across platforms)
+```bash
+# Installing dependencies
+npm install            # Install all dependencies from package.json
+npm install react      # Install a single package
+npm install react react-dom  # Install multiple packages at once
+
+# Running scripts
+npm run dev            # Start development server
+npm run build          # Build for production
+npm run test           # Run tests
+
+# Creating projects
+npm create vite@latest my-app -- --template react
+```
+
+### Vite Development (Safe across platforms)
+```bash
+# Starting dev server
+cd project-directory
+npm run dev
+
+# Building
+npm run build
+
+# Previewing build
+npm run preview
+```
+
+### Command Safety Warning
+```
+⚠️ NEVER chain commands with && - this will crash the terminal
+
+# WRONG - will crash the terminal
+cd my-app && npm install
+
+# CORRECT - run as separate commands
+cd my-app
+npm install
+```
+
+## 📝 COMMAND DOCUMENTATION TEMPLATE
+
+```
+### Command: [Brief Description]
+Purpose: [Explain what this command will do]
+
+Platform considerations:
+- Current platform: [Windows/Mac/Linux]
+- Adaptation needed: [Yes/No]
+
+```bash
+[platform-appropriate command]
+```
+
+Result: [What happened after execution]
+```
+
+## 🔄 TOOL-BASED ALTERNATIVES
+
+For common operations, prefer the corresponding tool:
+
+| Terminal Command | Tool Alternative |
+|------------------|------------------|
+| dir / ls | list_dir tool |
+| echo > / touch | edit_file tool |
+| cat / type | read_file tool |
+| cd | Use relative paths with tools |
+| mkdir | Create files with path using edit_file |
+| find / grep | codebase_search or grep_search tool |
+
+## 🔄 PLATFORM-AWARE FILE CHECKING
+
+For verifying file vs. directory type when tools aren't available:
+
+### Creating .cursorrules file (FILE not directory)
+```bash
+# PREFERRED: Use edit_file tool
+
+# Windows (if tools unavailable)
+echo. > .cursorrules
+
+# Mac/Linux (if tools unavailable)
+touch .cursorrules
+```
+
+### Verifying file type
+```bash
+# PREFERRED: Use list_dir tool
+
+# Windows (if tools unavailable)
+if exist .cursorrules\NUL (
+  echo ERROR: .cursorrules is a directory
+) else if exist .cursorrules (
+  echo .cursorrules is a file
+) else (
+  echo .cursorrules doesn't exist
+)
+
+# Mac/Linux (if tools unavailable)
+if [ -d .cursorrules ]; then
+  echo "ERROR: .cursorrules is a directory"
+elif [ -f .cursorrules ]; then
+  echo ".cursorrules is a file"
+else
+  echo ".cursorrules doesn't exist"
+fi
+```
+
+## 📊 DOCUMENTING PLATFORM-SPECIFIC INFORMATION
+
+Always document platform-specific details in techContext.md:
+
+```markdown
+## Platform Considerations
+- Operating System: [Windows/Mac/Linux]
+- Path conventions: [\ or /]
+- Development Environment: [Vite/React/etc.]
+- Command adaptations needed: [Yes/No]
+- Tools used: [list of tools]
+```
+
+## 🔄 HANDLING CROSS-PLATFORM PROJECTS
+
+For projects that need to work across platforms:
+- Document both Windows and Unix command versions
+- Note any compatibility considerations
+- Include platform-specific testing steps
+- Document platform-specific edge cases

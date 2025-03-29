@@ -1,0 +1,95 @@
+---
+description: Task archiving protocol
+globs: **/docs/archive/**", "**/.cursorrules", "**/memory-bank/progress.md", "**/memory-bank/activeContext.md
+alwaysApply: true
+---
+# TASK ARCHIVING PROTOCOL
+
+> **TL;DR:** After completing a task, archive it in completed_tasks.md with Implementation Results, Completed Testing, Lessons Learned, and Documentation Updates sections. Cross-link in progress.md and activeContext.md.
+
+## 📁 ARCHIVE SETUP
+
+At project start:
+1. Create `docs/archive/` directory
+2. Create `completed_tasks.md` with only this header:
+   ```markdown
+   # Completed Tasks
+   ```
+3. Don't add placeholder text like "No tasks completed yet"
+
+## 📋 ARCHIVE FORMAT
+
+For each completed task, use this exact format:
+
+```markdown
+## Task: [Task Name] (v1.0)
+Last Updated: YYYY-MM-DD
+
+### Implementation Results
+[What was implemented]
+
+### Completed Testing
+[How it was tested]
+
+### Lessons Learned
+[Key insights gained]
+
+### Documentation Updates
+[Memory Bank files updated]
+```
+
+See examples: [archive-examples.mdc](mdc:.cursor/rules/Extended%20Details/archive-examples.mdc)
+
+## 🔄 CROSS-LINKING
+
+After archiving, create these cross-links:
+
+### In progress.md:
+```markdown
+## Completed Tasks
+- [Task Name] - Completed on YYYY-MM-DD, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-task-name-v10)
+```
+
+### In activeContext.md:
+```markdown
+## Recent Completions
+- [Task Name] has been completed and archived. Next focus is on [Next Task].
+```
+
+## ✅ ARCHIVE CHECKLIST
+
+Verify these items for every archive:
+
+- [ ] docs/archive directory exists
+- [ ] completed_tasks.md exists with proper header
+- [ ] Archive entry includes:
+  - Task name with (v1.0) version
+  - Date in YYYY-MM-DD format
+  - All four required sections
+- [ ] No placeholder text remains
+- [ ] progress.md updated with archive link
+- [ ] activeContext.md updated with completion note
+
+## 🔍 SECTION REQUIREMENTS
+
+1. **Implementation Results**
+   - List specific features implemented
+   - Note any deviations from original plan
+   - Mention technologies used
+
+2. **Completed Testing**
+   - Describe testing methods used
+   - Note test results and coverage
+   - Mention any edge cases tested
+
+3. **Lessons Learned**
+   - Include specific technical insights
+   - Note what worked well and what didn't
+   - Include recommendations for future work
+
+4. **Documentation Updates**
+   - List all Memory Bank files updated
+   - Note major changes to project documentation
+   - Mention any new patterns documented
+
+✓ **Checkpoint:** Have I included all four sections with sufficient detail?

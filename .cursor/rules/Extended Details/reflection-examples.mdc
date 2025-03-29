@@ -1,0 +1,223 @@
+---
+description: CRITICAL: Contains mandatory examples for correct reflection formatting. DO NOT write reflections without consulting this documentation first.
+globs: "**/memory-bank/progress.md"
+alwaysApply: false
+---
+# Reflection Format Examples
+
+## ⚠️ CORRECT FORMAT EXAMPLES ⚠️
+
+### Example 1: Frontend Feature Reflection
+
+```markdown
+## REFLECTION
+
+### What Went Well
+- React component architecture allowed for clean separation of concerns, making it easy to isolate and test individual components
+- CSS module approach eliminated style conflicts and scoping issues entirely
+- Implementation of custom hooks for form validation significantly reduced code duplication across multiple forms
+- State management with Context API was sufficient for this feature scope without needing Redux
+- Test-driven development approach caught several edge cases early in the development process
+
+### Challenges
+- Initial approach to form validation was too complex and had to be refactored
+- Performance issues arose with real-time filtering of large datasets
+- Mobile responsiveness required significant adjustments to the original design
+- Browser compatibility issues with CSS Grid required additional fallbacks
+
+### Lessons Learned
+- Start with simpler validation approaches and add complexity as needed
+- Consider pagination or virtualization early when dealing with large datasets
+- Mobile-first design would have prevented later responsiveness issues
+- Testing cross-browser compatibility earlier would have saved time
+- Breaking components into smaller, more focused pieces improves maintainability
+- Custom hooks are powerful for extracting and reusing logic
+
+### Improvements for Next Time
+- Implement a mobile-first design approach from the beginning
+- Set up comprehensive browser testing earlier in the process
+- Consider performance implications earlier when designing data-heavy features
+- Create a more systematic approach to component props and interfaces
+- Establish clearer boundaries between component responsibilities
+- Document component APIs more thoroughly as they're developed
+```
+
+### Example 2: Backend API Reflection
+
+```markdown
+## REFLECTION
+
+### What Went Well
+- Middleware-based architecture made error handling consistent across all endpoints
+- Input validation using a schema-based approach caught invalid requests early
+- Repository pattern provided clean separation between database and business logic
+- Unit testing each layer independently made debugging easier
+- Automated integration tests with a test database ensured reliable API behavior
+- Consistent error response format improved client experience
+
+### Challenges
+- Initial database schema had performance issues with complex queries
+- Authentication flow had security vulnerabilities in the first implementation
+- Error handling was inconsistent across different parts of the application
+- Managing test data became complex as the number of tests grew
+
+### Lessons Learned
+- Database schema design should consider query patterns from the beginning
+- Security reviews should happen earlier in the development process
+- Consistent error handling requires a centralized approach
+- Test data management benefits from factory patterns
+- Input validation should happen as early as possible in the request lifecycle
+- Documentation-driven development clarifies API design before implementation
+- Environment-specific configuration is critical for smooth deployment
+
+### Improvements for Next Time
+- Start with security considerations as a first-class concern
+- Design database schema with specific query patterns in mind
+- Implement more comprehensive input validation from the start
+- Create better tooling for test data management
+- Establish clear patterns for handling asynchronous operations
+- Include performance testing earlier in the development cycle
+- Improve logging for better production debugging
+```
+
+### Example 3: Deployment Automation Reflection
+
+```markdown
+## REFLECTION
+
+### What Went Well
+- Infrastructure-as-code approach made environment setup reproducible
+- Staged deployment strategy allowed for incremental validation
+- Automated rollback procedures prevented extended downtime
+- Comprehensive monitoring setup provided early warning of issues
+- Parameterized configuration simplified environment-specific settings
+- Zero-downtime deployment process maintained service availability
+
+### Challenges
+- Initial deployment scripts had hard-coded values that caused issues
+- Secret management was not secure in the first implementation
+- Database migration steps caused unexpected downtime
+- Error handling in deployment scripts was insufficient
+- Some environment differences weren't accounted for initially
+
+### Lessons Learned
+- Parameterization should be implemented from the beginning
+- Secret management requires specialized solutions
+- Database migrations need special handling for zero downtime
+- Robust error handling in automation is as important as in application code
+- Testing deployment in a staging environment that closely mirrors production is essential
+- Monitoring should be set up before the first deployment
+- Rollback procedures must be tested, not just implemented
+
+### Improvements for Next Time
+- Implement secure secret management from the start
+- Create more robust error handling in automation scripts
+- Test deployment procedures more thoroughly before production
+- Document deployment architecture and decisions more completely
+- Include database migration strategies in initial planning
+- Build more comprehensive pre and post-deployment validation
+- Create better visibility into deployment progress and status
+```
+
+## ⚠️ INCORRECT FORMAT EXAMPLES ❌
+
+### Example 1: Missing Subsections
+
+```markdown
+## REFLECTION
+
+### What Went Well
+- Feature implemented successfully
+- Code is maintainable
+- Tests are passing
+
+### Challenges
+- Some unexpected bugs
+- Integration was difficult
+```
+
+This example is INCORRECT because it's missing the "Lessons Learned" and "Improvements for Next Time" subsections.
+
+### Example 2: Incorrect Order
+
+```markdown
+## REFLECTION
+
+### Challenges
+- Had some issues with the implementation
+- Needed to refactor several times
+
+### What Went Well
+- Completed all requirements
+- Code is clean and well-tested
+
+### Improvements for Next Time
+- Better planning
+- More testing
+- Clearer requirements
+
+### Lessons Learned
+- Planning is important
+- Testing saves time
+- Documentation helps
+```
+
+This example is INCORRECT because the subsections are in the wrong order. The correct order is: What Went Well, Challenges, Lessons Learned, Improvements for Next Time.
+
+### Example 3: Too Vague/Generic
+
+```markdown
+## REFLECTION
+
+### What Went Well
+- Implementation was successful
+- Everything works as expected
+- Good code quality
+
+### Challenges
+- Some issues came up
+- Took longer than expected
+
+### Lessons Learned
+- Better planning helps
+- Testing is important
+- Documentation is useful
+
+### Improvements for Next Time
+- Plan better
+- Test more
+- Document better
+```
+
+This example is INCORRECT because the content is too vague and generic. Each item should be specific and detailed.
+
+## ⚠️ MINIMUM NUMBER OF ITEMS ⚠️
+
+Each subsection must include a minimum number of specific items:
+
+- What Went Well: AT LEAST 3 items
+- Challenges: AT LEAST 2 items
+- Lessons Learned: AT LEAST 3 items
+- Improvements for Next Time: AT LEAST 3 items
+
+## ⚠️ SPECIFICITY GUIDELINES ⚠️
+
+### Specific vs. Vague Examples
+
+#### Vague (INCORRECT):
+"The code works well."
+
+#### Specific (CORRECT):
+"The modular component architecture allowed for easy unit testing and reduced bugs during integration."
+
+#### Vague (INCORRECT):
+"There were some challenges."
+
+#### Specific (CORRECT):
+"Initial performance issues with the data filtering algorithm required optimization using memoization to prevent re-renders."
+
+#### Vague (INCORRECT):
+"Need to plan better next time."
+
+#### Specific (CORRECT):
+"Implement a more detailed technical specification phase before coding to clarify edge cases and data flow requirements."

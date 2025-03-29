@@ -1,0 +1,243 @@
+---
+description: Essential templates for Memory Bank files
+globs: "**/memory-bank/**", "**/.cursorrules", "**/docs/archive/**
+alwaysApply: false
+---
+# Memory Bank Core Templates
+
+## ⚠️ ALWAYS USE THESE TEMPLATES WHEN CREATING FILES ⚠️
+
+When creating any Memory Bank file, use these templates as the starting point. These are the ESSENTIAL templates that must be used for core files.
+
+⚠️ REFERENCE REQUIRED: For extended and specialized templates, I MUST read templates-extended.mdc.
+
+## projectbrief.md Template
+```markdown
+# Project Brief
+
+## Overview
+[Brief description of the project]
+
+## Goals and Objectives
+- [Primary goal 1]
+- [Primary goal 2]
+- [Primary goal 3]
+
+## Requirements
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+## Constraints
+- [Constraint 1]
+- [Constraint 2]
+
+## Stakeholders
+- [Stakeholder 1]: [Role/Interest]
+- [Stakeholder 2]: [Role/Interest]
+
+## Success Criteria
+- [Criterion 1]
+- [Criterion 2]
+```
+
+## productContext.md Template
+```markdown
+# Product Context
+
+## Problem Statement
+[Description of the problem this project solves]
+
+## Target Users
+- [User type 1]: [Needs and expectations]
+- [User type 2]: [Needs and expectations]
+
+## User Experience Goals
+- [UX goal 1]
+- [UX goal 2]
+
+## Key Features
+- [Feature 1]: [Purpose and value]
+- [Feature 2]: [Purpose and value]
+
+## Workflows
+[Description of key user workflows]
+
+## Market Context
+[Relevant market information, competition, etc.]
+```
+
+## activeContext.md Template
+```markdown
+# Active Context
+
+## Current Focus
+[Description of current development focus]
+
+## Recent Changes
+- [Change 1] - [Date]
+- [Change 2] - [Date]
+
+## Active Decisions
+- [Decision 1]: [Rationale]
+- [Decision 2]: [Rationale]
+
+## Next Steps
+- [Next step 1]
+- [Next step 2]
+
+## Open Questions
+- [Question 1]
+- [Question 2]
+
+## Recent Completions
+[Most recent completed task and next focus]
+```
+
+## systemPatterns.md Template
+```markdown
+# System Patterns
+
+## Architecture Overview
+[Description of system architecture]
+
+## Key Components
+- [Component 1]: [Purpose and responsibilities]
+- [Component 2]: [Purpose and responsibilities]
+
+## Design Patterns
+- [Pattern 1]: [Usage and implementation]
+- [Pattern 2]: [Usage and implementation]
+
+## Data Flow
+[Description of data flow through the system]
+
+## Security Considerations
+[Description of security patterns and considerations]
+
+## Performance Considerations
+[Description of performance patterns and optimizations]
+```
+
+## techContext.md Template
+```markdown
+# Technical Context
+
+## Technology Stack
+- Frontend: [Technologies]
+- Backend: [Technologies]
+- Database: [Technologies]
+- DevOps: [Technologies]
+
+## Development Environment Setup
+[Instructions for setting up the development environment]
+
+## Dependencies
+- [Dependency 1]: [Version] - [Purpose]
+- [Dependency 2]: [Version] - [Purpose]
+
+## External Services
+- [Service 1]: [Purpose and integration details]
+- [Service 2]: [Purpose and integration details]
+
+## Technical Constraints
+- [Constraint 1]
+- [Constraint 2]
+```
+
+## progress.md Template
+```markdown
+# Project Progress
+
+## Completed Tasks
+[List of completed tasks with links to archive]
+
+## In Progress
+- [Feature 3] - [Status]
+- [Feature 4] - [Status]
+
+## Planned
+- [Feature 5]
+- [Feature 6]
+
+## Known Issues
+- [Issue 1]: [Description and workaround]
+- [Issue 2]: [Description and workaround]
+
+## Implementation Notes
+[Important implementation details and decisions]
+
+## Lessons Learned
+[Key insights gained during development]
+```
+
+## tasks.md Template
+```markdown
+# Project Tasks
+
+## Current Tasks
+- [ ] [Task 1]: [Description]
+  - [ ] [Subtask 1.1]
+  - [ ] [Subtask 1.2]
+- [ ] [Task 2]: [Description]
+  - [ ] [Subtask 2.1]
+  - [ ] [Subtask 2.2]
+
+## Completed Tasks
+- [X] [Task 3] - Completed on YYYY-MM-DD
+- [X] [Task 4] - Completed on YYYY-MM-DD
+```
+
+## completed_tasks.md Template
+```markdown
+# Completed Tasks
+
+[Archive entries will be added here as tasks are completed]
+```
+
+## .cursorrules Template
+```markdown
+# Project Intelligence
+
+## Project Patterns
+- [Pattern 1]: [Description]
+- [Pattern 2]: [Description]
+
+## Workflow Preferences
+- [Preference 1]: [Description]
+- [Preference 2]: [Description]
+
+## Implementation Insights
+- [Insight 1]: [Description]
+- [Insight 2]: [Description]
+
+## Known Challenges
+- [Challenge 1]: [Description and approach]
+- [Challenge 2]: [Description and approach]
+```
+
+## Implementation Template
+```markdown
+# [Feature/Component] Implementation
+
+## Overview
+[Brief description of the feature/component]
+
+## Design Decisions
+- [Decision 1]: [Rationale]
+- [Decision 2]: [Rationale]
+
+## Implementation Details
+[Detailed description of implementation]
+
+## Code Examples
+```[language]
+[Code example]
+```
+
+## Testing Strategy
+[Description of testing approach]
+
+## Future Considerations
+[Notes for future development]
+```

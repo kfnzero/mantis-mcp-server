@@ -1,0 +1,186 @@
+---
+description: Guidelines for identifying when to enter creative phases and how to transition between normal processing and creative thinking
+globs: 
+alwaysApply: true
+---
+# CREATIVE PHASE TRIGGERS & TRANSITIONS
+
+> **TL;DR:** Recognize when a task requires dedicated creative thinking and explicitly enter a creative phase. This document explains how to identify creative phase triggers, how to transition into/out of creative phases, and how to select the appropriate creative phase type based on the problem.
+
+## 🔍 WHEN TO ENTER A CREATIVE PHASE
+
+Enter a creative phase whenever you encounter:
+
+1. **Multiple viable approaches** to solving a problem with significant trade-offs
+2. **Complex design decisions** that require systematic analysis
+3. **Problems with competing constraints** that need careful balancing
+4. **Tasks requiring exploration** of multiple options before implementation
+5. **Situations where decisions have far-reaching consequences**
+6. **Architecture or algorithm planning** that impacts multiple components
+
+### Specific Triggers by Domain
+
+#### Algorithm Design Triggers
+- Implementing a complex algorithm with performance constraints
+- Designing data structures for specialized use cases
+- Working with tree, graph, or dynamic programming problems
+- Optimizing existing algorithms with specific constraints
+- Creating new computational approaches
+
+#### UI/UX Design Triggers
+- Designing layouts with complex information hierarchy
+- Creating component structures with extensive state management
+- Designing responsive interfaces with complex constraints
+- Planning complex user flows
+- Addressing accessibility and usability challenges
+
+#### Architecture Planning Triggers
+- Designing service boundaries and communication patterns
+- Creating data storage and access strategies
+- Planning security and authentication systems
+- Designing for scalability and resilience
+- Creating deployment and infrastructure models
+
+## 🚨 MANDATORY CREATIVE PHASES FOR LEVEL 3-4 TASKS
+
+Creative phases are NOT optional for Level 3-4 tasks. They MUST be used for:
+
+1. **All component architecture decisions** in Level 3-4 tasks
+2. **All state management approaches** in Level 3-4 tasks
+3. **All UI/UX design decisions** affecting multiple components
+4. **All data modeling decisions** with system-wide implications
+5. **Any algorithm implementation** with performance or scalability requirements
+
+**Failure to conduct appropriate creative phases for these elements constitutes an incomplete implementation process.**
+
+## 🚦 HOW TO INITIATE A CREATIVE PHASE
+
+When you identify a need for creative thinking:
+
+1. **Pause regular task processing**: Stop the implementation flow
+2. **Confirm the need**: Verify the problem requires structured thinking
+3. **Select phase type**: Choose the appropriate creative phase type
+4. **Declare phase start**: Use the creative phase entry marker
+5. **Enter structured thinking mode**: Switch to systematic analysis and exploration
+
+Example transition into creative phase:
+```
+While working on implementing the user profile system, I've identified that the data storage approach requires careful consideration of multiple options and trade-offs.
+
+🎨🎨🎨 ENTERING CREATIVE PHASE: ARCHITECTURE PLANNING 🎨🎨🎨
+Focus: User profile data storage strategy
+Objective: Design efficient, scalable storage approach for user profiles
+Constraints: Must support fast queries, handle large media assets, ensure privacy
+
+Breaking down the problem:
+- Data structure and schema design
+- Storage technology selection
+- Privacy and access control
+- Scaling considerations
+- Performance optimization
+...
+```
+
+## 🔍 SELECTING THE RIGHT CREATIVE PHASE TYPE
+
+Choose the appropriate creative phase type based on the problem nature:
+
+### 1. Algorithm Design
+For problems involving:
+- Data processing logic
+- Computational efficiency
+- Search, sort, or transformation operations
+- Optimization problems
+
+### 2. UI/UX Design
+For problems involving:
+- User interfaces and experiences
+- Information presentation
+- Interaction patterns
+- Accessibility and usability
+- Visual and layout design
+
+### 3. Architecture Planning
+For problems involving:
+- System structure and organization
+- Service boundaries and communication
+- Data storage and access patterns
+- Security and authentication
+- Scaling and deployment strategies
+
+### 4. General Problem Solving
+For problems that don't fit neatly into the above categories:
+- Business logic design
+- Process workflows
+- Resource allocation
+- Configuration strategies
+
+## 🔄 TRANSITIONING OUT OF CREATIVE PHASES
+
+When exiting a creative phase:
+
+1. **Verify completion**: Ensure you've thoroughly analyzed the problem
+2. **Perform verification**: Run through the creative phase verification checklist
+3. **Summarize findings**: Create a comprehensive summary with verification confirmation
+4. **Mark phase end**: Use the creative phase exit marker
+5. **Update task tracking**: Document the creative phase output in tasks.md
+6. **Return to normal processing**: Resume the regular workflow
+
+Example transition out of creative phase:
+```
+After systematic analysis and verification of all options against requirements...
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: User profile data storage strategy
+- Key decisions: Hybrid approach using PostgreSQL for structured data with S3 for media assets
+- Next steps: 
+  1. Implement database schema
+  2. Set up S3 bucket structure
+  3. Create data access layer
+- Verification: Solution verified against all performance, scaling, and privacy requirements
+
+🔄 TASK UPDATE: Implement user profile system - In Progress
+- Updated in tasks.md ✓
+- Creative work completed: Data storage architecture design
+- Implementation details added to activeContext.md ✓
+
+Now I'll proceed with implementing the database schema as the first step...
+```
+
+## 🔄 CREATIVE PHASE WITHIN IMPLEMENTATION
+
+You can enter a creative phase at any point during implementation when needed:
+
+```
+### Command: Create Database Schema
+Purpose: Setting up the database structure for user profiles
+
+I need to carefully consider the schema design to ensure it meets all requirements...
+
+🎨🎨🎨 ENTERING CREATIVE PHASE: DATABASE SCHEMA DESIGN 🎨🎨🎨
+...
+[Creative phase content]
+...
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO IMPLEMENTATION 🎨🎨🎨
+
+Now with the schema design complete, I'll implement it:
+
+```bash
+[command to create schema]
+```
+
+Result: Schema created successfully
+```
+
+## ✓ CREATIVE PHASE INITIATION CHECKLIST
+
+Before entering a creative phase, verify:
+- [ ] Problem requires systematic analysis of multiple options
+- [ ] Decisions have significant impact on implementation
+- [ ] Regular implementation flow isn't sufficient for proper analysis
+- [ ] Appropriate creative phase type selected
+- [ ] Clear focus, objective, and constraints identified
+
+Remember: Creative phases are tools for structured thinking in complex situations. Use them when needed, but don't overcomplicate simple tasks with unnecessary creative phases.

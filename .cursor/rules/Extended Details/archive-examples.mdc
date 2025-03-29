@@ -1,0 +1,275 @@
+---
+description: CRITICAL: Contains mandatory examples for correct archive formatting. DO NOT archive tasks without consulting this documentation first.
+globs: **/docs/archive/**", "**/.cursorrules", "**/memory-bank/progress.md", "**/memory-bank/activeContext.md
+alwaysApply: false
+---
+# Archive Format Examples
+
+## ⚠️ CORRECT FORMAT EXAMPLES ⚠️
+
+### Example 1: Web Application Feature
+
+```markdown
+## Task: Todo Application Implementation (v1.0)
+Last Updated: 2023-04-15
+
+### Implementation Results
+- Created a React-based Todo application with the following features:
+  - Add new todo items
+  - Mark todos as complete
+  - Delete todos
+  - Filter by status (all, active, completed)
+  - Store todos in localStorage for persistence
+  - Responsive design for mobile and desktop
+  - Dark/light theme toggle
+  - Keyboard accessibility
+
+### Completed Testing
+- Manually tested all CRUD operations
+- Verified persistence works across page reloads
+- Tested UI responsiveness on mobile and desktop
+- Confirmed filter functionality works as expected
+- Verified keyboard navigation works properly
+- Tested theme toggle functionality
+- Checked accessibility with screen reader
+
+### Lessons Learned
+- React state management using useState was sufficient for this app
+- localStorage offers simple persistence but has limitations for larger apps
+- CSS Grid provided an efficient layout system
+- Using unique IDs for todos simplified tracking and updates
+- Controlled components provide better form handling
+- Theme implementation with CSS variables is flexible
+- Accessibility requires planning from the beginning
+
+### Documentation Updates
+- Updated projectbrief.md with completed requirements
+- Updated progress.md with completion status
+- Updated activeContext.md to focus on the next feature
+- Updated systemPatterns.md with component architecture
+- Updated techContext.md with React implementation details
+- Updated tasks.md to mark task as completed
+```
+
+### Example 2: Backend API Feature
+
+```markdown
+## Task: RESTful API Implementation (v1.0)
+Last Updated: 2023-05-20
+
+### Implementation Results
+- Created a Node.js/Express RESTful API with the following features:
+  - CRUD operations for products and categories
+  - Authentication using JWT
+  - Role-based authorization
+  - Input validation with Joi
+  - Error handling middleware
+  - MongoDB integration with Mongoose
+  - Rate limiting for public endpoints
+  - API documentation with Swagger
+
+### Completed Testing
+- Unit tests for validation logic
+- Integration tests for all endpoints
+- Authentication flow testing
+- Authorization tests for different roles
+- Error handling tests
+- Performance testing with basic load
+- Manual testing with Postman
+- Cross-origin request testing
+
+### Lessons Learned
+- Middleware pattern in Express enhances code organization
+- JWT implementation requires careful security considerations
+- MongoDB schema design impacts query performance
+- Input validation should happen early in the request lifecycle
+- Consistent error response format improves client experience
+- Documentation-first approach helps clarify API design
+- Environment configuration management is critical for deployment
+
+### Documentation Updates
+- Updated projectbrief.md with API specifications
+- Updated progress.md with API completion status
+- Updated activeContext.md to focus on frontend integration
+- Updated systemPatterns.md with API architecture
+- Updated techContext.md with backend dependencies
+- Updated tasks.md to mark API implementation as complete
+```
+
+### Example 3: Database Feature
+
+```markdown
+## Task: Database Migration System (v1.0)
+Last Updated: 2023-06-10
+
+### Implementation Results
+- Implemented a database migration system with the following features:
+  - Version-controlled schema changes
+  - Forward and rollback migrations
+  - CLI for creating and running migrations
+  - Integration with existing ORM
+  - Transaction support for safe migrations
+  - Logging and reporting
+  - Environment-specific configurations
+  - Seed data management
+
+### Completed Testing
+- Tested migration creation workflow
+- Verified forward migrations work correctly
+- Confirmed rollback functionality
+- Tested transaction rollback on failure
+- Verified logging captures relevant information
+- Tested across development and staging environments
+- Verified seed data implementation
+- Stress-tested with large schema changes
+
+### Lessons Learned
+- Separating migration logic from application code improves maintainability
+- Transactions are essential for safe schema changes
+- Version numbering should be deterministic and sequential
+- CLI tools benefit from clear help documentation
+- Testing migrations requires specific environment setups
+- Seed data should be environment-aware
+- Logging is critical for troubleshooting failed migrations
+
+### Documentation Updates
+- Updated projectbrief.md with migration system requirements
+- Updated progress.md with completion status
+- Updated activeContext.md to focus on related data tasks
+- Updated systemPatterns.md with migration architecture
+- Updated techContext.md with migration tools and dependencies
+- Updated tasks.md to mark migration system as complete
+```
+
+## ⚠️ INCORRECT FORMAT EXAMPLES ❌
+
+### Example 1: Missing Sections
+
+```markdown
+## Task: User Authentication (v1.0)
+Last Updated: 2023-07-05
+
+### Implementation Results
+- Implemented JWT-based authentication
+- Added login, registration, and logout endpoints
+- Created middleware for protected routes
+
+### Completed Testing
+- Tested authentication flow
+- Verified token validation
+```
+
+This example is INCORRECT because it's missing the "Lessons Learned" and "Documentation Updates" sections.
+
+### Example 2: Incorrect Order
+
+```markdown
+## Task: Payment Gateway Integration (v1.0)
+Last Updated: 2023-08-12
+
+### Implementation Results
+- Integrated Stripe payment gateway
+- Added payment processing endpoints
+- Implemented webhook handling
+
+### Documentation Updates
+- Updated all relevant docs
+
+### Completed Testing
+- Tested payment flows
+- Verified webhook handling
+
+### Lessons Learned
+- Webhook security is critical
+- Test mode is essential for development
+```
+
+This example is INCORRECT because the sections are in the wrong order. The correct order is: Implementation Results, Completed Testing, Lessons Learned, Documentation Updates.
+
+### Example 3: Missing Version Number
+
+```markdown
+## Task: Search Functionality
+Last Updated: 2023-09-01
+
+### Implementation Results
+- Added full-text search capability
+- Implemented search indexing
+- Created search API endpoints
+
+### Completed Testing
+- Tested search accuracy
+- Verified performance under load
+
+### Lessons Learned
+- Indexing strategy affects performance
+- Search relevance requires tuning
+
+### Documentation Updates
+- Updated all relevant documentation
+```
+
+This example is INCORRECT because it's missing the version number (v1.0) in the task title.
+
+## ⚠️ CROSS-LINKING EXAMPLES ⚠️
+
+### Example in tasks.md:
+
+```markdown
+## Completed Tasks
+- [X] Todo Application Implementation - Completed on 2023-04-15
+- [X] RESTful API Implementation - Completed on 2023-05-20
+- [X] Database Migration System - Completed on 2023-06-10
+```
+
+### Example in progress.md:
+
+```markdown
+## Completed Tasks
+- Todo Application Implementation - Completed on 2023-04-15, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-todo-application-implementation-v10)
+- RESTful API Implementation - Completed on 2023-05-20, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-restful-api-implementation-v10)
+- Database Migration System - Completed on 2023-06-10, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-database-migration-system-v10)
+```
+
+### Example in activeContext.md:
+
+```markdown
+## Recent Completions
+- Database Migration System has been completed and archived. Next focus is on Data Analytics Dashboard.
+```
+
+## ⚠️ CORRECTLY INITIALIZED COMPLETED_TASKS.MD ⚠️
+
+```markdown
+# Completed Tasks
+
+## Task: User Authentication System (v1.0)
+Last Updated: 2023-03-10
+
+### Implementation Results
+[Detailed content...]
+
+### Completed Testing
+[Detailed content...]
+
+### Lessons Learned
+[Detailed content...]
+
+### Documentation Updates
+[Detailed content...]
+```
+
+## ⚠️ INCORRECTLY INITIALIZED COMPLETED_TASKS.MD ❌
+
+```markdown
+# Completed Tasks
+
+No tasks completed yet.
+
+## Task: User Authentication System (v1.0)
+Last Updated: 2023-03-10
+
+[Content...]
+```
+
+This is INCORRECT because it contains template text "No tasks completed yet."

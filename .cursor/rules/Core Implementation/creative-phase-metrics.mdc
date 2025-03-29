@@ -1,0 +1,277 @@
+---
+description: Quality metrics and structured evaluation frameworks for creative phases
+globs: "**/src/**", "**/.cursorrules", "**/memory-bank/**"
+alwaysApply: false
+---
+# CREATIVE PHASE METRICS
+
+> **TL;DR:** This file establishes objective evaluation frameworks and quality metrics for creative phase outputs. It provides structured approaches to evaluate design decisions, weighted decision matrices for option comparison, and verification metrics to ensure solutions meet requirements.
+
+## 📊 QUALITY EVALUATION FRAMEWORK
+
+Evaluate creative phase outputs using these objective criteria:
+
+### 1. Decision Quality Metrics
+```
+📊 DECISION QUALITY SCORE
+- Requirement Coverage: [1-5] - How completely does the solution address requirements?
+- Option Exploration: [1-5] - How thoroughly were alternatives explored?
+- Trade-off Analysis: [1-5] - How well were pros/cons evaluated?
+- Verification Rigor: [1-5] - How systematically was the solution verified?
+- Implementation Guidance: [1-5] - How clear is the implementation path?
+
+TOTAL SCORE: [5-25]
+- 20-25: Excellent - Comprehensive analysis with strong justification
+- 15-19: Good - Solid analysis with adequate justification
+- 10-14: Satisfactory - Basic analysis with minimal justification
+- 5-9: Needs Improvement - Incomplete analysis, inadequate justification
+
+→ Minimum acceptable score: 15
+```
+
+## ⚖️ WEIGHTED DECISION MATRIX
+
+For evaluating multiple options against weighted criteria:
+
+```
+⚖️ WEIGHTED DECISION MATRIX
+
+| Criteria | Weight | Option 1 | Score 1 | Option 2 | Score 2 | Option 3 | Score 3 |
+|----------|--------|----------|---------|----------|---------|----------|---------|
+| Criterion 1 | [1-5] | Rating [1-10] | Weight × Rating | Rating [1-10] | Weight × Rating | Rating [1-10] | Weight × Rating |
+| Criterion 2 | [1-5] | Rating [1-10] | Weight × Rating | Rating [1-10] | Weight × Rating | Rating [1-10] | Weight × Rating |
+| Criterion 3 | [1-5] | Rating [1-10] | Weight × Rating | Rating [1-10] | Weight × Rating | Rating [1-10] | Weight × Rating |
+| Totals | | | Sum | | Sum | | Sum |
+
+→ Highest total score indicates the recommended option
+→ Document rationale for weights and ratings
+```
+
+## 🔍 VERIFICATION METRICS
+
+Verify solutions against requirements using quantifiable metrics:
+
+```
+🔍 SOLUTION VERIFICATION METRICS
+
+| Requirement | Metric | Target | Option 1 | Option 2 | Option 3 |
+|-------------|--------|--------|----------|----------|----------|
+| [Req 1] | [How measured] | [Target value] | [Measured value] | [Measured value] | [Measured value] |
+| [Req 2] | [How measured] | [Target value] | [Measured value] | [Measured value] | [Measured value] |
+| [Req 3] | [How measured] | [Target value] | [Measured value] | [Measured value] | [Measured value] |
+```
+
+## 🛡️ RISK ASSESSMENT FRAMEWORK
+
+Evaluate risks associated with each option:
+
+```
+🛡️ RISK ASSESSMENT
+
+| Risk Factor | Probability [1-5] | Impact [1-5] | Risk Score | Mitigation |
+|-------------|-------------------|--------------|------------|------------|
+| [Risk 1] | [Probability] | [Impact] | Prob × Impact | [Mitigation strategy] |
+| [Risk 2] | [Probability] | [Impact] | Prob × Impact | [Mitigation strategy] |
+| [Risk 3] | [Probability] | [Impact] | Prob × Impact | [Mitigation strategy] |
+
+→ Risk Score: 1-5 (Low), 6-12 (Medium), 15-25 (High)
+→ High risks require documented mitigation strategies
+```
+
+## 📈 DOMAIN-SPECIFIC EVALUATION CRITERIA
+
+### Algorithm Design Criteria
+```
+📈 ALGORITHM EVALUATION
+
+| Criterion | Description | Metric | Target | Actual |
+|-----------|-------------|--------|--------|--------|
+| Time Complexity | Big O analysis | O(?) | [Target] | [Actual] |
+| Space Complexity | Memory usage | O(?) | [Target] | [Actual] |
+| Edge Case Handling | Coverage of corner cases | % covered | 100% | [Actual] |
+| Scalability | Performance at scale | Performance curve | [Target] | [Actual] |
+| Maintainability | Readability/adaptability | Score [1-10] | ≥7 | [Actual] |
+```
+
+### UI/UX Design Criteria
+```
+📈 UI/UX EVALUATION
+
+| Criterion | Description | Metric | Target | Actual |
+|-----------|-------------|--------|--------|--------|
+| Usability | Ease of use | User test score | ≥8/10 | [Actual] |
+| Accessibility | WCAG compliance | Level | AA | [Actual] |
+| Responsiveness | Device adaptation | Breakpoints covered | All key sizes | [Actual] |
+| Visual Consistency | Design system alignment | Compliance % | 100% | [Actual] |
+| Performance | Render/interaction speed | Measured time | <100ms | [Actual] |
+```
+
+### Architecture Design Criteria
+```
+📈 ARCHITECTURE EVALUATION
+
+| Criterion | Description | Metric | Target | Actual |
+|-----------|-------------|--------|--------|--------|
+| Modularity | Component independence | Coupling score | ≤3/10 | [Actual] |
+| Scalability | Growth handling | Load test results | [Target] | [Actual] |
+| Maintainability | Change impact | Impact score | ≤3/10 | [Actual] |
+| Security | Vulnerability protection | OWASP coverage | 100% | [Actual] |
+| Resilience | Failure handling | Recovery time | <1min | [Actual] |
+```
+
+## 📑 DECISION DOCUMENTATION TEMPLATE
+
+```
+📑 DECISION RECORD
+
+# [Decision ID]: [Short title]
+
+## Context
+[Describe the situation and problem that required a decision]
+
+## Decision
+[Clearly state the decision that was made]
+
+## Alternatives Considered
+[List the alternatives that were considered]
+
+## Evaluation Criteria
+[Specify how options were evaluated, including weights]
+
+## Decision Matrix
+[Include the weighted decision matrix]
+
+## Consequences
+[Describe the resulting context after the decision is applied]
+
+## Verification
+[Show how the decision was verified against requirements]
+
+## Related Decisions
+[Reference any related decisions]
+```
+
+## 🔄 HISTORICAL PATTERN REFERENCE
+
+Compare current decisions to past patterns:
+
+```
+🔄 HISTORICAL PATTERN COMPARISON
+
+| Pattern | When Used | Success Factors | Failure Points | Applicability |
+|---------|-----------|-----------------|----------------|---------------|
+| [Past pattern 1] | [Project/Date] | [What worked] | [What didn't] | [Relevance to current decision] |
+| [Past pattern 2] | [Project/Date] | [What worked] | [What didn't] | [Relevance to current decision] |
+```
+
+## ✓ CREATIVE PHASE QUALITY CHECKLIST
+
+```
+✓ QUALITY VERIFICATION CHECKLIST
+
+- Used structured decision framework? [YES/NO]
+- Applied weighted decision matrix? [YES/NO]
+- Quantified evaluation criteria? [YES/NO]
+- Verified solution against metrics? [YES/NO]
+- Assessed risks with mitigation strategies? [YES/NO]
+- Documented decision with rationale? [YES/NO]
+- Compared to historical patterns? [YES/NO]
+- Created clear implementation guidance? [YES/NO]
+
+→ Quality Score: [Count of YES responses]/8
+→ Minimum acceptable score: 6/8
+```
+
+## 📦 READY-TO-USE CRITERIA SETS
+
+### Web Application Architecture
+```
+⚖️ WEB ARCHITECTURE CRITERIA
+
+- Performance (Weight: 5)
+  * Client-side rendering time
+  * Server response time
+  * Data loading efficiency
+  
+- Maintainability (Weight: 4)
+  * Component isolation
+  * Code reusability
+  * Documentation quality
+  
+- User Experience (Weight: 5)
+  * Responsiveness
+  * Offline capabilities
+  * Loading indicators
+  
+- Security (Weight: 5)
+  * Authentication robustness
+  * Data protection approach
+  * OWASP compliance
+  
+- Scalability (Weight: 3)
+  * Concurrent user handling
+  * Data volume management
+  * Infrastructure requirements
+```
+
+### Data Model Design
+```
+⚖️ DATA MODEL CRITERIA
+
+- Query Performance (Weight: 5)
+  * Read operation efficiency
+  * Write operation efficiency
+  * Index optimization
+  
+- Data Integrity (Weight: 5)
+  * Constraint enforcement
+  * Validation approach
+  * Relationship accuracy
+  
+- Scalability (Weight: 4)
+  * Growth accommodation
+  * Partition strategy
+  * Memory efficiency
+  
+- Maintainability (Weight: 3)
+  * Schema evolution strategy
+  * Migration approach
+  * Documentation completeness
+  
+- Security (Weight: 4)
+  * Access control granularity
+  * Sensitive data handling
+  * Encryption approach
+```
+
+### UI Component Framework
+```
+⚖️ UI COMPONENT CRITERIA
+
+- Reusability (Weight: 5)
+  * Prop interface design
+  * Component isolation
+  * Styling approach
+  
+- Accessibility (Weight: 4)
+  * ARIA compliance
+  * Keyboard navigation
+  * Screen reader compatibility
+  
+- Performance (Weight: 4)
+  * Render efficiency
+  * Bundle size impact
+  * Animation smoothness
+  
+- Maintainability (Weight: 3)
+  * Component documentation
+  * Testing approach
+  * State management clarity
+  
+- Flexibility (Weight: 3)
+  * Customization options
+  * Extensibility
+  * Composition patterns
+```
+
+This metrics framework ensures creative phases produce high-quality, well-justified decisions through structured evaluation and verification processes.

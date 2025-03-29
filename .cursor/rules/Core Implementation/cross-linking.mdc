@@ -1,0 +1,111 @@
+---
+description: Cross-linking requirements between documents
+globs: **/docs/archive/**", "**/memory-bank/progress.md", "**/memory-bank/activeContext.md
+alwaysApply: true
+---
+# CROSS-LINKING REQUIREMENTS
+
+> **TL;DR:** After archiving a task, create specific cross-links in progress.md to reference the archive entry, update activeContext.md with the completion status, and mark the task as completed in tasks.md. Use the exact formats shown below.
+
+## 🔗 CROSS-LINKING FORMATS
+
+After completing and archiving a task, create these cross-links:
+
+### 1️⃣ In progress.md:
+```markdown
+## Completed Tasks
+- [Task Name] - Completed on YYYY-MM-DD, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-task-name-v10)
+```
+
+### 2️⃣ In activeContext.md:
+```markdown
+## Recent Completions
+- [Task Name] has been completed and archived. Next focus is on [Next Task].
+```
+
+### 3️⃣ In tasks.md:
+```markdown
+## Completed Tasks
+- [X] [Task Name] - Completed on YYYY-MM-DD
+```
+
+## 📝 FORMAT DETAILS
+
+### For progress.md:
+- Section title: `## Completed Tasks`
+- Date format: `YYYY-MM-DD`
+- Link text: `archive entry`
+- Link format: `mdc:../docs/archive/completed_tasks.md#task-task-name-v10`
+- Anchor rules:
+  * Convert task name to lowercase
+  * Replace spaces with hyphens
+  * Add `-v10` suffix (no parentheses or periods)
+  * NOTE: This should match format `## Task: Task Name v10` in archive
+
+### For activeContext.md:
+- Section title: `## Recent Completions`
+- Format: `[Task Name] has been completed and archived. Next focus is on [Next Task].`
+- End with period
+- Use exact task names
+
+### For tasks.md:
+- Section title: `## Completed Tasks`
+- Format: `- [X] [Task Name] - Completed on YYYY-MM-DD`
+- Use exact task names
+- Keep the [X] checkbox format
+
+## 🔄 CROSS-LINKING PROCEDURE
+
+1. Archive task in completed_tasks.md
+2. Mark task as completed in tasks.md
+3. Add entry to progress.md with link to archive
+4. Update activeContext.md with completion status
+
+## ✓ CROSS-LINKING CHECKLIST
+
+Before completing any task, verify:
+- [ ] tasks.md shows task marked as [X] complete
+- [ ] progress.md contains link to archive entry with exact format
+- [ ] activeContext.md contains Recent Completions section with exact format
+- [ ] All links are valid and working
+- [ ] Task names match exactly between all files
+- [ ] Date format is YYYY-MM-DD
+- [ ] Link anchor format is correct (lowercase, hyphens, v10)
+
+## 📋 EXAMPLES
+
+### tasks.md example:
+```markdown
+## Completed Tasks
+- [X] Todo Application - Completed on 2023-04-15
+- [X] API Integration - Completed on 2023-05-20
+```
+
+### progress.md example:
+```markdown
+## Completed Tasks
+- Todo Application - Completed on 2023-04-15, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-todo-application-v10)
+- API Integration - Completed on 2023-05-20, see [archive entry](mdc:../docs/archive/completed_tasks.md#task-api-integration-v10)
+```
+
+### Archive heading example:
+```markdown
+## Task: Todo Application v10
+```
+
+### activeContext.md example:
+```markdown
+## Recent Completions
+- API Integration has been completed and archived. Next focus is on User Authentication.
+```
+
+## 🔍 EXISTING SECTIONS HANDLING
+
+If "Completed Tasks" already exists in progress.md or tasks.md:
+- Add new entry to existing section
+- Keep newest tasks at top
+- Preserve existing entries
+
+If "Recent Completions" already exists in activeContext.md:
+- Replace existing content with new entry
+- Show only the most recent completion

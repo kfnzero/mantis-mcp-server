@@ -1,0 +1,88 @@
+---
+description: Reflection format and requirements
+globs: "**/memory-bank/progress.md"
+alwaysApply: true
+---
+# REFLECTION FORMAT
+
+> **TL;DR:** Every task requires a reflection with four specific sections: What Went Well (≥3 items), Challenges (≥2 items), Lessons Learned (≥3 items), and Improvements for Next Time (≥3 items). Be specific and detailed, not generic.
+
+## 📝 REFLECTION STRUCTURE
+
+Always use this exact structure:
+
+```markdown
+## REFLECTION
+
+### What Went Well
+- [Specific success 1]
+- [Specific success 2]
+- [Specific success 3]
+
+### Challenges
+- [Specific challenge 1]
+- [Specific challenge 2]
+
+### Lessons Learned
+- [Specific lesson 1]
+- [Specific lesson 2]
+- [Specific lesson 3]
+
+### Improvements for Next Time
+- [Specific improvement 1]
+- [Specific improvement 2]
+- [Specific improvement 3]
+```
+
+## 📊 SECTION REQUIREMENTS
+
+Each section has specific requirements:
+
+1. **What Went Well**
+   - Include ≥3 specific successes
+   - Focus on technical details that worked
+   - Mention effective decisions
+   - Use concrete examples
+
+2. **Challenges**
+   - Include ≥2 specific challenges
+   - Describe how each was addressed
+   - Be honest about difficulties
+   - Note solutions implemented
+
+3. **Lessons Learned**
+   - Include ≥3 specific insights
+   - Focus on technical learnings
+   - Include both positive and negative
+   - Note knowledge for future tasks
+
+4. **Improvements for Next Time**
+   - Include ≥3 specific improvements
+   - Be concrete about future approaches
+   - Focus on actionable changes
+   - Note process improvements
+
+## 🔍 SPECIFICITY GUIDE
+
+### ❌ Too Vague (Avoid)
+- "The code works well"
+- "There were some challenges"
+- "Testing could be improved"
+
+### ✅ Properly Specific
+- "The modular component architecture allowed for easy unit testing"
+- "Initial performance issues with the data filtering algorithm required optimization using memoization"
+- "Implementing a more detailed technical specification phase would clarify edge cases before coding"
+
+## ✓ REFLECTION CHECKPOINTS
+
+Before completing a reflection, verify:
+- [ ] All four sections included with exact headings
+- [ ] "What Went Well" has ≥3 specific items
+- [ ] "Challenges" has ≥2 specific items
+- [ ] "Lessons Learned" has ≥3 specific items
+- [ ] "Improvements for Next Time" has ≥3 specific items
+- [ ] Content is specific and detailed
+- [ ] Sections are in the correct order
+
+See examples: [reflection-examples.mdc](mdc:.cursor/rules/Extended%20Details/reflection-examples.mdc)

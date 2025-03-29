@@ -1,0 +1,8 @@
+# Cursor Rules
+- 這個檔案包含了專案的規則和指導方針
+- 用於幫助 AI 理解和導航程式碼庫
+
+## 專案結構
+- memory-bank/: 記憶體儲存目錄
+- docs/archive/: 任務歸檔目錄
+- tasks.md: 任務追蹤的單一真實來源 

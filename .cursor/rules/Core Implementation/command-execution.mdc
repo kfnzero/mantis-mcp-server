@@ -1,0 +1,129 @@
+---
+description: Command execution protocol
+globs: 
+alwaysApply: true
+---
+# COMMAND EXECUTION PROTOCOL
+
+> **TL;DR:** Execute commands ONE AT A TIME. Document each command's purpose, the command itself, and its result (success OR failure).
+
+## 🚫 PROHIBITED PATTERNS
+
+Never use these command patterns:
+
+### ❌ COMMAND CHAINING - DO NOT USE:
+```bash
+cd todo-app && npm install
+```
+
+### ❌ IMPLICIT CHAINING (NESTED DIRS) - DO NOT USE:
+```bash
+mkdir -p src/components/TodoList
+```
+
+### ❌ MULTIPLE FILE OPERATIONS - DO NOT USE:
+```bash
+touch index.js style.css app.js
+```
+
+### ❌ MULTIPLE PACKAGE INSTALLS - DO NOT USE:
+```bash
+npm install react react-dom react-router-dom
+cd todo-app && npm install  # DON'T do this - will crash terminal
+```
+
+## ✅ CORRECT PATTERNS
+
+### ✅ CORRECT: Separate navigation and installation
+```bash
+cd todo-app
+npm install
+```
+
+### ✅ CORRECT: Using tool-based directory creation
+
+Instead of mkdir commands, prefer using built-in tools:
+
+Use list_dir tool to check existing directories
+Use edit_file tool to create files in new directories
+
+For example, creating a component structure:
+1. Use relative paths when working with tools
+2. Create parent directories first, then child directories
+3. Create files within directories as neededdc. The edit prioritizes the built-in tools while maintaining the principle of creating one directory at a time to avoid terminal crashes.
+
+### ✅ CORRECT: One file at a time
+```bash
+touch index.js
+touch style.css
+touch app.js
+```
+
+### ✅ CORRECT: One package at a time
+```bash
+npm install react
+npm install react-dom
+npm install react-router-dom
+```
+
+## 📝 COMMAND DOCUMENTATION FORMAT
+
+Document EVERY command using this format:
+
+```
+### Command: [Brief Description]
+Purpose: [Explain what this command will do]
+
+```bash
+[actual command]
+```
+
+Result: [What happened after execution]
+Next step: [What follows this command]
+```
+
+## 📝 FAILED COMMAND DOCUMENTATION FORMAT
+
+When a command fails, document it using this format:
+
+```
+### Command: [Brief Description]
+Purpose: [Explain what this command will do]
+
+```bash
+[attempted command]
+```
+
+Result: FAILED
+Error message: [Error details]
+
+### Alternative Approach
+```bash
+[alternative command]
+```
+
+Resolution: [How the issue was resolved]
+Next step: [What follows this command]
+```
+
+## 🔄 TASK AND IMPLEMENTATION UPDATES
+
+After each significant command, add these updates:
+
+```
+🔄 TASK UPDATE: [Task/Subtask] - [X] Complete/[ ] Pending
+- Updated in tasks.md ✓
+
+🔄 IMPLEMENTATION UPDATE:
+- Added to activeContext.md: [Brief implementation details]
+```
+
+## ✓ COMMAND COMPLETION VERIFICATION
+
+After EVERY command, verify:
+- [ ] Was the command executed successfully?
+- [ ] Is the result documented (success or failure)?
+- [ ] If failed, is an alternative approach documented?
+- [ ] Is the task status updated in tasks.md (if significant)?
+- [ ] Are implementation details added to activeContext.md (if significant)?
+- [ ] Was the next step clearly identified?

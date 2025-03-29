@@ -1,0 +1,112 @@
+---
+description: Memory bank structure and implementation
+globs: **/memory-bank/**", "**/.cursorrules
+alwaysApply: false
+---
+# CURSOR'S MEMORY BANK SYSTEM
+
+> **TL;DR:** The Memory Bank is a set of 6 core files that serve as my persistent memory. I must read ALL files at the start of EVERY task. Create/update files in this order: projectbrief → productContext/systemPatterns/techContext → activeContext → progress.
+
+## 📚 MEMORY BANK STRUCTURE
+
+The Memory Bank uses 6 core files that build upon each other in a clear hierarchy:
+
+```mermaid
+flowchart TD
+    PB([projectbrief.md]) --> PC([productContext.md])
+    PB --> SP([systemPatterns.md])
+    PB --> TC([techContext.md])
+    
+    PC & SP & TC --> AC([activeContext.md])
+    
+    AC --> P([progress.md])
+
+    style PB fill:#f9d77e,stroke:#d9b95c
+    style PC & SP & TC fill:#a8d5ff,stroke:#88b5e0
+    style AC fill:#c5e8b7,stroke:#a5c897
+    style P fill:#f4b8c4,stroke:#d498a4
+```
+
+## 1️⃣ FOUNDATION DOCUMENT
+
+**projectbrief.md**
+- Project requirements and goals
+- Created at project start
+- Defines core scope
+- Referenced by all other files
+
+## 2️⃣ CONTEXT DOCUMENTS
+
+**productContext.md**
+- Why this project exists
+- Problems it solves
+- User experience goals
+
+**systemPatterns.md**
+- System architecture
+- Key technical decisions
+- Design patterns
+- Component relationships
+
+**techContext.md**
+- Technologies used
+- Development setup
+- Technical constraints
+- Dependencies
+
+## 3️⃣ ACTIVE WORK DOCUMENT
+
+**activeContext.md**
+- Current work focus
+- Recent changes
+- Next steps
+- Active decisions
+
+## 4️⃣ PROGRESS DOCUMENT
+
+**progress.md**
+- What works
+- What's left to build
+- Implementation details
+- Reflections and lessons
+
+## 📋 DOCUMENTATION UPDATE CHECKLIST
+
+When updating Memory Bank files:
+
+✓ **What changed?** Identify specific project aspects that need documentation
+✓ **Which files?** Select the specific files that need updating
+✓ **Cross-reference** Ensure changes are reflected in related files
+✓ **Current status** Make sure activeContext.md and progress.md reflect latest state
+
+## 📝 PROJECT INTELLIGENCE (.cursorrules)
+
+The .cursorrules file is my learning journal that captures:
+
+1. **Project patterns** - Coding conventions, naming standards
+2. **User preferences** - How you like to work
+3. **Known challenges** - Issues and their workarounds
+4. **Current tasks** - What's being worked on (with [ ]/[X] status)
+
+Think of .cursorrules as growing smarter as we work together. It's where I track what I'm learning about your specific project.
+
+## 📂 RECOMMENDED FOLDER STRUCTURE
+
+```
+project-name/
+├── memory-bank/              # Memory Bank files
+│   ├── projectbrief.md       # Project requirements
+│   ├── productContext.md     # Why this exists
+│   ├── activeContext.md      # Current focus
+│   ├── systemPatterns.md     # Architecture
+│   ├── techContext.md        # Technologies
+│   └── progress.md           # Status & learnings
+├── .cursorrules              # Project intelligence
+├── docs/
+│   └── archive/              # Completed tasks
+└── src/                      # Project source code
+```
+
+## 🔄 AFTER EVERY MEMORY RESET
+
+After each reset, I must read ALL Memory Bank files. This creates the foundation for everything that follows. Without this step, I can't provide effective assistance.

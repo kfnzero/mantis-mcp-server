@@ -1,0 +1,178 @@
+---
+description: Enhanced creative phase handling guidelines and requirements
+globs: "**/src/**", "**/.cursorrules", "**/memory-bank/**"
+alwaysApply: false
+---
+# 🎨 ENHANCED CREATIVE PHASE HANDLING
+
+> **TL;DR:** Use creative phases as dedicated thinking spaces for complex problem-solving. Apply structured thinking with explicit verification steps, especially for Level 3-4 tasks. Include regular checkpoints, analyze options systematically, and provide comprehensive summaries when exiting. Creative phase handling scales with task complexity.
+
+## 🎨 CREATIVE PHASE AS STRUCTURED THINKING SPACE
+
+Creative phases serve as dedicated thinking spaces for complex problem-solving, similar to the "think" tool approach. They're most valuable for:
+- Sequential decision making where each step builds on previous ones
+- Complex design choices with multiple trade-offs
+- Scenarios where mistakes would be costly to fix later
+- Tasks requiring policy adherence or constraint verification
+
+## 🎨 CREATIVE PHASE MARKERS
+
+For maximum visibility, use these prominent markers:
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: [DESIGN/ALGORITHM/ARCHITECTURE] 🎨🎨🎨
+[Creative work happens here]
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+```
+
+Always include a creative phase summary when exiting:
+```
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of creative work]
+- Key decisions: [Important decisions made]
+- Next steps: [Follow-up implementation tasks]
+- Documentation: [Where decisions were documented]
+- Verification: [Confirmation that solution meets requirements and constraints]
+```
+
+## 🎨 CREATIVE PHASE STRUCTURE
+
+### 1. Starting a Creative Phase
+When entering a creative phase, clearly define:
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: [TYPE] 🎨🎨🎨
+Focus: [Specific focus area]
+Objective: [What you aim to accomplish]
+Constraints: [Any constraints to consider]
+
+[Initial exploration of the problem space]
+```
+
+### 2. During a Creative Phase
+For extended creative work, use periodic checkpoints that incorporate structured thinking:
+
+```
+🎨 CREATIVE CHECKPOINT: [Milestone reached]
+- Progress: [Brief progress description]
+- Decisions made:
+  - [Decision 1]
+  - [Decision 2]
+- Verification:
+  - [Verify solution addresses requirements]
+  - [Verify compliance with constraints]
+  - [Verify consistency with existing system]
+- Open questions:
+  - [Question 1]
+  - [Question 2]
+- Next creative milestone: [Description]
+```
+
+### 3. Concluding a Creative Phase
+Always end with a clear marker and summary:
+
+```
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of creative work]
+- Key decisions: [Important decisions made]
+- Next steps: [Follow-up implementation tasks]
+- Documentation: [Where decisions were documented]
+```
+
+### 4. Task Update After Creative Phase
+Always update task status after completing a creative phase:
+
+```
+🔄 TASK UPDATE: [Task name] - [Status]
+- Updated in tasks.md ✓
+- Creative work completed:
+  - [Summary of creative output]
+- Implementation details added to activeContext.md ✓
+```
+
+## 🎨 LEVEL-SPECIFIC CREATIVE PHASE HANDLING
+
+### Level 1: Quick Bug Fix
+For simple bugs, use minimal creative phase markers if needed:
+```
+// Simple creative exploration
+[Brief creative exploration for bug solution]
+// End creative exploration
+
+🔄 TASK UPDATE: [Bug fix] - [Status]
+- Solution determined: [Brief description]
+- Updated in tasks.md ✓
+```
+
+### Level 2: Simple Enhancement
+For simple enhancements, use basic creative phase notation:
+```
+🎨 ENTERING CREATIVE PHASE: [BRIEF DESCRIPTION]
+[Creative work happens here]
+🎨 EXITING CREATIVE PHASE
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description]
+- Key decisions: [Key points]
+- Next steps: [Implementation tasks]
+```
+
+### Level 3-4: Intermediate/Complex
+For complex tasks, use the full creative phase structure with checkpoints and comprehensive documentation.
+
+## 🎨 TYPE-SPECIFIC CREATIVE DOCUMENTATION
+
+### Algorithm Design
+Document:
+- Problem definition and constraints
+- Complexity requirements
+- Algorithm options with pros/cons
+- Edge cases and handling approach
+- Final algorithm selection with justification
+
+### UI/UX Design
+Document:
+- User requirements and research insights
+- Design constraints and guidelines
+- Layout options with pros/cons
+- Component structure and interactions
+- Visual design decisions
+- Accessibility considerations
+
+### Architecture Planning
+Document:
+- System requirements and constraints
+- Architecture options with pros/cons
+- Security considerations
+- Scalability approach
+- Service interactions and boundaries
+- Data flow design
+
+## 📋 CREATIVE PHASE VERIFICATION
+
+Before exiting a creative phase, perform a systematic verification (similar to "think" tool verification):
+
+### Verification Checklist
+- [ ] Phase type clearly specified
+- [ ] Problem broken down into component parts
+- [ ] Options explored with pros/cons
+- [ ] Decisions made with justification
+- [ ] Solution verified against requirements
+- [ ] Solution verified against constraints
+- [ ] Solution verified for consistency with existing system
+- [ ] Edge cases and potential issues identified
+- [ ] Risk assessment performed
+- [ ] Checkpoints used for extended phases
+- [ ] Summary provided with verification confirmation
+- [ ] Next steps defined with clear implementation path
+- [ ] Documentation location specified
+- [ ] Task status updated after phase completion
+
+### Software Development Specific Checks
+- [ ] Considered maintainability implications
+- [ ] Verified compatibility with existing architecture
+- [ ] Checked for security implications
+- [ ] Assessed performance impacts
+- [ ] Considered testing approach

@@ -1,0 +1,489 @@
+---
+description: Adaptive structured workflow implementation protocol
+globs: **/src/**", "**/.cursorrules", "**/memory-bank/**
+alwaysApply: true
+---
+# ADAPTIVE STRUCTURED WORKFLOW PROTOCOL
+
+> **TL;DR:** Follow a workflow process that scales based on task complexity. Level 1 (Bug Fix) uses a streamlined process, while Level 4 (Complex System) uses the complete formal process with all checkpoints.
+
+## 🔧 TASK COMPLEXITY LEVELS
+
+The workflow scales across four complexity levels:
+
+1. **Level 1: Quick Bug Fix**
+   - Simple errors, UI glitches, minor issues
+   - Streamlined process with minimal documentation
+   - Focus on rapid resolution and targeted updates
+
+2. **Level 2: Simple Enhancement**
+   - Small features, minor improvements
+   - Basic process with essential documentation
+   - Focus on clean implementation and clear documentation
+
+3. **Level 3: Intermediate Feature**
+   - Complete features, significant changes
+   - Standard process with full section tracking
+   - Focus on comprehensive planning and documentation
+
+4. **Level 4: Complex System**
+   - Major systems, architectural changes
+   - Full formal process with detailed checkpoints
+   - Focus on architectural integrity and complete documentation
+
+## 🚨 SECTION TRANSITION MARKERS
+
+These visual markers indicate workflow section transitions (Level 3-4 only):
+
+```
+======== INITIALIZATION COMPLETE ⟹ STARTING DOCUMENTATION SETUP ========
+
+======== DOCUMENTATION SETUP COMPLETE ⟹ STARTING TASK PLANNING ========
+
+======== TASK PLANNING COMPLETE ⟹ STARTING CREATIVE PHASES ========
+
+======== CREATIVE PHASES COMPLETE ⟹ STARTING IMPLEMENTATION ========
+
+======== IMPLEMENTATION COMPLETE ⟹ STARTING REFLECTION ========
+
+======== REFLECTION COMPLETE ⟹ STARTING ARCHIVING ========
+
+======== ARCHIVING COMPLETE ⟹ TASK FINISHED ========
+```
+
+## 🎨 CREATIVE PHASE MARKERS
+
+For tasks requiring extended creative work, use these prominent markers to create a dedicated thinking space:
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: [DESIGN/ALGORITHM/ARCHITECTURE] 🎨🎨🎨
+Focus: [Specific focus area]
+Objective: [What you aim to accomplish]
+Constraints: [Any constraints to consider]
+
+Breaking down the problem:
+- [Component 1]
+- [Component 2]
+- [Component 3]
+
+[Structured creative exploration with systematic analysis]
+
+🎨 CREATIVE CHECKPOINT: [Milestone reached]
+- Progress: [Brief progress description]
+- Decisions made:
+  - [Decision 1]
+  - [Decision 2]
+- Verification:
+  - [Verify solution addresses requirements]
+  - [Verify compliance with constraints]
+  - [Verify consistency with existing system]
+- Open questions:
+  - [Question 1]
+  - [Question 2]
+- Next creative milestone: [Description]
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of creative work]
+- Key decisions: [Important decisions made]
+- Next steps: [Follow-up implementation tasks]
+- Documentation: [Where decisions were documented]
+- Verification: [Confirmation that solution meets requirements and constraints]
+```
+
+## 🎨 CREATIVE PHASE TRANSITIONS
+
+Creative phases can be initiated during any workflow stage when complex problem-solving is needed:
+
+### When to Enter a Creative Phase
+
+Enter a creative phase when you encounter:
+- Multiple viable approaches with significant trade-offs
+- Complex design decisions requiring systematic analysis
+- Problems with competing constraints needing careful balance
+- Architecture or algorithm planning affecting multiple components
+
+### How to Transition Into a Creative Phase
+
+1. Pause regular task processing
+2. Confirm the need for structured thinking
+3. Select appropriate creative phase type (Algorithm/UI/Architecture)
+4. Declare phase start with entry marker
+5. Switch to systematic analysis mode
+
+### How to Transition Out of a Creative Phase
+
+1. Verify thorough analysis completion
+2. Perform creative phase verification checklist
+3. Create comprehensive summary with verification
+4. Mark phase end with exit marker
+5. Update task tracking in tasks.md
+6. Resume normal workflow processing
+
+See [creative-phase-triggers.mdc](mdc:.cursor/rules/Core%20Implementation/creative-phase-triggers.mdc) for detailed guidance on when and how to enter creative phases.
+
+### Level-Specific Creative Phase Handling
+
+#### Level 1: Quick Bug Fix
+For simple bugs that need minimal creative thinking:
+```
+// Simple creative exploration
+[Brief creative exploration for bug solution]
+// End creative exploration
+
+🔄 TASK UPDATE: [Bug fix] - [Status]
+- Solution determined: [Brief description]
+- Updated in tasks.md ✓
+```
+
+#### Level 2: Simple Enhancement
+For simple enhancements requiring basic creative work:
+```
+🎨 ENTERING CREATIVE PHASE: [BRIEF DESCRIPTION]
+[Creative work happens here]
+🎨 EXITING CREATIVE PHASE
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description]
+- Key decisions: [Key points]
+- Next steps: [Implementation tasks]
+```
+
+#### Level 3-4: Intermediate/Complex
+For more complex tasks, use the full creative phase structure with checkpoints and detailed documentation.
+
+### Creative Phase Examples
+
+See [creative-phase-examples.mdc](mdc:.cursor/rules/Extended%20Details/creative-phase-examples.mdc) for comprehensive examples of different creative phase types.
+
+## 📋 LEVEL-SPECIFIC SECTION TRACKING
+
+### Level 1: Quick Bug Fix
+```
+## SIMPLIFIED TRACKING
+[ ] Review relevant documentation
+[ ] Identify and fix the issue
+[ ] Verify the fix works
+[ ] Update documentation
+```
+
+### Level 2: Simple Enhancement
+```
+## BASIC TRACKING
+[ ] Review relevant Memory Bank files
+[ ] Update documentation with plan
+[ ] Implement the enhancement
+[ ] Test functionality
+[ ] Document changes
+```
+
+### Level 3-4: Intermediate Feature & Complex System
+```
+## SECTION PROGRESS
+[ ] 1. INITIALIZATION
+[ ] 2. DOCUMENTATION SETUP 
+[ ] 3. TASK PLANNING
+[ ] 4. CREATIVE PHASES
+[ ] 5. IMPLEMENTATION
+[ ] 6. REFLECTION
+[ ] 7. ARCHIVING
+```
+
+## 🔄 SECTION UPDATE TEMPLATE
+
+After completing each section:
+```
+🔄 SECTION: [Section name] COMPLETE
+[X] Updated section tracking
+```
+
+## 📚 REFERENCE CHECK TEMPLATE
+
+When consulting reference files:
+
+```
+📚 REFERENCE: [file name]
+Key points:
+- [Point 1]
+- [Point 2]
+- [Point 3]
+✓ Reference complete
+```
+
+## LEVEL 1: QUICK BUG FIX WORKFLOW
+
+### 1️⃣ STREAMLINED INITIALIZATION
+- Review directly relevant Memory Bank files
+- State bug description and objective
+- Identify platform (Windows/Mac/Linux)
+
+### 2️⃣ RAPID IMPLEMENTATION
+- Identify root cause through targeted investigation
+- Execute commands one at a time
+- Implement fix with minimal changes
+- Verify the fix resolves the issue
+
+### 3️⃣ QUICK DOCUMENTATION
+- Document the issue and solution
+- Update tasks.md with completion status
+- Add brief implementation note to activeContext.md
+- No formal archiving required
+
+## LEVEL 2: SIMPLE ENHANCEMENT WORKFLOW
+
+### 1️⃣ BASIC INITIALIZATION
+- Review relevant Memory Bank files
+- State enhancement objective
+- Identify platform (Windows/Mac/Linux)
+- Review/update .cursorrules if needed
+
+### 2️⃣ SIMPLE DOCUMENTATION SETUP
+- Update relevant Memory Bank files:
+  * activeContext.md - Implementation plan
+  * tasks.md - Task breakdown
+  * Other files as needed
+
+### 3️⃣ BASIC PLANNING
+- Create 3-5 step implementation plan
+- Document in tasks.md with [ ] markers
+- Identify potential challenges
+
+### 4️⃣ STANDARD IMPLEMENTATION
+- Execute commands one at a time
+- Document command purpose and result
+- Update task status in tasks.md
+- Add implementation details to activeContext.md
+
+### 5️⃣ BRIEF REFLECTION
+- Document what worked and challenges faced
+- Note key learnings for future
+- Update Memory Bank with insights
+
+### 6️⃣ SIMPLE ARCHIVING
+- Mark task as completed in tasks.md
+- Update activeContext.md with completion status
+- Reference in progress.md (if significant)
+
+## LEVEL 3: INTERMEDIATE FEATURE WORKFLOW
+
+### 1️⃣ STANDARD INITIALIZATION
+- Review ALL Memory Bank files
+- State feature objective in detail
+- Identify platform and document requirements
+- Review/create .cursorrules file
+- Complete the reference check
+- Make verification commitment
+- **Identify components requiring creative phases**
+
+### 2️⃣ COMPLETE DOCUMENTATION SETUP
+- Update all relevant Memory Bank files:
+  * systemPatterns.md - Design decisions
+  * techContext.md - Resources/tools
+  * activeContext.md - Implementation plan
+  * progress.md - Milestones/challenges
+  * tasks.md - Create task breakdown
+- **Include creative phase placeholders in task breakdown**
+
+### 3️⃣ COMPREHENSIVE PLANNING
+- Document detailed goals and success criteria
+- Identify all required resources/tools
+- Create comprehensive step-by-step plan
+- **Mark tasks requiring creative phases**
+- Document testing/validation approach
+- Complete the reference check
+- **Map out all required creative phases**
+
+### 4️⃣ FORMAL CREATIVE PHASES
+- **Complete ALL required creative phases before implementation**
+- Document each creative phase with proper markers
+- Include problem breakdown for each component
+- Analyze multiple options with pros/cons
+- Verify each option against requirements
+- Provide clear decision rationale
+- Update tasks.md with creative phase outcomes
+- **Complete creative phase verification**
+
+### 5️⃣ DETAILED IMPLEMENTATION
+- Document each step in detail
+- Execute commands one at a time
+- Document results (success or failure)
+- Update task status in tasks.md
+- Add implementation details to activeContext.md
+- **Enter additional creative phases if new design decisions arise**
+
+### 6️⃣ FULL REFLECTION
+- Document all four required reflection subsections
+- Include at least 3 items in "What Went Well"
+- Include at least 2 items in "Challenges"
+- Include at least 3 items in "Lessons Learned"
+- Include at least 3 items in "Improvements for Next Time"
+- Update Memory Bank files with learnings
+
+### 7️⃣ STANDARD ARCHIVING
+- Archive task in completed_tasks.md
+- Mark task as completed in tasks.md
+- Update progress.md with reference to completed task
+- Update activeContext.md with next focus
+- Complete the reference check
+
+## LEVEL 4: COMPLEX SYSTEM WORKFLOW
+
+### 1️⃣ COMPREHENSIVE INITIALIZATION
+- Review ALL Memory Bank files in detail
+- State complex system objective with architectural context
+- Identify platform and document all requirements
+- Review/create .cursorrules file with detailed patterns
+- Complete all reference checks
+- Make detailed verification commitment
+- **Identify architectural elements requiring creative phases**
+
+### 2️⃣ EXTENSIVE DOCUMENTATION SETUP
+- Update all Memory Bank files with comprehensive details:
+  * systemPatterns.md - Architecture and design patterns
+  * techContext.md - Complete technology stack
+  * activeContext.md - Detailed implementation strategy
+  * progress.md - Comprehensive milestones and dependencies
+  * tasks.md - Create hierarchical task breakdown
+  * .cursorrules - Add system-specific patterns
+- **Include creative phase placeholders for all major design decisions**
+
+### 3️⃣ ARCHITECTURAL PLANNING
+- Document detailed goals with measurable success criteria
+- Identify all required resources, tools, and dependencies
+- Create hierarchical step-by-step plan with dependencies
+- Document comprehensive testing strategy
+- Identify potential architectural risks
+- Complete all reference checks
+- **Create comprehensive creative phase plan with dependencies**
+
+### 4️⃣ EXHAUSTIVE CREATIVE PHASES
+- **Complete ALL required creative phases before implementation**
+- Use weighted decision matrices for critical decisions
+- Document each creative phase with detailed markers
+- Include comprehensive problem breakdown for each component
+- Analyze multiple options with detailed pros/cons
+- Perform systematic verification against all requirements
+- Document architectural impact of each decision
+- Provide comprehensive decision rationale
+- Include risk assessment for each approach
+- Update systemPatterns.md with architectural decisions
+- Update tasks.md with creative phase outcomes
+- **Perform formal creative phase verification for each component**
+
+### 5️⃣ PHASED IMPLEMENTATION
+- Break implementation into logical phases
+- Document each step with architectural context
+- Execute commands one at a time with validation
+- Document all results with alternatives for failures
+- Update task status in tasks.md after each significant step
+- Add detailed implementation notes to activeContext.md
+- Perform regular verification checks
+- **Enter additional creative phases for any new design decisions**
+
+### 6️⃣ COMPREHENSIVE REFLECTION
+- Document extensive reflection with all subsections
+- Include 5+ items in "What Went Well"
+- Include 3+ items in "Challenges"
+- Include 5+ items in "Lessons Learned"
+- Include 5+ items in "Improvements for Next Time"
+- Update all Memory Bank files with learnings
+- Document architectural insights
+
+### 7️⃣ DETAILED ARCHIVING
+- Create comprehensive archive entry in completed_tasks.md
+- Include architectural decisions and patterns
+- Mark task as completed in tasks.md
+- Update progress.md with detailed reference to completed task
+- Update activeContext.md with next focus and architectural context
+- Complete all reference checks
+- Run full verification checklist
+
+## ✓ LEVEL-SPECIFIC CHECKPOINTS
+
+### Level 1: Quick Bug Fix Checkpoint
+```
+✓ BUG FIX CHECKPOINT:
+- Root cause identified? [YES/NO]
+- Fix implemented? [YES/NO]
+- Solution verified? [YES/NO]
+- Documentation updated? [YES/NO]
+
+→ If all YES: Task complete
+→ If any NO: Fix missing items before completing
+```
+
+### Level 2: Simple Enhancement Checkpoint
+```
+✓ ENHANCEMENT CHECKPOINT:
+- All steps completed? [YES/NO]
+- Functionality tested? [YES/NO]
+- Task status updated in tasks.md? [YES/NO]
+- Implementation details documented? [YES/NO]
+
+→ If all YES: Task complete
+→ If any NO: Fix missing items before completing
+```
+
+### Level 3-4: Creative Phase Gateway Checkpoint
+```
+✓ CREATIVE PHASE GATEWAY CHECKPOINT:
+- All required creative phases completed? [YES/NO]
+- Each creative phase properly documented with markers? [YES/NO]
+- Options analyzed with pros/cons for each phase? [YES/NO]
+- Verification against requirements performed? [YES/NO]
+- Decision rationale provided for each phase? [YES/NO]
+- Implementation guidance included for each decision? [YES/NO]
+
+→ If any NO: IMPLEMENTATION BLOCKED - Complete creative phases first
+→ If all YES: Gateway passed - Implementation can proceed
+```
+
+## 📋 ESCALATION PROCESS
+
+If during execution, the task proves more complex than initially categorized:
+
+1. Document the need for escalation:
+```
+⚠️ TASK ESCALATION NEEDED
+Current Level: [Level X]
+Recommended Level: [Level Y]
+Reason: [Brief explanation]
+```
+
+2. If escalation is approved:
+- Adapt the workflow to the higher level
+- Expand documentation as needed
+- Create additional checkpoints
+- Continue with enhanced process
+
+3. If escalation is not approved:
+- Continue with current level
+- Document limitations
+- Focus on critical elements
+- Note potential gaps in final documentation
+
+## 📝 IMPLEMENTATION TIPS BY LEVEL
+
+### Level 1: Quick Bug Fix
+- Focus on the specific issue, avoid scope creep
+- Document exact solution for future reference
+- Add only essential information to Memory Bank
+
+### Level 2: Simple Enhancement
+- Keep the enhancement focused and self-contained
+- Document integrations with existing components
+- Test thoroughly but efficiently
+
+### Level 3: Intermediate Feature
+- Create clear boundaries between components
+- Document all interfaces and interactions
+- Implement comprehensive testing
+- Complete all creative phases before implementation
+
+### Level 4: Complex System
+- Prioritize architectural integrity
+- Document all design decisions and alternatives
+- Create reusable patterns
+- Implement staged testing and verification
+- Use weighted decision matrices in creative phases

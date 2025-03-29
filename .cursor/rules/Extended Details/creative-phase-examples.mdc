@@ -1,0 +1,644 @@
+---
+description: CRITICAL: Contains mandatory examples for correct creative phase documentation. DO NOT engage in creative phases without consulting this documentation first.
+globs: "**/src/**", "**/.cursorrules", "**/memory-bank/**"
+alwaysApply: false
+---
+# CREATIVE PHASE EXAMPLES
+
+> **TL;DR:** These examples demonstrate the correct format for documenting different types of creative phases across complexity levels. Use these as templates when engaging in creative work during tasks.
+
+## ⚠️ CORRECT CREATIVE PHASE EXAMPLES ⚠️
+
+### Example 1: Algorithm Design Creative Phase
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: ALGORITHM DESIGN 🎨🎨🎨
+Focus: Data sorting algorithm
+Objective: Efficient sorting of large datasets with minimal memory overhead
+Constraints: O(n log n) performance, stable sort, memory efficient
+
+Working on sorting algorithm for large datasets:
+- Need O(n log n) performance
+- Must handle duplicate values
+- Should be stable sort
+- Memory constraints: O(1) extra space preferred
+
+Options being considered:
+1. Modified QuickSort with median-of-three pivot
+   - Pros: Very fast average case
+   - Cons: Not stable, worst case O(n²)
+   
+2. MergeSort with in-place merging
+   - Pros: Stable, guaranteed O(n log n)
+   - Cons: In-place version is complex
+   
+3. Custom hybrid approach
+   - Pros: Can optimize for specific data patterns
+   - Cons: More complex implementation
+
+Analysis:
+- Standard QuickSort isn't stable and can degrade to O(n²)
+- Standard MergeSort uses O(n) extra space
+- In-place merge is possible but complex
+- Tim Sort could be a good option but more complex to implement
+
+Decision: Implementing modified MergeSort with block-based in-place approach
+- Using block size of sqrt(n) for balanced performance
+- Implementing rotation-based in-place merging
+- Adding adaptive optimization for already-sorted runs
+
+🎨 CREATIVE CHECKPOINT: Initial algorithm design
+- Progress: Selected core algorithm approach
+- Decisions made:
+  - Block-based MergeSort as foundation
+  - In-place merging with rotation technique
+  - Adaptive optimization for already-sorted runs
+- Open questions:
+  - Optimal block size determination method
+  - Thread safety considerations
+- Next creative milestone: Implementation details and edge cases
+
+[Algorithm pseudocode and implementation details...]
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: Algorithm design for large dataset sorting
+- Key decisions: Modified MergeSort with block-based approach
+- Next steps: 
+  1. Implement the algorithm in code
+  2. Create test cases for edge cases
+  3. Benchmark performance
+- Documentation: Algorithm design details added to systemPatterns.md
+
+🔄 TASK UPDATE: Implement sorting algorithm - In Progress
+- Updated in tasks.md ✓
+- Creative work completed: Algorithm design
+- Implementation details added to activeContext.md ✓
+```
+
+### Example 2: UI Design Creative Phase
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: UI DESIGN 🎨🎨🎨
+Focus: User profile dashboard
+Objective: Create intuitive dashboard for user profile management
+Constraints: Mobile-first, accessible, brand guidelines compliance
+
+Designing user profile dashboard:
+- Need to display user statistics, activity, and settings
+- Mobile-first responsive layout
+- Accessibility considerations (WCAG AA compliance)
+- Brand color scheme integration
+
+User research insights:
+- Users primarily access profile on mobile (65%)
+- Key information: account status, recent activity, settings
+- Users expect quick access to common actions
+- Settings are rarely accessed but important
+
+Layout options:
+1. Card-based grid layout
+   - Pros: Visual separation, responsive reordering
+   - Cons: Can look cluttered with many items
+   
+2. Tabbed interface with sections
+   - Pros: Clean separation of concerns
+   - Cons: Less at-a-glance information
+   
+3. Scrollable single-page design
+   - Pros: Simple navigation
+   - Cons: Important info might be scrolled out of view
+
+Analysis:
+- Card-based grid best balances information density with organization
+- Can progressively stack on smaller screens
+- Allows prioritization of important elements
+
+Decision: Implementing card-based grid with collapsible sections
+- Primary stats in top row with fixed height
+- Activity feed in scrollable middle section
+- Settings in collapsible bottom section
+- Floating action button for quick actions
+
+🎨 CREATIVE CHECKPOINT: Basic layout design
+- Progress: Core layout structure defined
+- Decisions made:
+  - Card-based responsive grid
+  - Information hierarchy defined
+  - Mobile breakpoints established
+- Open questions:
+  - Animation approach for transitions
+  - Dark mode implementation
+- Next creative milestone: Component design and interactions
+
+[UI mockups and component structure...]
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: User profile dashboard UI design
+- Key decisions: 
+  - Card-based grid with collapsible sections
+  - Responsive breakpoints at 576px, 768px, 992px
+  - Accessibility features including keyboard navigation and screen reader support
+- Next steps: 
+  1. Create React component structure
+  2. Implement responsive CSS
+  3. Implement interaction behaviors
+- Documentation: UI design decisions added to systemPatterns.md
+
+🔄 TASK UPDATE: Implement user profile dashboard - In Progress
+- Updated in tasks.md ✓
+- Creative work completed: UI design for dashboard
+- Implementation details added to activeContext.md ✓
+```
+
+### Example 3: Architecture Planning Creative Phase (Enhanced with Structured Thinking)
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: ARCHITECTURE PLANNING 🎨🎨🎨
+Focus: Authentication system
+Objective: Design secure, scalable authentication system
+Constraints: Must work across microservices, support OAuth providers
+
+Planning authentication system architecture:
+- Need to support multiple authentication methods
+- Must be secure and follow best practices
+- Should scale across microservices
+- Must support token refresh and revocation
+- Need audit logging for security events
+
+Breaking down the problem:
+1. Authentication methods (local, OAuth providers)
+2. Token management (issuance, validation, revocation)
+3. Session state handling
+4. Service-to-service authentication
+5. Security requirements (hashing, rate limiting, audit)
+6. Cross-region considerations
+
+Architecture options:
+1. Centralized auth service with JWT
+   - Pros: Simple to implement, stateless validation
+   - Cons: Token revocation challenges, size limitations
+   
+2. Auth service with distributed session store
+   - Pros: Easy revocation, flexible session data
+   - Cons: Additional infrastructure, performance overhead
+   
+3. Hybrid approach with short-lived JWTs and refresh tokens
+   - Pros: Balances security and performance
+   - Cons: More complex implementation
+
+Security considerations:
+- Token signing keys and rotation
+- Password storage and hashing algorithms
+- Rate limiting and brute force protection
+- CSRF/XSS protection
+- OAuth2 provider integration
+
+Systematic verification of options against requirements:
+- Requirement: Multiple auth methods
+  * Option 1: ✅ Supported through centralized service
+  * Option 2: ✅ Supported through centralized service
+  * Option 3: ✅ Supported through centralized service
+- Requirement: Token revocation
+  * Option 1: ❌ Requires additional complexity
+  * Option 2: ✅ Native support via session store
+  * Option 3: ✅ Supported via refresh token store
+- Requirement: Scalability
+  * Option 1: ✅ Stateless validation
+  * Option 2: ❌ Potential bottleneck at session store
+  * Option 3: ✅ Mostly stateless with manageable refresh store
+
+Decision: Implementing hybrid approach with:
+- Short-lived (15min) JWTs for API access
+- Refresh tokens stored in Redis with revocation capability
+- Central auth service with distributed validation
+- Bcrypt for password hashing with work factor 12
+- Rate limiting at API gateway
+
+🎨 CREATIVE CHECKPOINT: Core architecture design
+- Progress: Selected authentication approach
+- Decisions made:
+  - Hybrid JWT/refresh token model
+  - Token lifetimes and rotation strategy
+  - Password storage approach
+- Verification:
+  - Solution meets all security requirements
+  - Approach balances performance and security needs
+  - Architecture is compatible with microservice patterns
+  - Solution handles edge cases like token revocation
+- Open questions:
+  - OAuth token mapping strategy
+  - Multi-region deployment considerations
+- Next creative milestone: Service interaction design
+
+[Architecture diagrams and service descriptions...]
+
+Risk assessment:
+- Token signing key compromise: Mitigated by rotation strategy and short lifetimes
+- Redis failure: Temporarily blocks new refresh tokens but active JWTs continue working
+- Auth service failure: Mitigated by stateless validation of active tokens
+- Scaling concerns: Redis can be clustered if needed for refresh token volume
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: Authentication system architecture
+- Key decisions: 
+  - Hybrid JWT/refresh token approach
+  - Redis for token storage
+  - Centralized auth service with distributed validation
+- Next steps: 
+  1. Implement auth service core functionality
+  2. Set up Redis for token storage
+  3. Create API endpoints for auth operations
+  4. Implement validation middleware
+- Documentation: Authentication architecture added to systemPatterns.md
+- Verification: Solution verified against all security, scalability, and functional requirements
+
+🔄 TASK UPDATE: Implement authentication system - In Progress
+- Updated in tasks.md ✓
+- Creative work completed: Authentication architecture design
+- Implementation details added to activeContext.md ✓
+```
+
+### Example 4: Quick Bug Fix Creative Phase (Level 1)
+
+```
+// Simple creative exploration for login bug
+Analyzing the login failure issue:
+- Error occurs after form submission
+- Credentials are sent correctly to the API
+- API returns 200 OK with error message in response body
+- Frontend doesn't properly handle this case
+
+Potential solutions:
+1. Update form submission handler to check response body for errors
+2. Fix API to return appropriate 4xx status code instead of 200 OK
+3. Add global error handler for all API responses
+
+Solution decision: Fix API to return proper status codes (401 for auth failure)
+- Most standards-compliant approach
+- Will work with existing frontend error handling
+- Allows for better monitoring and logging
+// End creative exploration
+
+🔄 TASK UPDATE: Fix login bug - In Progress
+- Solution determined: Update API to return proper 401 status code
+- Updated in tasks.md ✓
+```
+
+### Example 5: Simple Enhancement Creative Phase (Level 2)
+
+```
+🎨 ENTERING CREATIVE PHASE: FORM VALIDATION
+Objective: Add email validation to registration form
+
+Email validation requirements:
+- Standard email format checking
+- Domain validation
+- Prevent disposable email domains
+- Real-time feedback to user
+
+Validation approach options:
+1. Regex-only validation
+   - Pros: Simple, client-side only
+   - Cons: Limited accuracy, no domain validation
+   
+2. API-based validation with third-party service
+   - Pros: More accurate, can verify domains
+   - Cons: External dependency, costs, latency
+   
+3. Hybrid approach
+   - Pros: Good balance of speed and accuracy
+   - Cons: More complex implementation
+
+Decision: Implement hybrid approach with:
+- Basic regex validation on client side for immediate feedback
+- API validation on submit for complete verification
+- Cache results to minimize API calls
+🎨 EXITING CREATIVE PHASE
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: Email validation design
+- Key decisions: Hybrid validation approach
+- Next steps: Implement regex validation, set up API validation
+- Documentation: Added validation pattern to systemPatterns.md
+
+🔄 TASK UPDATE: Add email validation - In Progress
+- Updated in tasks.md ✓
+- Creative work completed: Validation approach design
+- Implementation details added to activeContext.md ✓
+```
+
+## ⚠️ INCORRECT CREATIVE PHASE EXAMPLES ❌
+
+### Example 1: Missing Structure
+
+```
+ENTERING CREATIVE PHASE
+I'm going to design a sorting algorithm.
+
+I think MergeSort is the best option because it's stable and O(n log n).
+
+EXITING CREATIVE PHASE
+```
+
+This example is INCORRECT because it:
+- Lacks proper visual markers
+- Doesn't specify the type of creative work
+- Has minimal analysis of options
+- No checkpoint for longer creative work
+- Missing creative phase summary
+- No connection to task tracking
+
+### Example 2: Insufficient Detail
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: UI DESIGN 🎨🎨🎨
+I'll design a user dashboard with profile information and settings.
+
+I think a card-based layout would work well.
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+```
+
+This example is INCORRECT because it:
+- Lacks analysis of requirements and constraints
+- Doesn't explore multiple options
+- No justification for decisions
+- Missing checkpoint for longer creative work
+- No creative phase summary
+- No next steps defined
+
+### Example 3: Missing Integration with Task Tracking
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: ARCHITECTURE PLANNING 🎨🎨🎨
+Planning authentication system with JWT tokens and OAuth support.
+
+After considering options, I'll use a hybrid approach with short-lived JWTs
+and refresh tokens stored in Redis.
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+```
+
+This example is INCORRECT because it:
+- Lacks detailed exploration of options
+- No checkpoint for longer creative work
+- Missing creative phase summary
+- No task update after creative phase
+- Doesn't indicate where decisions are documented
+- No clear next steps defined
+
+## 🎨 TEMPLATES BY CREATIVE PHASE TYPE
+
+### Algorithm Design Template (With Structured Thinking)
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: ALGORITHM DESIGN 🎨🎨🎨
+Focus: [Algorithm purpose]
+Objective: [What the algorithm needs to accomplish]
+Constraints: [Performance, memory, or other constraints]
+
+Problem definition:
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+Breaking down the problem:
+- [Component 1]
+- [Component 2]
+- [Component 3]
+
+Algorithm options:
+1. [Option 1]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+   
+2. [Option 2]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+   
+3. [Option 3]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+
+Systematic verification against requirements:
+- Requirement 1:
+  * Option 1: ✅/❌ [Explanation]
+  * Option 2: ✅/❌ [Explanation]
+  * Option 3: ✅/❌ [Explanation]
+- Requirement 2:
+  * Option 1: ✅/❌ [Explanation]
+  * Option 2: ✅/❌ [Explanation]
+  * Option 3: ✅/❌ [Explanation]
+
+Analysis:
+- [Analysis point 1]
+- [Analysis point 2]
+- [Analysis point 3]
+
+Decision: [Selected approach]
+- [Implementation detail 1]
+- [Implementation detail 2]
+- [Implementation detail 3]
+
+[Algorithm details, pseudocode, complexity analysis...]
+
+Edge cases and handling:
+- [Edge case 1]: [Handling approach]
+- [Edge case 2]: [Handling approach]
+- [Edge case 3]: [Handling approach]
+
+Performance analysis:
+- Time complexity: [Analysis]
+- Space complexity: [Analysis]
+- Optimization opportunities: [Potential improvements]
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of algorithm]
+- Key decisions: [Key points about the algorithm]
+- Next steps: [Implementation tasks]
+- Documentation: [Where documented]
+- Verification: [Confirmation that algorithm meets all requirements and constraints]
+
+🔄 TASK UPDATE: [Task name] - [Status]
+- Updated in tasks.md ✓
+- Creative work completed: [Brief summary]
+- Implementation details added to activeContext.md ✓
+```
+
+### UI Design Template (With Structured Thinking)
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: UI DESIGN 🎨🎨🎨
+Focus: [UI component/feature]
+Objective: [What the UI needs to accomplish]
+Constraints: [Accessibility, responsiveness, brand guidelines]
+
+Requirements:
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+Breaking down the UI problem:
+- User interaction flow
+- Information architecture
+- Visual hierarchy
+- Component structure
+- State management
+
+User research insights:
+- [Insight 1]
+- [Insight 2]
+- [Insight 3]
+
+Design options:
+1. [Option 1]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+   
+2. [Option 2]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+   
+3. [Option 3]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+
+Systematic verification against requirements:
+- Requirement 1: [Accessibility]
+  * Option 1: ✅/❌ [Explanation]
+  * Option 2: ✅/❌ [Explanation]
+  * Option 3: ✅/❌ [Explanation]
+- Requirement 2: [Responsiveness]
+  * Option 1: ✅/❌ [Explanation]
+  * Option 2: ✅/❌ [Explanation]
+  * Option 3: ✅/❌ [Explanation]
+
+Decision: [Selected approach]
+- [Design detail 1]
+- [Design detail 2]
+- [Design detail 3]
+
+[UI mockups, component structure, interaction details...]
+
+Edge cases and user scenarios:
+- [Edge case 1]: [Handling approach]
+- [Edge case 2]: [Handling approach]
+- [Edge case 3]: [Handling approach]
+
+Accessibility considerations:
+- Keyboard navigation: [Approach]
+- Screen reader compatibility: [Approach]
+- Color contrast: [Verification]
+- Touch target sizes: [Verification]
+
+Performance considerations:
+- Component rendering efficiency
+- State management approach
+- Resource loading strategy
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of UI design]
+- Key decisions: [Key design decisions]
+- Next steps: [Implementation tasks]
+- Documentation: [Where documented]
+- Verification: [Confirmation that design meets all requirements including accessibility and responsiveness]
+
+🔄 TASK UPDATE: [Task name] - [Status]
+- Updated in tasks.md ✓
+- Creative work completed: [Brief summary]
+- Implementation details added to activeContext.md ✓
+```
+
+### Architecture Planning Template (With Structured Thinking)
+
+```
+🎨🎨🎨 ENTERING CREATIVE PHASE: ARCHITECTURE PLANNING 🎨🎨🎨
+Focus: [System/feature]
+Objective: [What the architecture needs to accomplish]
+Constraints: [Scalability, security, performance]
+
+Requirements:
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+Breaking down the architecture problem:
+- Component boundaries and responsibilities
+- Communication patterns
+- Data flow and storage
+- Security model
+- Scalability approach
+- Resilience strategy
+
+Architecture options:
+1. [Option 1]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+   
+2. [Option 2]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+   
+3. [Option 3]
+   - Pros: [Advantages]
+   - Cons: [Disadvantages]
+
+Systematic verification against requirements:
+- Requirement 1: [Scalability]
+  * Option 1: ✅/❌ [Explanation with specific metrics]
+  * Option 2: ✅/❌ [Explanation with specific metrics]
+  * Option 3: ✅/❌ [Explanation with specific metrics]
+- Requirement 2: [Security]
+  * Option 1: ✅/❌ [Specific security assessment]
+  * Option 2: ✅/❌ [Specific security assessment]
+  * Option 3: ✅/❌ [Specific security assessment]
+
+Decision: [Selected approach]
+- [Architecture detail 1]
+- [Architecture detail 2]
+- [Architecture detail 3]
+
+[Architecture diagrams, service interactions, data flow...]
+
+Failure mode analysis:
+- Scenario 1: [Component X fails]
+  * Impact: [Analysis]
+  * Mitigation: [Strategy]
+- Scenario 2: [Network partition]
+  * Impact: [Analysis]
+  * Mitigation: [Strategy]
+
+Performance considerations:
+- Expected load: [Metrics]
+- Bottlenecks: [Identification]
+- Optimization strategies: [Approaches]
+
+Security assessment:
+- Attack vectors: [Identification]
+- Data protection: [Strategy]
+- Authentication/Authorization: [Approach]
+
+🎨🎨🎨 EXITING CREATIVE PHASE - RETURNING TO TASK TRACKING 🎨🎨🎨
+
+🔄 CREATIVE PHASE SUMMARY:
+- Completed: [Brief description of architecture]
+- Key decisions: [Key architectural decisions]
+- Next steps: [Implementation tasks]
+- Documentation: [Where documented]
+- Verification: [Confirmation that architecture meets all functional and non-functional requirements]
+
+🔄 TASK UPDATE: [Task name] - [Status]
+- Updated in tasks.md ✓
+- Creative work completed: [Brief summary]
+- Implementation details added to activeContext.md ✓
+```
