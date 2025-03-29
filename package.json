@@ -11,16 +11,18 @@
     "start": "node ./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "keywords": [
-    "mcp"
+    "mcp",
+    "mantis"
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/kfnzero/mantis-mcp-server.git"
   },
-  "author": "",
+  "author": "kevin.lin",
   "license": "MIT",
   "description": "Mantis MCP Server",
   "dependencies": {

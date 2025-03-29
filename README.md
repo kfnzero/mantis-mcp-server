@@ -1,15 +1,21 @@
 # Mantis MCP Server
 
-Mantis MCP Server 是一個基於 Model Context Protocol (MCP) 的服務，用於與 Mantis Bug Tracker 系統進行集成。它提供了一系列工具，允許用戶通過 MCP 協議查詢和與 Mantis 系統進行交互。
+Mantis MCP Server 是一個基於 Model Context Protocol (MCP) 的服務，用於與 Mantis Bug Tracker 系統進行集成。它提供了一系列工具，允許用戶通過 MCP 協議查詢和分析 Mantis 系統中的數據。
 
 ## 功能
 
-- 獲取問題列表，支持多種過濾條件
-- 根據 ID 查詢問題詳情
-- 獲取用戶列表
-- 獲取項目列表
-- 緩存機制，提高響應速度
-- 完整的錯誤處理
+- 問題管理
+  - 獲取問題列表（支持多種過濾條件）
+  - 根據 ID 查詢問題詳情
+- 用戶管理
+  - 根據用戶名稱查詢用戶
+  - 獲取所有用戶列表
+- 專案管理
+  - 獲取專案列表
+- 統計分析
+  - 問題統計（支持多維度分析）
+  - 分派統計（分析問題分派情況）
+- 完整的錯誤處理和日誌記錄
 
 ## 安裝
 
@@ -30,7 +36,7 @@ npm install
    MANTIS_API_KEY=your_api_key_here
    ```
 
-### MantisBT 2.26.0 API Key 獲取方式
+### MantisBT API Key 獲取方式
 
 1. 登入您的 MantisBT 帳戶
 2. 點擊右上角的用戶名稱，選擇「我的帳戶」
@@ -39,233 +45,113 @@ npm install
 5. 輸入令牌名稱（例如：MCP Server）
 6. 複製生成的 API 令牌，並將其貼入 `.env` 文件的 `MANTIS_API_KEY` 設置中
 
-注意：MantisBT 2.26.0 需要使用 `Bearer` 認證方式，本應用已經內建該支持。
-
-## 構建
+## 構建與運行
 
 ```bash
+# 構建
 npm run build
-```
 
-## 運行
-
-```bash
+# 運行
 npm start
-```
 
-## 開發
-
-監視模式下運行（自動重新編譯）：
-
-```bash
+# 開發模式（監視變更）
 npm run watch
 ```
 
-## 工具說明
+## API 工具說明
 
-### 獲取問題列表
+### 1. 獲取問題列表 (get_issues)
 
-```
-get_issues
-```
+獲取 Mantis 問題列表，可根據多個條件進行過濾。
 
-參數：
-- `projectId` (可選): 項目 ID
+**參數：**
+- `projectId` (可選): 專案 ID
 - `statusId` (可選): 狀態 ID
 - `handlerId` (可選): 處理人 ID
 - `reporterId` (可選): 報告者 ID
 - `search` (可選): 搜尋關鍵字
-- `limit` (可選, 默認 20): 返回數量限制
+- `limit` (可選, 默認 20): 回傳數量限制
 - `offset` (可選, 默認 0): 分頁起始位置
 
-### 獲取問題詳情
+### 2. 獲取問題詳情 (get_issue_by_id)
 
-```
-get_issue_by_id
-```
+根據 ID 獲取 Mantis 問題詳情。
 
-參數：
+**參數：**
 - `issueId`: 問題 ID
 
-### 獲取用戶列表
+### 3. 查詢用戶 (get_user)
 
-```
-get_users
-```
+根據用戶名稱查詢 Mantis 用戶。
 
-無需參數
+**參數：**
+- `username`: 用戶名稱
 
-### 獲取項目列表
+### 4. 獲取專案列表 (get_projects)
 
-```
-get_projects
-```
+獲取 Mantis 專案列表。
 
-無需參數
+**參數：** 無
 
-### 獲取問題統計
+### 5. 獲取問題統計 (get_issue_statistics)
 
-```
-get_issue_statistics
-```
+獲取 Mantis 問題統計數據，根據不同維度進行分析。
 
-參數：
-- `projectId` (可選): 項目 ID
+**參數：**
+- `projectId` (可選): 專案 ID
 - `groupBy`: 分組依據，可選值: 'status', 'priority', 'severity', 'handler', 'reporter'
-- `period` (可選, 默認 'all'): 時間範圍，可選值: 'all', 'today', 'week', 'month'
+- `period` (默認 'all'): 時間範圍，可選值: 'all', 'today', 'week', 'month'
 
-### 獲取分派統計
+### 6. 獲取分派統計 (get_assignment_statistics)
 
-```
-get_assignment_statistics
-```
+獲取 Mantis 問題分派統計數據，分析不同用戶的問題分派情況。
 
-參數：
-- `projectId` (可選): 項目 ID
-- `includeUnassigned` (可選, 默認 true): 是否包含未分派問題
-- `statusFilter` (可選): 狀態過濾器，只計算特定狀態的問題，格式為狀態 ID 數組
+**參數：**
+- `projectId` (可選): 專案 ID
+- `includeUnassigned` (默認 true): 是否包含未分派問題
+- `statusFilter` (可選): 狀態過濾器，只計算特定狀態的問題
 
-## API 文檔
+### 7. 獲取所有用戶 (get_users)
 
-### 響應格式
+用暴力法獲取所有用戶列表。
 
-所有 API 響應都使用 JSON 格式。成功的響應將直接返回數據，錯誤響應將包含錯誤信息。
+**參數：** 無
 
-### 認證
+## 錯誤處理
 
-API 使用 Bearer Token 認證。在發送請求時，需要在 HTTP Header 中包含：
+服務內建完整的錯誤處理機制：
 
-```
-Authorization: your_api_token_here
-```
+- Mantis API 錯誤處理
+- HTTP 狀態碼處理
+- 詳細的錯誤日誌記錄
+- 友好的錯誤響應格式
 
-### API 端點
-
-#### 獲取問題列表 GET /issues
-
-獲取問題列表，支持多種過濾條件。
-
-**請求參數:**
-- `limit` (可選, 默認 50): 返回結果數量限制
-- `offset` (可選, 默認 0): 分頁偏移量
-- `project_id` (可選): 按項目 ID 過濾
-- `status_id` (可選): 按狀態 ID 過濾
-- `handler_id` (可選): 按處理人 ID 過濾
-- `reporter_id` (可選): 按報告者 ID 過濾
-- `priority` (可選): 按優先級過濾
-- `severity` (可選): 按嚴重程度過濾
-- `search` (可選): 搜索關鍵字
-
-**響應示例:**
-```json
-[
-  {
-    "id": 1,
-    "summary": "問題標題",
-    "description": "問題描述",
-    "status": {
-      "id": 10,
-      "name": "新建"
-    },
-    "project": {
-      "id": 1,
-      "name": "測試項目"
-    },
-    "category": {
-      "id": 1,
-      "name": "一般"
-    },
-    "reporter": {
-      "id": 1,
-      "name": "reporter",
-      "email": "reporter@example.com"
-    },
-    "created_at": "2024-03-20T10:00:00Z",
-    "updated_at": "2024-03-20T10:00:00Z"
-  }
-]
-```
-
-#### 獲取問題詳情 GET /issues/{id}
-
-獲取單個問題的詳細信息。
-
-**路徑參數:**
-- `id`: 問題 ID
-
-**響應格式同問題列表的單個問題對象**
-
-#### 獲取當前用戶信息 GET /users/me
-
-獲取當前認證用戶的信息。
-
-**響應示例:**
+錯誤響應格式：
 ```json
 {
-  "id": 1,
-  "name": "username",
-  "email": "user@example.com",
-  "real_name": "Real Name",
-  "access_level": {
-    "id": 90,
-    "name": "administrator"
-  },
-  "enabled": true
+  "error": "錯誤描述",
+  "message": "詳細錯誤信息"
 }
 ```
-
-#### 獲取用戶信息 GET /users/{id}
-
-獲取指定用戶的信息。
-
-**路徑參數:**
-- `id`: 用戶 ID
-
-**響應格式同當前用戶信息**
-
-#### 獲取項目列表 GET /projects
-
-獲取所有可訪問的項目列表。
-
-**響應示例:**
-```json
-[
-  {
-    "id": 1,
-    "name": "測試項目",
-    "description": "項目描述",
-    "enabled": true,
-    "status": {
-      "id": 10,
-      "name": "開發中"
-    }
-  }
-]
-```
-
-### 錯誤處理
-
-當發生錯誤時，API 將返回適當的 HTTP 狀態碼和錯誤信息：
-
-```json
-{
-  "message": "錯誤描述",
-  "code": "錯誤代碼"
-}
-```
-
-常見錯誤碼：
-- 400: 請求參數錯誤
-- 401: 未認證或認證失敗
-- 403: 權限不足
-- 404: 資源不存在
-- 500: 服務器內部錯誤
 
 ## 許可證
 
 MIT
 
-
 ## 參考
 
 @https://documenter.getpostman.com/view/29959/7Lt6zkP#c0c24256-341e-4649-95cb-ad7bdc179399 
+
+
+# 發布
+npm login
+npm run build
+npm publish --access public
+
+# 更新版本號
+npm version patch  # 修復版本 0.0.x
+npm version minor  # 次要版本 0.x.0
+npm version major  # 主要版本 x.0.0
+
+# 重新發布
+npm publish
