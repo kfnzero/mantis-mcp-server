@@ -18,6 +18,88 @@ interface LogData {
   error?: any;
 }
 
+// 高階函數：檢查 Mantis 配置並執行工具邏輯
+async function withMantisConfigured<T>(
+  toolName: string,
+  action: () => Promise<T>
+): Promise<{
+  [x: string]: unknown;
+  content: Array<{
+    [x: string]: unknown;
+    type: "text";
+    text: string;
+  }>;
+  _meta?: { [key: string]: unknown } | undefined;
+  isError?: boolean | undefined;
+}> {
+  try {
+    // 檢查是否已配置 Mantis API
+    if (!isMantisConfigured()) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                error: "Mantis API 尚未配置",
+                message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
+              },
+              null,
+              2
+            ),
+          },
+        ],
+        isError: true
+      };
+    }
+
+    // 執行工具邏輯
+    const result = await action();
+    return {
+      content: [
+        {
+          type: "text",
+          text: typeof result === 'string' ? result : JSON.stringify(result, null, 2),
+        },
+      ],
+    };
+  } catch (error) {
+    // 處理錯誤情況
+    let errorMessage = `執行 ${toolName} 時發生錯誤`;
+    let logData: LogData = { tool: toolName };
+
+    if (error instanceof MantisApiError) {
+      errorMessage = `Mantis API 錯誤: ${error.message}`;
+      if (error.statusCode) {
+        errorMessage += ` (HTTP ${error.statusCode})`;
+        logData = { ...logData, statusCode: error.statusCode };
+      }
+      log.error(errorMessage, { ...logData, error: error.message });
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+      log.error(errorMessage, { ...logData, error: error.stack });
+    } else {
+      log.error(errorMessage, { ...logData, error });
+    }
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(
+            {
+              error: errorMessage,
+            },
+            null,
+            2
+          ),
+        },
+      ],
+      isError: true
+    };
+  }
+}
+
 // 壓縮 JSON 數據
 async function compressJsonData(data: any): Promise<string> {
   const jsonString = JSON.stringify(data);
@@ -50,80 +132,24 @@ export function createServer(): McpServer {
       select: z.array(z.string()).optional().describe("選擇要返回的欄位，例如：['id', 'summary', 'description']"),
     },
     async (params) => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
-
-        // 從 Mantis API 獲取問題
+      return withMantisConfigured("get_issues", async () => {
         const issues = await mantisApi.getIssues(params);
+        const jsonString = JSON.stringify(issues);
         
-        // 壓縮數據
-        const responseText = await compressJsonData(issues);
-        const isCompressed = responseText.length > COMPRESSION_THRESHOLD;
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: responseText,
-              metadata: {
-                compressed: isCompressed,
-                originalSize: JSON.stringify(issues).length,
-                compressedSize: responseText.length
-              }
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "獲取問題時發生錯誤";
-        let logData: LogData = { tool: "get_issues", params };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
+        if (jsonString.length < COMPRESSION_THRESHOLD) {
+          return jsonString;
         }
 
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        const compressed = await gzipAsync(Buffer.from(jsonString));
+        const base64Data = compressed.toString('base64');
+
+        return JSON.stringify({
+          compressed: true,
+          data: base64Data,
+          originalSize: jsonString.length,
+          compressedSize: base64Data.length
+        });
+      });
     }
   );
 
@@ -135,71 +161,10 @@ export function createServer(): McpServer {
       issueId: z.number().describe("問題 ID"),
     },
     async ({ issueId }) => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
-
-        // 從 Mantis API 獲取問題詳情
+      return withMantisConfigured("get_issue_by_id", async () => {
         const issue = await mantisApi.getIssueById(issueId);
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(issue, null, 2),
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "獲取問題詳情時發生錯誤";
-        let logData: LogData = { tool: "get_issue_by_id", issueId };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
-        }
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        return JSON.stringify(issue, null, 2);
+      });
     }
   );
 
@@ -211,71 +176,10 @@ export function createServer(): McpServer {
       username: z.string().describe("用戶名稱")
     },
     async (params) => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
-
-        // 從 Mantis API 根據用戶名稱查詢用戶
+      return withMantisConfigured("get_user", async () => {
         const user = await mantisApi.getUserByUsername(params.username);
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(user, null, 2),
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "查詢用戶時發生錯誤";
-        let logData: LogData = { tool: "get_user", username: params.username };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
-        }
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        return JSON.stringify(user, null, 2);
+      });
     }
   );
 
@@ -285,71 +189,10 @@ export function createServer(): McpServer {
     "獲取 Mantis 專案列表",
     {},
     async () => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
-
-        // 從 Mantis API 獲取專案
+      return withMantisConfigured("get_projects", async () => {
         const projects = await mantisApi.getProjects();
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(projects, null, 2),
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "獲取專案列表時發生錯誤";
-        let logData: LogData = { tool: "get_projects" };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
-        }
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        return JSON.stringify(projects, null, 2);
+      });
     }
   );
 
@@ -363,26 +206,7 @@ export function createServer(): McpServer {
       period: z.enum(['all', 'today', 'week', 'month']).default('all').describe("時間範圍<all-全部, today-今天, week-本週, month-本月>"),
     },
     async (params) => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
-
+      return withMantisConfigured("get_issue_statistics", async () => {
         // 從 Mantis API 獲取問題並處理統計
         const issues = await mantisApi.getIssues({
           projectId: params.projectId,
@@ -400,10 +224,7 @@ export function createServer(): McpServer {
         // 根據時間範圍過濾
         let filteredIssues = issues;
         log.debug("根據時間範圍過濾issues", { issues, params });
-        /**
-         * 根據時間範圍過濾issues
-         * @param period 時間範圍: all-全部, today-今天, week-本週, month-本月
-         */
+        
         const now = new Date();
         const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
@@ -433,15 +254,9 @@ export function createServer(): McpServer {
             // 保持原有的issues不變
             break;
         }
+
         if (!filteredIssues || filteredIssues.length === 0) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify({ error: "沒有查詢到任何Issue" }, null, 2),
-              },
-            ]
-          }
+          return { error: "沒有查詢到任何Issue" };
         }
 
         // 根據分組依據進行統計
@@ -469,53 +284,8 @@ export function createServer(): McpServer {
           statistics.data[key] = (statistics.data[key] || 0) + 1;
         });
 
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(statistics, null, 2),
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "獲取問題統計時發生錯誤";
-        let logData: LogData = {
-          tool: "get_issue_statistics",
-          params,
-          groupBy: params.groupBy,
-          period: params.period
-        };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
-        }
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        return JSON.stringify(statistics, null, 2);
+      });
     }
   );
 
@@ -529,31 +299,12 @@ export function createServer(): McpServer {
       statusFilter: z.array(z.number()).optional().describe("狀態過濾器，只計算特定狀態的問題"),
     },
     async (params) => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
-
+      return withMantisConfigured("get_assignment_statistics", async () => {
         // 獲取問題
         const issues = await mantisApi.getIssues({
           projectId: params.projectId,
           pageSize: 1000 // 獲取大量數據用於統計
-        })
+        });
 
         // 過濾問題
         let filteredIssues = issues;
@@ -644,81 +395,33 @@ export function createServer(): McpServer {
           });
         }
 
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(statistics, null, 2),
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "獲取分派統計時發生錯誤";
-        let logData: LogData = {
-          tool: "get_assignment_statistics",
-          params,
-          includeUnassigned: params.includeUnassigned,
-          hasStatusFilter: !!params.statusFilter
-        };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
-        }
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        return JSON.stringify(statistics, null, 2);
+      });
     }
   );
-  server.tool(
-    "get_users",
-    "用暴力法應是取得所有用戶",
-    {
 
+  // 獲取指定專案的所有用戶
+  server.tool(
+    "get_users_by_project_id",
+    "獲取指定專案的所有用戶",
+    {
+      projectId: z.number().describe("專案 ID"),
     },
     async (params) => {
-      try {
-        // 檢查是否已配置 Mantis API
-        if (!isMantisConfigured()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: JSON.stringify(
-                  {
-                    error: "Mantis API 尚未配置",
-                    message: "請在環境變數中設定 MANTIS_API_URL 和 MANTIS_API_KEY"
-                  },
-                  null,
-                  2
-                ),
-              },
-            ],
-          };
-        }
+      return withMantisConfigured("get_users_by_project_id", async () => {
+        const users = await mantisApi.getUsersByProjectId(params.projectId);
+        return JSON.stringify(users, null, 2);
+      });
+    }
+  );
+
+  // 獲取所有用戶
+  server.tool(
+    "get_users",
+    "用暴力法強制取得所有用戶",
+    {},
+    async () => {
+      return withMantisConfigured("get_users", async () => {
         let notFoundCount = 0;
         let id = 1;
         let users: User[] = [];
@@ -734,53 +437,11 @@ export function createServer(): McpServer {
               id++;
             }
           }
-        } while (notFoundCount < 10)
-        // 從 Mantis API 根據用戶名稱查詢用戶
-
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(users, null, 2),
-            },
-          ],
-        };
-      } catch (error) {
-        // 處理錯誤情況
-        let errorMessage = "查詢用戶時發生錯誤";
-        let logData: LogData = { tool: "get_users" };
-
-        if (error instanceof MantisApiError) {
-          errorMessage = `Mantis API 錯誤: ${error.message}`;
-          if (error.statusCode) {
-            errorMessage += ` (HTTP ${error.statusCode})`;
-            logData = { ...logData, statusCode: error.statusCode };
-          }
-          log.error(errorMessage, { ...logData, error: error.message });
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-          log.error(errorMessage, { ...logData, error: error.stack });
-        } else {
-          log.error(errorMessage, { ...logData, error });
-        }
-
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(
-                {
-                  error: errorMessage,
-                },
-                null,
-                2
-              ),
-            },
-          ],
-        };
-      }
+        } while (notFoundCount < 10);
+        return JSON.stringify(users, null, 2);
+      });
     }
   );
+
   return server;
 }

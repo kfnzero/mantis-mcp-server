@@ -284,6 +284,17 @@ export class MantisApi {
     });
   }
 
+  // 獲取指定專案的所有使用者
+  async getUsersByProjectId(projectId: number): Promise<User[]> {
+    log.info('獲取指定專案的所有使用者', { projectId });
+    
+    const cacheKey = `users-by-project-${projectId}`;
+    
+    return this.cachedRequest<User[]>(cacheKey, () => {
+      return this.api.get(`/projects/${projectId}/users`);
+    });
+  }
+
   // 清除緩存
   clearCache() {
     log.info('清除 API 緩存');
