@@ -1,6 +1,6 @@
 {
   "name": "mantis-mcp-server",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "type": "module",
   "bin": {
     "mantis-mcp-server": "dist/index.js"
