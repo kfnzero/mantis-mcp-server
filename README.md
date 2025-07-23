@@ -1,5 +1,7 @@
 # Mantis MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@kfnzero/mantis-mcp-server)](https://smithery.ai/server/@kfnzero/mantis-mcp-server)
+
 Mantis MCP Server 是一個基於 Model Context Protocol (MCP) 的服務，用於與 Mantis Bug Tracker 系統進行集成。它提供了一系列工具，允許用戶通過 MCP 協議查詢和分析 Mantis 系統中的數據。
 
 <a href="https://glama.ai/mcp/servers/@kfnzero/mantis-mcp-server">
@@ -27,6 +29,15 @@ Mantis MCP Server 是一個基於 Model Context Protocol (MCP) 的服務，用�
 
 ## 安裝
 
+### Installing via Smithery
+
+To install Mantis Bug Tracker Integration for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@kfnzero/mantis-mcp-server):
+
+```bash
+npx -y @smithery/cli install @kfnzero/mantis-mcp-server --client claude
+```
+
+### Manual Installation
 ```bash
 npm install mantis-mcp-server
 ```

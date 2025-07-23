@@ -1,0 +1,67 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - mantisApiUrl
+      - mantisApiKey
+    properties:
+      mantisApiUrl:
+        type: string
+        description: Mantis API base URL
+      mantisApiKey:
+        type: string
+        description: Mantis API key
+      nodeEnv:
+        type: string
+        default: production
+        description: Node environment
+      logLevel:
+        type: string
+        default: info
+        description: Log level
+      cacheEnabled:
+        type: boolean
+        default: true
+        description: Enable cache
+      cacheTtlSeconds:
+        type: number
+        default: 300
+        description: Cache TTL in seconds
+      logDir:
+        type: string
+        default: logs
+        description: Log directory
+      enableFileLogging:
+        type: boolean
+        default: false
+        description: Enable file logging
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['dist/index.js'],
+      env: {
+        MANTIS_API_URL: config.mantisApiUrl,
+        MANTIS_API_KEY: config.mantisApiKey,
+        NODE_ENV: config.nodeEnv,
+        LOG_LEVEL: config.logLevel,
+        CACHE_ENABLED: String(config.cacheEnabled),
+        CACHE_TTL_SECONDS: String(config.cacheTtlSeconds),
+        LOG_DIR: config.logDir,
+        ENABLE_FILE_LOGGING: String(config.enableFileLogging)
+      }
+    })
+  exampleConfig:
+    mantisApiUrl: https://mantis.example.com/api/rest
+    mantisApiKey: abcd1234efgh5678
+    nodeEnv: production
+    logLevel: info
+    cacheEnabled: true
+    cacheTtlSeconds: 300
+    logDir: logs
+    enableFileLogging: false
