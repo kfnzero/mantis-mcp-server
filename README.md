@@ -308,9 +308,9 @@ MIT
 
 
 # 發布
-npm login
+npm login --registry=https://registry.npmjs.org/
 npm run build
-npm publish --access public
+npm publish --access public --registry=https://registry.npmjs.org/
 
 # 更新版本號
 npm version patch  # 修復版本 0.0.x
