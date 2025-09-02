@@ -443,5 +443,89 @@ export function createServer(): McpServer {
     }
   );
 
+  // 新增 issue
+  server.tool(
+    "create_issue",
+    "新增一個 Mantis 問題",
+    {
+      summary: z.string().describe("問題摘要"),
+      description: z.string().describe("問題詳細描述"),
+      projectId: z.number().describe("專案 ID"),
+      categoryId: z.number().optional().describe("分類 ID"),
+      handlerId: z.number().optional().describe("處理人 ID"),
+      priority: z.string().optional().describe("優先級"),
+      severity: z.string().optional().describe("嚴重性"),
+      additional_information: z.string().optional().describe("附加信息"),
+    },
+    async (params) => {
+      return withMantisConfigured("create_issue", async () => {
+        const issueData = {
+          summary: params.summary,
+          description: params.description,
+          project: { id: params.projectId },
+          category: { id: params.categoryId || 1 }, // 默認 category
+          handler: params.handlerId ? { id: params.handlerId } : undefined,
+          priority: params.priority ? { name: params.priority } : undefined,
+          severity: params.severity ? { name: params.severity } : undefined,
+          additional_information: params.additional_information,
+        };
+        const issue = await mantisApi.createIssue(issueData);
+        return JSON.stringify(issue, null, 2);
+      });
+    }
+  );
+
+  // 修改 issue
+  server.tool(
+    "update_issue",
+    "修改一個 Mantis 問題",
+    {
+      issueId: z.number().describe("問題 ID"),
+      summary: z.string().optional().describe("問題摘要"),
+      description: z.string().optional().describe("問題詳細描述"),
+      handlerId: z.number().optional().describe("處理人 ID"),
+      status: z.string().optional().describe("狀態"),
+      resolution: z.string().optional().describe("解決方案"),
+      priority: z.string().optional().describe("優先級"),
+      severity: z.string().optional().describe("嚴重性"),
+    },
+    async (params) => {
+      return withMantisConfigured("update_issue", async () => {
+        const updateData = {
+          summary: params.summary,
+          description: params.description,
+          handler: params.handlerId ? { id: params.handlerId } : undefined,
+          status: params.status ? { name: params.status } : undefined,
+          resolution: params.resolution ? { name: params.resolution } : undefined,
+          priority: params.priority ? { name: params.priority } : undefined,
+          severity: params.severity ? { name: params.severity } : undefined,
+        };
+        const issue = await mantisApi.updateIssue(params.issueId, updateData);
+        return JSON.stringify(issue, null, 2);
+      });
+    }
+  );
+
+  // 新增 issue note
+  server.tool(
+    "add_issue_note",
+    "為一個 Mantis 問題新增備註",
+    {
+      issueId: z.number().describe("問題 ID"),
+      text: z.string().describe("備註內容"),
+      view_state: z.string().optional().default("public").describe("可見狀態 (public 或 private)"),
+    },
+    async (params) => {
+      return withMantisConfigured("add_issue_note", async () => {
+        const noteData = {
+          text: params.text,
+          view_state: { name: params.view_state },
+        };
+        const result = await mantisApi.addIssueNote(params.issueId, noteData);
+        return JSON.stringify(result, null, 2);
+      });
+    }
+  );
+
   return server;
 }

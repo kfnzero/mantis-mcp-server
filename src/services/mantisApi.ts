@@ -300,6 +300,30 @@ export class MantisApi {
     log.info('清除 API 緩存');
     this.cache.clear();
   }
+
+  // 新增 issue
+  async createIssue(issueData: any): Promise<Issue> {
+    log.info('新增 Issue', { issueData });
+    const response = await this.api.post('/issues', issueData);
+    this.clearCache(); // 清除快取，因為有新的 issue
+    return response.data.issue;
+  }
+
+  // 修改 issue
+  async updateIssue(issueId: number, updateData: any): Promise<Issue> {
+    log.info('修改 Issue', { issueId, updateData });
+    const response = await this.api.patch(`/issues/${issueId}`, updateData);
+    this.clearCache(); // 清除快取，因為 issue 已更新
+    return response.data.issue;
+  }
+
+  // 新增 issue note
+  async addIssueNote(issueId: number, noteData: any): Promise<any> {
+    log.info('新增 Issue Note', { issueId, noteData });
+    const response = await this.api.post(`/issues/${issueId}/notes`, noteData);
+    this.clearCache(); // 清除快取，因為 issue 已更新
+    return response.data;
+  }
 }
 
 // 創建單例實例
